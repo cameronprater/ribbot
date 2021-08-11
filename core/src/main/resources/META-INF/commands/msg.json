@@ -1,0 +1,95 @@
+{
+  "name": "msg",
+  "description": "Manage Ribbot messages.",
+  "options": [
+    {
+      "name": "embed",
+      "description": "Manage embeds on Ribbot messages.",
+      "type": 2,
+      "options": [
+        {
+          "name": "add",
+          "description": "Add an embed to a Ribbot message.",
+          "type": 1,
+          "options": [
+            {
+              "name": "msg",
+              "description": "Link of the message",
+              "type": 3,
+              "required": true
+            },
+            {
+              "name": "title",
+              "description": "Embed title",
+              "type": 3,
+              "required": false
+            },
+            {
+              "name": "desc",
+              "description": "Embed description, type \\n to create a newline",
+              "type": 3,
+              "required": false
+            },
+            {
+              "name": "color",
+              "description": "Embed color code",
+              "type": 3,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "description": "Create a new Ribbot message with an embed.",
+          "type": 1,
+          "options": [
+            {
+              "name": "channel",
+              "description": "Channel to create the message in, this channel by default",
+              "type": 7,
+              "required": false
+            },
+            {
+              "name": "title",
+              "description": "Embed title",
+              "type": 3,
+              "required": false
+            },
+            {
+              "name": "desc",
+              "description": "Embed description, type \\n to create a newline",
+              "type": 3,
+              "required": false
+            },
+            {
+              "name": "color",
+              "description": "Embed color code",
+              "type": 3,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "new",
+      "description": "Create a new Ribbot message.",
+      "type": 1,
+      "options": [
+        {
+          "name": "txt",
+          "description": "Message text, type \n to create a newline",
+          "type": 3,
+          "required": true
+        },
+        {
+          "name": "channel",
+          "description": "Channel to create the message in, this channel by default",
+          "type": 7,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "default_permission": false
+}
