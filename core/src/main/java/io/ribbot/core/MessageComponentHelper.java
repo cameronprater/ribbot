@@ -3,14 +3,13 @@ package io.ribbot.core;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.Dependent;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.cameronprater.emoji.EmojiManager;
-import com.cameronprater.emoji.EmojiParser;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.component.*;
@@ -22,9 +21,9 @@ import discord4j.discordjson.json.ComponentData;
 import discord4j.discordjson.json.ImmutableComponentData;
 import discord4j.discordjson.json.SelectOptionData;
 import discord4j.discordjson.possible.Possible;
+import io.ribbot.core.validation.NoEmojis;
 import reactor.util.annotation.Nullable;
 
-// TODO some input validation here could be abstracted out into hibernate validator.
 @Dependent
 public class MessageComponentHelper {
     private static final int MAX_ACTION_ROWS = 5;
@@ -57,17 +56,6 @@ public class MessageComponentHelper {
         }
     }
 
-    private String requireNoEmojis(String s) {
-        List<String> emojis = EmojiParser.extractEmojis(s);
-        Matcher matcher = Pattern.compile(CustomEmoji.REGEX).matcher(s);
-        if (!emojis.isEmpty()) {
-            throw new IllegalArgumentException(String.format("Text can't contain emojis: %s", String.join(", ", emojis)));
-        } else if (matcher.find()) {
-            throw new IllegalArgumentException(String.format("Text can't contain emojis: %s", matcher.group()));
-        } else {
-            return s;
-        }
-    }
 
     // TODO check each row for non-full when the last row is full and more can't be created
     public List<LayoutComponent> addComponent(Message message, MessageComponent component) {
@@ -106,15 +94,8 @@ public class MessageComponentHelper {
         }
     }
 
-    public List<LayoutComponent> addOption(Message message, Option option, int index, @Nullable Integer min,
-            @Nullable Integer max) {
-        if (min != null && min < 0) {
-            throw new IllegalArgumentException("Min must be greater than 0");
-        }
-        if (max != null && max < 0) {
-            throw new IllegalArgumentException("Max must be greater than 0");
-        }
-
+    public List<LayoutComponent> addOption(Message message, Option option, int index,
+                                           @Max(25) @Min(0) @Nullable Integer min, @Max(25) @Min(0) @Nullable Integer max) {
         List<LayoutComponent> components = getLayoutComponents(message.getComponents());
         for (int i = 0, j = 0; i < components.size(); i++) {
             LayoutComponent component = components.get(i);
@@ -151,7 +132,7 @@ public class MessageComponentHelper {
                 String.format("Message doesn't have %s select menu%s", index == 0 ? "a" : index + 1, index == 0 ? "" : "s"));
     }
 
-    public Button getButton(String color, @Nullable String label, @Nullable String emoji) {
+    public Button getButton(String color, @NoEmojis @Nullable String label, @Nullable String emoji) {
         if (label == null && emoji == null) {
             throw new IllegalArgumentException("Label or emoji must be provided");
         }
@@ -161,7 +142,7 @@ public class MessageComponentHelper {
                 .type(MessageComponent.Type.BUTTON.getValue());
 
         if (label != null) {
-            builder.label(requireNoEmojis(label));
+            builder.label(label);
         }
         if (emoji != null) {
             builder.emoji(getReactionEmoji(emoji).asEmojiData());
@@ -196,10 +177,11 @@ public class MessageComponentHelper {
                 String.format("Message doesn't have %s select menu%s", index == 0 ? "a" : index + 1, index == 0 ? "" : "s"));
     }
 
-    public Option getOption(String label, String value, @Nullable String description, @Nullable String emoji) {
-        Option option = Option.of(requireNoEmojis(label), value);
+    public Option getOption(@NoEmojis String label, @NoEmojis String value, @NoEmojis @Nullable String description,
+                            @Nullable String emoji) {
+        Option option = Option.of(label, value);
         if (description != null) {
-            option = option.withDescription(requireNoEmojis(description));
+            option = option.withDescription(description);
         }
         if (emoji != null) {
             option = option.withEmoji(getReactionEmoji(emoji));
@@ -207,8 +189,8 @@ public class MessageComponentHelper {
         return option;
     }
 
-    public SelectMenu getSelectMenu(String label, String value, @Nullable String description,
-            @Nullable String emoji, @Nullable String placeholder) {
+    public SelectMenu getSelectMenu(@NoEmojis String label, @NoEmojis String value, @NoEmojis @Nullable String description,
+                                    @Nullable String emoji, @NoEmojis @Nullable String placeholder) {
         SelectMenu selectMenu = SelectMenu.of(Snowflake.of(Instant.now()).asString(),
                 getOption(label, value, description, emoji));
         if (placeholder != null) {

@@ -10,7 +10,6 @@ import discord4j.core.event.domain.interaction.ButtonInteractEvent;
 import discord4j.core.event.domain.interaction.SlashCommandEvent;
 import discord4j.core.object.command.ApplicationCommandInteractionOption;
 import discord4j.core.object.command.ApplicationCommandInteractionOptionValue;
-import discord4j.core.object.command.Interaction;
 import discord4j.core.object.component.Button;
 import discord4j.core.object.entity.*;
 import discord4j.core.object.entity.channel.MessageChannel;
@@ -32,7 +31,7 @@ public class RoleButtonCommand {
     @Inject
     MessageComponentHelper messageComponentHelper;
 
-    private Mono<Void> onAdd(ApplicationCommandInteractionOption subcommand, Interaction interaction) {
+    private Mono<Void> onAdd(ApplicationCommandInteractionOption subcommand) {
         GatewayDiscordClient gateway = subcommand.getClient();
 
         Mono<Role> roleMono = subcommand.getOption("role")
@@ -97,7 +96,7 @@ public class RoleButtonCommand {
 
         return slashCommand.acknowledgeEphemeral().then(Mono.defer(() -> {
             if (subcommand.getName().equals("add")) {
-                return onAdd(subcommand, slashCommand.getInteraction());
+                return onAdd(subcommand);
             } else {
                 return Mono.error(IllegalStateException::new);
             }
