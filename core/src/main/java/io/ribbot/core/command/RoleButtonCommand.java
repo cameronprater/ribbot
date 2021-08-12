@@ -1,6 +1,7 @@
 package io.ribbot.core.command;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 
 import org.jboss.logging.Logger;
 import org.jdbi.v3.core.Jdbi;
@@ -101,6 +102,7 @@ public class RoleButtonCommand {
                 return Mono.error(IllegalStateException::new);
             }
         })).then(response.editInitialResponse(WebhookMessageEditRequest.builder().content("Done").build()))
+                .onErrorMap(ConstraintViolationException.class, IllegalArgumentException::new)
                 .onErrorResume(IllegalArgumentException.class,
                         e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))
