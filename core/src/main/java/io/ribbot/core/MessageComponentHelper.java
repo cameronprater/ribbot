@@ -21,7 +21,9 @@ import discord4j.discordjson.json.ComponentData;
 import discord4j.discordjson.json.ImmutableComponentData;
 import discord4j.discordjson.json.SelectOptionData;
 import discord4j.discordjson.possible.Possible;
+import io.ribbot.core.jdbi.RoleSelectMenuDao;
 import io.ribbot.core.validation.NoEmojis;
+import org.jdbi.v3.core.Jdbi;
 import reactor.util.annotation.Nullable;
 
 @Dependent
@@ -55,7 +57,6 @@ public class MessageComponentHelper {
             return ReactionEmoji.custom(customEmoji.getId(), customEmoji.getName(), customEmoji.isAnimated());
         }
     }
-
 
     // TODO check each row for non-full when the last row is full and more can't be created
     public List<LayoutComponent> addComponent(Message message, MessageComponent component) {
@@ -227,7 +228,7 @@ public class MessageComponentHelper {
         throw new IllegalStateException(String.format("Message doesn't have a component with an id of %s", customId));
     }
 
-    public List<LayoutComponent> removeOption(Message message, String optionValue) {
+    public List<LayoutComponent> removeOption(Message message, String optionValue, Jdbi jdbi) {
         List<LayoutComponent> components = getLayoutComponents(message.getComponents());
         for (int i = 0; i < components.size(); i++) {
             LayoutComponent component = components.get(i);
@@ -242,8 +243,8 @@ public class MessageComponentHelper {
                         newOptions.remove(j);
 
                         if (newOptions.isEmpty()) {
-                            // TODO also need to delete the empty menu from the db
                             components.remove(i);
+                            jdbi.useExtension(RoleSelectMenuDao.class, roleSelectMenu -> roleSelectMenu.delete(childComponentData.customId().get()));
                         } else {
                             // adjust min and max if needed
                             Possible<Integer> minValues = childComponentData.minValues().toOptional()

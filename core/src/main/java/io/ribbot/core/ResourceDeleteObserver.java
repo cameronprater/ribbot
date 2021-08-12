@@ -74,7 +74,7 @@ public class ResourceDeleteObserver {
                 .flatMap(roleSelectOption -> gateway.getMessageById(roleSelectOption.getChannelId(),
                         roleSelectOption.getMessageId()))
                 .flatMap(message -> message.edit(messageSpec -> messageSpec
-                        .setComponents(messageComponentHelper.removeOption(message, roleId.asString()))))
+                        .setComponents(messageComponentHelper.removeOption(message, roleId.asString(), jdbi))))
                 .then();
 
         return Mono.fromRunnable(() -> jdbi.useExtension(RoleDao.class, role -> role.deleteById(roleDelete.getRoleId())))
