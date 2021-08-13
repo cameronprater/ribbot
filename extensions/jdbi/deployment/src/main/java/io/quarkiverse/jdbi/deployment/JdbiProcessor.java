@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 import org.jboss.jandex.*;
 import org.jdbi.v3.core.Jdbi;
@@ -22,15 +21,11 @@ import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.ExecutionTime;
 import io.quarkus.deployment.annotations.Record;
-import io.quarkus.deployment.builditem.CombinedIndexBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 
 public class JdbiProcessor {
     private static final DotName JDBI = DotName.createSimple(Jdbi.class.getName());
     private static final DotName JDBI_DATA_SOURCE = DotName.createSimple(JdbiDataSource.class.getName());
-
-    @Inject
-    CombinedIndexBuildItem combinedIndex;
 
     private SyntheticBeanBuildItem syntheticBean(JdbiRecorder recorder,
             ExtendedBeanConfigurator beanConfigurator,
