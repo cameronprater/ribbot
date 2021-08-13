@@ -152,7 +152,6 @@ public class RoleSelectMenuCommand {
                         roleSelectOption -> roleSelectOption.getBySelectMenuId(selectMenuInteract.getCustomId())))
                         .flatMapMany(Flux::fromIterable)
                         .flatMap(roleId -> {
-
                             if (values.contains(roleId.asString()) && !member.getRoleIds().contains(roleId)) {
                                 return member.addRole(roleId);
                             } else if (!values.contains(roleId.asString()) && member.getRoleIds().contains(roleId)) {
