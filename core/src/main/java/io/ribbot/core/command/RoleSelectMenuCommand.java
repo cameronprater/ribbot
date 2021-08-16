@@ -40,7 +40,35 @@ public class RoleSelectMenuCommand {
     @Inject
     MessageComponentHelper messageComponentHelper;
 
-    private Mono<Void> onNew(ApplicationCommandInteractionOption subcommand, Snowflake roleId, String label,
+    private Mono<Message> onAdd(ApplicationCommandInteractionOption subcommand, Snowflake roleId, String label,
+            Mono<Message> messageMono, @Nullable String description, @Nullable String emoji) {
+        Optional<Integer> index = subcommand.getOption("index")
+                .flatMap(ApplicationCommandInteractionOption::getValue)
+                .map(ApplicationCommandInteractionOptionValue::asLong)
+                .map(Math::toIntExact);
+        Optional<Integer> min = subcommand.getOption("min")
+                .flatMap(ApplicationCommandInteractionOption::getValue)
+                .map(ApplicationCommandInteractionOptionValue::asLong)
+                .map(Math::toIntExact);
+        Optional<Integer> max = subcommand.getOption("max")
+                .flatMap(ApplicationCommandInteractionOption::getValue)
+                .map(ApplicationCommandInteractionOptionValue::asLong)
+                .map(Math::toIntExact);
+
+        return messageMono.delayUntil(message -> message.getGuild()
+                .map(Guild::getId)
+                .flatMap(guildId -> Mono.fromRunnable(() -> jdbi.useExtension(RoleSelectOptionDao.class,
+                        roleSelectOption -> roleSelectOption.insert(
+                                guildId, message.getChannelId(), message.getId(),
+                                messageComponentHelper.getSelectMenuId(message, index.orElse(0)), roleId)))))
+                .flatMap(message -> message.edit(messageSpec -> {
+                    Option option = messageComponentHelper.getOption(label, roleId.asString(), description, emoji);
+                    messageSpec.setComponents(messageComponentHelper.addOption(message, option, index.orElse(0),
+                            min.orElse(null), max.orElse(null)));
+                }));
+    }
+
+    private Mono<Message> onNew(ApplicationCommandInteractionOption subcommand, Snowflake roleId, String label,
             Mono<Message> messageMono, @Nullable String description, @Nullable String emoji) {
         Optional<String> placeholder = subcommand.getOption("placeholder")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
@@ -59,8 +87,7 @@ public class RoleSelectMenuCommand {
                                             message.getId(), selectMenu.getCustomId(), roleId)))
                                     .then(message.edit(messageSpec -> messageSpec
                                             .setComponents(messageComponentHelper.addComponent(message, selectMenu)))));
-                })
-                .then();
+                });
     }
 
     public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand) {
@@ -69,7 +96,7 @@ public class RoleSelectMenuCommand {
         }
 
         ApplicationCommandInteractionOption subcommand = slashCommand.getOptions().get(0);
-        GatewayDiscordClient gateway = subcommand.getClient();
+        InteractionResponse response = slashCommand.getInteractionResponse();
 
         Snowflake roleId = subcommand.getOption("role")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
@@ -79,19 +106,20 @@ public class RoleSelectMenuCommand {
                 .flatMap(ApplicationCommandInteractionOption::getValue)
                 .map(ApplicationCommandInteractionOptionValue::asString)
                 .get();
-        Mono<Message> messageMono = subcommand.getOption("msg")
+        Optional<String> messageOption = subcommand.getOption("msg")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
-                .map(ApplicationCommandInteractionOptionValue::asString)
-                .map(msg -> Mono.fromCallable(() -> MessageLink.from(msg))
-                        .flatMap(messageLink -> gateway.getGuildById(messageLink.getGuildId())
-                                .flatMap(guild -> guild.getChannelById(messageLink.getChannelId()))
-                                .ofType(MessageChannel.class)
-                                .flatMap(channel -> channel.getMessageById(messageLink.getMessageId())))
-                        .onErrorMap(ClientException.isStatusCode(404, 403),
-                                e -> new IllegalArgumentException(String.format("%s doesn't exist or is inaccessible", msg)))
-                        .filter(message -> message.getAuthor().map(User::getId).map(gateway.getSelfId()::equals).orElse(false))
-                        .switchIfEmpty(
-                                Mono.error(new IllegalArgumentException(String.format("%s isn't a Ribbot message", msg)))))
+                .map(ApplicationCommandInteractionOptionValue::asString);
+        GatewayDiscordClient gateway = subcommand.getClient();
+        Mono<Message> messageMono = messageOption.map(msg -> Mono.fromCallable(() -> MessageLink.from(msg))
+                .flatMap(messageLink -> gateway.getGuildById(messageLink.getGuildId())
+                        .flatMap(guild -> guild.getChannelById(messageLink.getChannelId()))
+                        .ofType(MessageChannel.class)
+                        .flatMap(channel -> channel.getMessageById(messageLink.getMessageId())))
+                .onErrorMap(ClientException.isStatusCode(404, 403),
+                        e -> new IllegalArgumentException(String.format("%s doesn't exist or is inaccessible", msg)))
+                .filter(message -> message.getAuthor().map(User::getId).map(gateway.getSelfId()::equals).orElse(false))
+                .switchIfEmpty(Mono.error(
+                        new IllegalArgumentException(String.format("%s isn't a Ribbot message", msg)))))
                 .get();
         Optional<String> description = subcommand.getOption("desc")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
@@ -100,45 +128,23 @@ public class RoleSelectMenuCommand {
                 .flatMap(ApplicationCommandInteractionOption::getValue)
                 .map(ApplicationCommandInteractionOptionValue::asString);
 
-        InteractionResponse response = slashCommand.getInteractionResponse();
-
         return slashCommand.acknowledgeEphemeral().then(Mono.defer(() -> {
             switch (subcommand.getName()) {
                 case "add":
-                    Optional<Integer> index = subcommand.getOption("index")
-                            .flatMap(ApplicationCommandInteractionOption::getValue)
-                            .map(ApplicationCommandInteractionOptionValue::asLong)
-                            .map(Math::toIntExact);
-                    Optional<Integer> min = subcommand.getOption("min")
-                            .flatMap(ApplicationCommandInteractionOption::getValue)
-                            .map(ApplicationCommandInteractionOptionValue::asLong)
-                            .map(Math::toIntExact);
-                    Optional<Integer> max = subcommand.getOption("max")
-                            .flatMap(ApplicationCommandInteractionOption::getValue)
-                            .map(ApplicationCommandInteractionOptionValue::asLong)
-                            .map(Math::toIntExact);
-
-                    return messageMono.delayUntil(message -> message.getGuild()
-                            .map(Guild::getId)
-                            .flatMap(guildId -> Mono.fromRunnable(() -> jdbi.useExtension(RoleSelectOptionDao.class,
-                                    roleSelectOption -> roleSelectOption.insert(
-                                            guildId, message.getChannelId(), message.getId(),
-                                            messageComponentHelper.getSelectMenuId(message, index.orElse(0)), roleId)))))
-                            .flatMap(message -> message.edit(messageSpec -> {
-                                Option option = messageComponentHelper.getOption(
-                                        label, roleId.asString(), description.orElse(null), emoji.orElse(null));
-                                messageSpec.setComponents(messageComponentHelper.addOption(message, option, index.orElse(0),
-                                        min.orElse(null), max.orElse(null)));
-                            }));
+                    return onAdd(subcommand, roleId, label, messageMono, description.orElse(null), emoji.orElse(null))
+                            .then(response.editInitialResponse(WebhookMessageEditRequest.builder()
+                                    .content(String.format("Option added to role select menu at %s", messageOption.get()))
+                                    .build()));
                 case "new":
-                    return onNew(subcommand, roleId, label, messageMono,
-                            description.orElse(null), emoji.orElse(null));
+                    return onNew(subcommand, roleId, label, messageMono, description.orElse(null), emoji.orElse(null))
+                            .then(response.editInitialResponse(WebhookMessageEditRequest.builder()
+                                    .content(String.format("Role select menu created at %s", messageOption.get()))
+                                    .build()));
                 default:
                     return Mono.error(IllegalStateException::new);
             }
-        })).then(response.editInitialResponse(WebhookMessageEditRequest.builder().content("Done").build()))
-                .onErrorResume(IllegalArgumentException.class,
-                        e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
+        })).onErrorResume(IllegalArgumentException.class,
+                e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))
                 .then();
     }

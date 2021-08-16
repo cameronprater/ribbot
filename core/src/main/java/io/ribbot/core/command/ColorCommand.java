@@ -75,7 +75,8 @@ public class ColorCommand {
                                 }
                             });
                 }).then(response.editInitialResponse(WebhookMessageEditRequest.builder()
-                        .content(String.format("Your name is now %s", colorOption)).build()))
+                        .content(String.format("Your name is now %s", colorOption))
+                        .build()))
                 .onErrorResume(IllegalArgumentException.class,
                         e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))

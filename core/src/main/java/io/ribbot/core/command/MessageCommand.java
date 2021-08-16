@@ -15,6 +15,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.discordjson.json.MessageData;
 import discord4j.discordjson.json.WebhookMessageEditRequest;
 import discord4j.rest.http.client.ClientException;
 import discord4j.rest.interaction.InteractionResponse;
@@ -27,7 +28,8 @@ import reactor.core.publisher.Mono;
 public class MessageCommand {
     private static final Logger LOGGER = Logger.getLogger(MessageCommand.class);
 
-    private Mono<Void> onEmbed(ApplicationCommandInteractionOption subcommandGroup, Mono<MessageChannel> interactionChannel,
+    private Mono<MessageData> onEmbed(ApplicationCommandInteractionOption subcommandGroup,
+            Mono<MessageChannel> interactionChannel, InteractionResponse response,
             ColorConverter colorConverter) {
         ApplicationCommandInteractionOption subcommand = subcommandGroup.getOptions().get(0);
         Optional<String> titleOption = subcommand.getOption("title")
@@ -62,9 +64,8 @@ public class MessageCommand {
                                 .flatMap(guild -> guild.getChannelById(messageLink.getChannelId()))
                                 .ofType(MessageChannel.class)
                                 .flatMap(channel -> channel.getMessageById(messageLink.getMessageId())))
-                        .onErrorMap(ClientException.isStatusCode(404, 403),
-                                e -> new IllegalArgumentException(
-                                        String.format("%s doesn't exist or is inaccessible", messageOption)))
+                        .onErrorMap(ClientException.isStatusCode(404, 403), e -> new IllegalArgumentException(
+                                String.format("%s doesn't exist or is inaccessible", messageOption)))
                         .filter(message -> message.getAuthor().map(User::getId).map(gateway.getSelfId()::equals).orElse(false))
                         .switchIfEmpty(Mono.error(
                                 new IllegalArgumentException(String.format("%s isn't a Ribbot message", messageOption))));
@@ -74,21 +75,52 @@ public class MessageCommand {
                         Page.from(embed).accept(messageSpec);
                     }
                     messageSpec.addEmbed(embedCreator);
-                })).then();
+                })).then(response.editInitialResponse(WebhookMessageEditRequest.builder()
+                        .content(String.format("Embed added to %s", messageOption))
+                        .build()));
             case "new":
                 Mono<MessageChannel> channelMono = subcommand.getOption("channel")
                         .flatMap(ApplicationCommandInteractionOption::getValue)
                         .map(value -> value.asChannel().ofType(MessageChannel.class)
-                                .switchIfEmpty(Mono.error(
-                                        new IllegalArgumentException(
-                                                String.format("<#%s> isn't a text channel", value.getRaw())))))
+                                .switchIfEmpty(Mono.error(new IllegalArgumentException(
+                                        String.format("<#%s> isn't a text channel", value.getRaw())))))
                         .orElse(interactionChannel);
 
                 return channelMono.flatMap(channel -> channel.createMessage(messageSpec -> messageSpec.addEmbed(embedCreator)))
-                        .then();
+                        .flatMap(message -> message.getGuild()
+                                .flatMap(guild -> response.editInitialResponse(WebhookMessageEditRequest.builder()
+                                        .content(String.format("Embed created at https://discord.com/channels/%d/%d/%d",
+                                                guild.getId().asLong(),
+                                                message.getChannelId().asLong(),
+                                                message.getId().asLong()))
+                                        .build())));
             default:
                 return Mono.error(IllegalStateException::new);
         }
+    }
+
+    private Mono<MessageData> onNew(ApplicationCommandInteractionOption subcommand, Mono<MessageChannel> interactionChannel,
+            InteractionResponse response) {
+        Mono<MessageChannel> channelMono = subcommand.getOption("channel")
+                .flatMap(ApplicationCommandInteractionOption::getValue)
+                .map(value -> value.asChannel().ofType(MessageChannel.class)
+                        .switchIfEmpty(Mono.error(new IllegalArgumentException(
+                                String.format("<#%s> isn't a text channel", value.getRaw())))))
+                .orElse(interactionChannel);
+        String text = subcommand.getOption("txt")
+                .flatMap(ApplicationCommandInteractionOption::getValue)
+                .map(ApplicationCommandInteractionOptionValue::asString)
+                .map(StringEscapeUtils::unescapeJava)
+                .get();
+
+        return channelMono.flatMap(channel -> channel.createMessage(text))
+                .flatMap(message -> message.getGuild()
+                        .flatMap(guild -> response.editInitialResponse(WebhookMessageEditRequest.builder()
+                                .content(String.format("Message created at https://discord.com/channels/%d/%d/%d",
+                                        guild.getId().asLong(),
+                                        message.getChannelId().asLong(),
+                                        message.getId().asLong()))
+                                .build())));
     }
 
     public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand, ColorConverter colorConverter) {
@@ -97,35 +129,20 @@ public class MessageCommand {
         }
 
         ApplicationCommandInteractionOption subcommandGroup = slashCommand.getOptions().get(0);
+        Mono<MessageChannel> interactionChannel = slashCommand.getInteraction().getChannel();
         InteractionResponse response = slashCommand.getInteractionResponse();
 
         return slashCommand.acknowledgeEphemeral().then(Mono.defer(() -> {
             switch (subcommandGroup.getName()) {
                 case "embed":
-                    return onEmbed(subcommandGroup, slashCommand.getInteraction().getChannel(), colorConverter);
+                    return onEmbed(subcommandGroup, interactionChannel, response, colorConverter);
                 case "new":
-                    ApplicationCommandInteractionOption subcommand = subcommandGroup;
-
-                    Mono<MessageChannel> channelMono = subcommand.getOption("channel")
-                            .flatMap(ApplicationCommandInteractionOption::getValue)
-                            .map(value -> value.asChannel().ofType(MessageChannel.class)
-                                    .switchIfEmpty(Mono.error(
-                                            new IllegalArgumentException(
-                                                    String.format("<#%s> isn't a text channel", value.getRaw())))))
-                            .orElse(slashCommand.getInteraction().getChannel());
-                    String text = subcommand.getOption("txt")
-                            .flatMap(ApplicationCommandInteractionOption::getValue)
-                            .map(ApplicationCommandInteractionOptionValue::asString)
-                            .map(StringEscapeUtils::unescapeJava)
-                            .get();
-
-                    return channelMono.flatMap(channel -> channel.createMessage(text));
+                    return onNew(subcommandGroup, interactionChannel, response);
                 default:
                     return Mono.error(IllegalStateException::new);
             }
-        })).then(response.editInitialResponse(WebhookMessageEditRequest.builder().content("Message created").build()))
-                .onErrorResume(IllegalArgumentException.class,
-                        e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
+        })).onErrorResume(IllegalArgumentException.class,
+                e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))
                 .then();
     }
