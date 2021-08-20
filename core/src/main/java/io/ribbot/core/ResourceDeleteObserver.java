@@ -1,7 +1,5 @@
 package io.ribbot.core;
 
-import javax.inject.Inject;
-
 import org.jboss.logging.Logger;
 import org.jdbi.v3.core.Jdbi;
 
@@ -20,9 +18,11 @@ import reactor.core.publisher.Mono;
 
 public class ResourceDeleteObserver {
     private static final Logger LOGGER = Logger.getLogger(RoleButtonCommand.class);
+    private final Jdbi jdbi;
 
-    @Inject
-    Jdbi jdbi;
+    ResourceDeleteObserver(Jdbi jdbi) {
+        this.jdbi = jdbi;
+    }
 
     public Mono<Void> onGuildDelete(@GatewayEvent GuildDeleteEvent guildDelete) {
         if (guildDelete.isUnavailable()) {

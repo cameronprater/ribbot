@@ -27,10 +27,14 @@ import reactor.core.publisher.Mono;
 
 public class MessageCommand {
     private static final Logger LOGGER = Logger.getLogger(MessageCommand.class);
+    private final ColorConverter colorConverter;
+
+    MessageCommand(ColorConverter colorConverter) {
+        this.colorConverter = colorConverter;
+    }
 
     private Mono<MessageData> onEmbed(ApplicationCommandInteractionOption subcommandGroup,
-            Mono<MessageChannel> interactionChannel, InteractionResponse response,
-            ColorConverter colorConverter) {
+            Mono<MessageChannel> interactionChannel, InteractionResponse response) {
         ApplicationCommandInteractionOption subcommand = subcommandGroup.getOptions().get(0);
         Optional<String> titleOption = subcommand.getOption("title")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
@@ -123,7 +127,7 @@ public class MessageCommand {
                                 .build())));
     }
 
-    public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand, ColorConverter colorConverter) {
+    public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand) {
         if (!slashCommand.getCommandName().equals("msg")) {
             return Mono.empty();
         }
@@ -135,7 +139,7 @@ public class MessageCommand {
         return slashCommand.acknowledgeEphemeral().then(Mono.defer(() -> {
             switch (subcommandGroup.getName()) {
                 case "embed":
-                    return onEmbed(subcommandGroup, interactionChannel, response, colorConverter);
+                    return onEmbed(subcommandGroup, interactionChannel, response);
                 case "new":
                     return onNew(subcommandGroup, interactionChannel, response);
                 default:

@@ -20,11 +20,16 @@ import reactor.core.publisher.Mono;
 
 public class ColorCommand {
     private static final Logger LOGGER = Logger.getLogger(ColorCommand.class);
+    private final ColorConverter colorConverter;
 
     @ConfigProperty(name = "ribbot.game-corner.villager")
     Snowflake villager;
 
-    public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand, ColorConverter colorConverter) {
+    ColorCommand(ColorConverter colorConverter) {
+        this.colorConverter = colorConverter;
+    }
+
+    public Mono<Void> onSlashCommand(@GatewayEvent SlashCommandEvent slashCommand) {
         if (!slashCommand.getCommandName().equals("color")) {
             return Mono.empty();
         }

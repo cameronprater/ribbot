@@ -2,8 +2,6 @@ package io.ribbot.core.command;
 
 import java.util.Optional;
 
-import javax.inject.Inject;
-
 import org.jboss.logging.Logger;
 import org.jdbi.v3.core.Jdbi;
 
@@ -33,12 +31,13 @@ import reactor.util.annotation.Nullable;
 
 public class RoleSelectMenuCommand {
     private static final Logger LOGGER = Logger.getLogger(RoleSelectMenuCommand.class);
+    private final Jdbi jdbi;
+    private final MessageComponentHelper messageComponentHelper;
 
-    @Inject
-    Jdbi jdbi;
-
-    @Inject
-    MessageComponentHelper messageComponentHelper;
+    RoleSelectMenuCommand(Jdbi jdbi, MessageComponentHelper messageComponentHelper) {
+        this.jdbi = jdbi;
+        this.messageComponentHelper = messageComponentHelper;
+    }
 
     private Mono<Message> onAdd(ApplicationCommandInteractionOption subcommand, Snowflake roleId, String label,
             Mono<Message> messageMono, @Nullable String description, @Nullable String emoji) {

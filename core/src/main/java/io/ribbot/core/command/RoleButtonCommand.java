@@ -2,8 +2,6 @@ package io.ribbot.core.command;
 
 import java.util.Optional;
 
-import javax.inject.Inject;
-
 import org.jboss.logging.Logger;
 import org.jdbi.v3.core.Jdbi;
 
@@ -27,12 +25,13 @@ import reactor.core.publisher.Mono;
 
 public class RoleButtonCommand {
     private static final Logger LOGGER = Logger.getLogger(RoleButtonCommand.class);
+    private final Jdbi jdbi;
+    private final MessageComponentHelper messageComponentHelper;
 
-    @Inject
-    Jdbi jdbi;
-
-    @Inject
-    MessageComponentHelper messageComponentHelper;
+    RoleButtonCommand(Jdbi jdbi, MessageComponentHelper messageComponentHelper) {
+        this.jdbi = jdbi;
+        this.messageComponentHelper = messageComponentHelper;
+    }
 
     private Mono<MessageData> onAdd(ApplicationCommandInteractionOption subcommand, InteractionResponse response) {
         Mono<Role> roleMono = subcommand.getOption("role")
