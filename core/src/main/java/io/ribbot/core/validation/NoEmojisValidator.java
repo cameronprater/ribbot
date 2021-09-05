@@ -3,11 +3,13 @@ package io.ribbot.core.validation;
 import com.cameronprater.emoji.EmojiManager;
 import io.ribbot.core.CustomEmoji;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@ApplicationScoped
 public class NoEmojisValidator implements ConstraintValidator<NoEmojis, String> {
 
     @Override
