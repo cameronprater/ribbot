@@ -102,7 +102,8 @@ public class RoleButtonCommand {
                 return Mono.error(IllegalStateException::new);
             }
         })).then(response.editInitialResponse(WebhookMessageEditRequest.builder().content("Done").build()))
-                .onErrorMap(ConstraintViolationException.class, IllegalArgumentException::new)
+                .onErrorMap(ConstraintViolationException.class,
+                        e -> new IllegalArgumentException(e.getConstraintViolations().iterator().next().getMessage()))
                 .onErrorResume(IllegalArgumentException.class,
                         e -> response.editInitialResponse(WebhookMessageEditRequest.builder().content(e.getMessage()).build()))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))

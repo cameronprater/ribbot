@@ -9,6 +9,8 @@ import javax.enterprise.context.Dependent;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.jdbi.v3.core.Jdbi;
+
 import com.cameronprater.emoji.EmojiManager;
 
 import discord4j.common.util.Snowflake;
@@ -23,7 +25,6 @@ import discord4j.discordjson.json.SelectOptionData;
 import discord4j.discordjson.possible.Possible;
 import io.ribbot.core.jdbi.RoleSelectMenuDao;
 import io.ribbot.core.validation.NoEmojis;
-import org.jdbi.v3.core.Jdbi;
 import reactor.util.annotation.Nullable;
 
 @Dependent
@@ -96,7 +97,8 @@ public class MessageComponentHelper {
     }
 
     public List<LayoutComponent> addOption(Message message, Option option, int index,
-                                           @Max(25) @Min(0) @Nullable Integer min, @Max(25) @Min(0) @Nullable Integer max) {
+            @Max(value = 25, message = "Min can't exceed {value}") @Min(value = 0, message = "Min must be at least {value}") @Nullable Integer min,
+            @Max(value = 25, message = "Max can't exceed {value}") @Min(value = 0, message = "Max must be at least {value}") @Nullable Integer max) {
         List<LayoutComponent> components = getLayoutComponents(message.getComponents());
         for (int i = 0, j = 0; i < components.size(); i++) {
             LayoutComponent component = components.get(i);
@@ -104,10 +106,10 @@ public class MessageComponentHelper {
             if (j == index && childComponent.getType() == Type.SELECT_MENU) {
                 ComponentData childComponentData = childComponent.getData();
                 if (min != null && childComponentData.options().toOptional().map(List::size).get() + 1 < min) {
-                    throw new IllegalArgumentException("Min must not exceed the number of options present");
+                    throw new IllegalArgumentException("Min can't exceed the number of options present");
                 }
                 if (max != null && childComponentData.options().toOptional().map(List::size).get() + 1 < max) {
-                    throw new IllegalArgumentException("Max must not exceed the number of options present");
+                    throw new IllegalArgumentException("Max can't exceed the number of options present");
                 }
 
                 ComponentData data = component.getData();
@@ -179,7 +181,7 @@ public class MessageComponentHelper {
     }
 
     public Option getOption(@NoEmojis String label, @NoEmojis String value, @NoEmojis @Nullable String description,
-                            @Nullable String emoji) {
+            @Nullable String emoji) {
         Option option = Option.of(label, value);
         if (description != null) {
             option = option.withDescription(description);
@@ -191,7 +193,7 @@ public class MessageComponentHelper {
     }
 
     public SelectMenu getSelectMenu(@NoEmojis String label, @NoEmojis String value, @NoEmojis @Nullable String description,
-                                    @Nullable String emoji, @NoEmojis @Nullable String placeholder) {
+            @Nullable String emoji, @NoEmojis @Nullable String placeholder) {
         SelectMenu selectMenu = SelectMenu.of(Snowflake.of(Instant.now()).asString(),
                 getOption(label, value, description, emoji));
         if (placeholder != null) {
@@ -244,7 +246,8 @@ public class MessageComponentHelper {
 
                         if (newOptions.isEmpty()) {
                             components.remove(i);
-                            jdbi.useExtension(RoleSelectMenuDao.class, roleSelectMenu -> roleSelectMenu.delete(childComponentData.customId().get()));
+                            jdbi.useExtension(RoleSelectMenuDao.class,
+                                    roleSelectMenu -> roleSelectMenu.delete(childComponentData.customId().get()));
                         } else {
                             // adjust min and max if needed
                             Possible<Integer> minValues = childComponentData.minValues().toOptional()
