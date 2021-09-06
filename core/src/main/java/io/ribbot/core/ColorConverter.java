@@ -5,9 +5,7 @@ import javax.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.config.spi.Converter;
 
 import discord4j.rest.util.Color;
-import io.quarkus.arc.Unremovable;
 
-@Unremovable
 @ApplicationScoped
 public class ColorConverter implements Converter<Color> {
     public static final String COLOR_REGEX = "#[0-9A-Fa-f]{6}";
