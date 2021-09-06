@@ -77,9 +77,9 @@ public class ResourceDeleteObserver {
                         .setComponents(messageComponentHelper.removeOption(message, roleId.asString(), jdbi))))
                 .then();
 
-        return Mono.fromRunnable(() -> jdbi.useExtension(RoleDao.class, role -> role.deleteById(roleDelete.getRoleId())))
-                .then(removeButtons)
-                .then(removeSelectMenuOptions)
-                .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)));
+        return Mono.when(removeButtons, removeSelectMenuOptions)
+                .then(Mono.fromRunnable(() -> jdbi.useExtension(RoleDao.class, role -> role.deleteById(roleDelete.getRoleId()))))
+                .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))
+                .then();
     }
 }
