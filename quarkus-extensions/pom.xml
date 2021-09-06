@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>ribbot-extensions-parent</artifactId>
+    <artifactId>quarkus-extensions-parent</artifactId>
     <name>Ribbot - Quarkus Extensions</name>
     <packaging>pom</packaging>
 

@@ -44,8 +44,10 @@
     </properties>
 
     <modules>
-        <module>extensions</module>
+        <module>quarkus-extensions</module>
+        <module>quarkus-build</module>
         <module>core</module>
+        <module>api</module>
     </modules>
 
     <dependencyManagement>
