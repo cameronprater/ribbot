@@ -1,0 +1,12 @@
+{
+  "name": "color",
+  "description": "Change your name color.",
+  "options": [
+    {
+      "name": "color",
+      "description": "Color code",
+      "type": 3,
+      "required": true
+    }
+  ]
+}

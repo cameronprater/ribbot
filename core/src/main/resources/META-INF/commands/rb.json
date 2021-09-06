@@ -1,0 +1,62 @@
+{
+  "name": "rb",
+  "description": "Manage role buttons.",
+  "options": [
+    {
+      "name": "add",
+      "description": "Add a role button to a Ribbot message.",
+      "type": 1,
+      "options": [
+        {
+          "name": "role",
+          "description": "Role to add to or remove from a user when the button is selected",
+          "type": 8,
+          "required": true
+        },
+        {
+          "name": "msg",
+          "description": "Link of the message",
+          "type": 3,
+          "required": true
+        },
+        {
+          "name": "color",
+          "description": "Color of the button, blurple by default",
+          "type": 3,
+          "required": false,
+          "choices": [
+            {
+              "name": "blurple",
+              "value": "blurple"
+            },
+            {
+              "name": "green",
+              "value": "green"
+            },
+            {
+              "name": "grey",
+              "value": "grey"
+            },
+            {
+              "name": "red",
+              "value": "red"
+            }
+          ]
+        },
+        {
+          "name": "label",
+          "description": "Button text, must not contain emojis",
+          "type": 3,
+          "required": false
+        },
+        {
+          "name": "emoji",
+          "description": "Single emoji to display on the button",
+          "type": 3,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "default_permission": false
+}
