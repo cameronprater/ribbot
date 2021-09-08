@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS character (
     element TEXT NOT NULL,
     weapon_type TEXT NOT NULL,
     sex TEXT NOT NULL,
-    nation TEXT NOT NULL,
+    nation TEXT,
     FOREIGN KEY rarity REFERENCES rarity(stars),
     FOREIGN KEY element REFERENCES element(name),
     FOREIGN KEY weapon_type REFERENCES weapon_type(name),
@@ -97,22 +97,29 @@ CREATE TABLE IF NOT EXISTS constellation_activation_material (
     name TEXT PRIMARY KEY NOT NULL,
     FOREIGN KEY name REFERENCES material(name)
 );
-CREATE TABLE IF NOT EXISTS enemy_type (
+CREATE TABLE IF NOT EXISTS enemy_naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
-CREATE TABLE IF NOT EXISTS common_enemy (
+CREATE TABLE IF NOT EXISTS enemy_type (
     name TEXT PRIMARY KEY NOT NULL,
-    enemy_type TEXT NOT NULL,
-    FOREIGN KEY enemy_type REFERENCES enemy_type(name)
+    naming_strategy TEXT NOT NULL,
+    FOREIGN KEY naming_strategy REFERENCES enemy_naming_strategy(name)
+);
+CREATE TABLE IF NOT EXISTS common_enemy (
+    type TEXT NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY type REFERENCES enemy_type(name),
+    PRIMARY KEY (type, name)
 );
 CREATE TABLE IF NOT EXISTS common_ascension_material (
     name TEXT PRIMARY KEY NOT NULL,
     FOREIGN KEY name REFERENCES material(name)
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
-    enemy TEXT NOT NULL,
+    enemy_type TEXT NOT NULL,
+    enemy_name TEXT NOT NULL,
     material TEXT NOT NULL,
-    FOREIGN KEY enemy REFERENCES common_enemy(name),
+    FOREIGN KEY enemy_type, enemy_name REFERENCES common_enemy(type, name),
     FOREIGN KEY material REFERENCES common_ascension_material(name),
     PRIMARY KEY (enemy, material)
 );
