@@ -1,26 +1,27 @@
-package io.ribbot.genshin.jdbi;
+package io.ribbot.genshin.impact.jdbi;
 
-import io.ribbot.genshin.entity.Character;
-import io.ribbot.genshin.entity.Character.Sex;
-import io.ribbot.genshin.entity.Element;
-import io.ribbot.genshin.entity.Nation;
-import io.ribbot.genshin.entity.Rarity;
-import io.ribbot.genshin.entity.WeaponType;
-import io.smallrye.common.constraint.Nullable;
+import java.util.List;
+import java.util.Optional;
+
+import io.ribbot.genshin.impact.entity.Element;
+import io.ribbot.genshin.impact.entity.Nation;
+import io.ribbot.genshin.impact.entity.Rarity;
+import io.ribbot.genshin.impact.entity.WeaponType;
 import org.jdbi.v3.core.Handle;
-import org.jdbi.v3.core.result.ResultIterable;
 import org.jdbi.v3.sqlobject.SqlObject;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 
-import java.util.Optional;
+import io.ribbot.genshin.impact.entity.Character;
+import io.ribbot.genshin.impact.entity.Character.Sex;
+import io.smallrye.common.constraint.Nullable;
 
 public interface CharacterDao extends SqlObject {
 
     @SqlQuery("SELECT * FROM character WHERE name = :name")
     Optional<Character> findByName(String name);
 
-    default ResultIterable<Character> find(@Nullable Rarity rarity, @Nullable Element element, @Nullable WeaponType weaponType,
-                                   @Nullable Sex sex, @Nullable Nation nation) {
+    default List<Character> find(@Nullable Rarity rarity, @Nullable Element element, @Nullable WeaponType weaponType,
+                                 @Nullable Sex sex, @Nullable Nation nation) {
         Handle handle = getHandle();
         StringBuilder query = new StringBuilder("SELECT * FROM character");
         boolean where = false;
@@ -43,7 +44,7 @@ public interface CharacterDao extends SqlObject {
         if (nation != null) {
             query.append(String.format(" %s nation = %s", where ? "AND" : "WHERE", nation.getName()));
         }
-        ResultIterable<Character> characters = handle.createQuery(query.toString()).mapTo(Character.class);
+        List<Character> characters = handle.createQuery(query.toString()).mapToBean(Character.class).list();
         handle.close();
         return characters;
     }

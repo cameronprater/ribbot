@@ -51,15 +51,15 @@ CREATE TABLE IF NOT EXISTS character_ascension (
     mora INTEGER NOT NULL,
     ascension_gem TEXT NOT NULL,
     ascension_gem_quantity INTEGER NOT NULL,
-    normal_boss_material TEXT,
-    normal_boss_material_quantity INTEGER,
+    normal_boss_drop TEXT,
+    normal_boss_drop_quantity INTEGER,
     local_specialty TEXT NOT NULL,
     local_specialty_quantity INTEGER NOT NULL,
     common_material TEXT NOT NULL,
     common_material_quantity INTEGER NOT NULL,
     FOREIGN KEY character REFERENCES character(name),
     FOREIGN KEY ascension_gem REFERENCES ascension_gem(name),
-    FOREIGN KEY normal_boss_material REFERENCES normal_boss_material(name),
+    FOREIGN KEY normal_boss_drop REFERENCES normal_boss_drop(name),
     FOREIGN KEY local_specialty REFERENCES local_specialty(name),
     FOREIGN KEY common_material REFERENCES common_ascension_material(name),
     PRIMARY KEY (character, phase)
@@ -73,13 +73,13 @@ CREATE TABLE IF NOT EXISTS talent_level (
     common_material_quantity INTEGER NOT NULL,
     talent_book TEXT NOT NULL,
     talent_book_quantity INTEGER NOT NULL,
-    weekly_boss_material TEXT,
-    weekly_boss_material_quantity INTEGER,
+    weekly_boss_drop TEXT,
+    weekly_boss_drop_quantity INTEGER,
     crown_of_insight INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY talent REFERENCES talent(name),
     FOREIGN KEY common_material REFERENCES character_ascension_material(name),
     FOREIGN KEY talent_book REFERENCES talent_book(name),
-    FOREIGN KEY weekly_boss_material REFERENCES weekly_boss_material(name),
+    FOREIGN KEY weekly_boss_drop REFERENCES weekly_boss_drop(name),
     PRIMARY KEY (talent, level)
 );
 CREATE TABLE IF NOT EXISTS material (
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS normal_boss (
     nation TEXT NOT NULL,
     FOREIGN KEY nation REFERENCES nation(name)
 );
-CREATE TABLE IF NOT EXISTS normal_boss_material (
+CREATE TABLE IF NOT EXISTS normal_boss_drop (
     name TEXT PRIMARY KEY NOT NULL,
     FOREIGN KEY name REFERENCES material(name)
 );
@@ -152,10 +152,12 @@ CREATE TABLE IF NOT EXISTS talent_book (
     name TEXT PRIMARY KEY NOT NULL,
     weekday_one TEXT NOT NULL,
     weekday_two TEXT NOT NULL,
+    weekday_three TEXT NOT NULL,
     domain TEXT NOT NULL,
     FOREIGN KEY name REFERENCES material(name),
-    FOREIGN KEY weekday_one REFERENCES weekday(name)
-    FOREIGN KEY weekday_two REFERENCES weekday(name)
+    FOREIGN KEY weekday_one REFERENCES weekday(name),
+    FOREIGN KEY weekday_two REFERENCES weekday(name),
+    FOREIGN KEY weekday_three REFERENCES weekday(name)
     FOREIGN KEY domain REFERENCES domain(name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (
@@ -163,7 +165,7 @@ CREATE TABLE IF NOT EXISTS weekly_boss (
     domain TEXT NOT NULL,
     FOREIGN KEY domain REFERENCES domain(name)
 );
-CREATE TABLE IF NOT EXISTS weekly_boss_material (
+CREATE TABLE IF NOT EXISTS weekly_boss_drop (
     name TEXT PRIMARY KEY NOT NULL,
     weekly_boss TEXT NOT NULL,
     FOREIGN KEY name REFERENCES material(name),

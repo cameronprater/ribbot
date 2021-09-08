@@ -1,6 +1,8 @@
-package io.ribbot.genshin.entity;
+package io.ribbot.genshin.impact.entity;
 
 import io.smallrye.common.constraint.Nullable;
+
+import java.util.List;
 
 public class Character {
     private final String name;
@@ -9,34 +11,22 @@ public class Character {
     private final WeaponType weaponType;
     private final Sex sex;
     private final Nation nation;
+    private final List<Talent> talents;
+    private final List<Constellation> constellations;
+    private final List<CharacterAscension> ascensions;
 
-    private Character(String name, @Nullable Rarity rarity, @Nullable Element element, @Nullable WeaponType weaponType, Sex sex, @Nullable Nation nation) {
+    public Character(String name, Rarity rarity, Element element, WeaponType weaponType, Sex sex,
+            @Nullable Nation nation, List<Talent> talents, List<Constellation> constellations,
+            List<CharacterAscension> ascensions) {
         this.name = name;
         this.rarity = rarity;
         this.element = element;
         this.weaponType = weaponType;
         this.sex = sex;
         this.nation = nation;
-    }
-
-    public Character(String name, Sex sex) {
-        this(name, null, null, null, sex, null);
-    }
-
-    public Character withRarity(Rarity rarity) {
-        return new Character(name, rarity, element, weaponType, sex, nation);
-    }
-
-    public Character withElement(Element element) {
-        return new Character(name, rarity, element, weaponType, sex, nation);
-    }
-
-    public Character withWeaponType(WeaponType weaponType) {
-        return new Character(name, rarity, element, weaponType, sex, nation);
-    }
-
-    public Character withNation(Nation nation) {
-        return new Character(name, rarity, element, weaponType, sex, nation);
+        this.talents = talents;
+        this.constellations = constellations;
+        this.ascensions = ascensions;
     }
 
     public String getName() {
@@ -61,6 +51,18 @@ public class Character {
 
     public Nation getNation() {
         return nation;
+    }
+
+    public List<Talent> getTalents() {
+        return talents;
+    }
+
+    public List<Constellation> getConstellations() {
+        return constellations;
+    }
+
+    public List<CharacterAscension> getAscensions() {
+        return ascensions;
     }
 
     public enum Sex {

@@ -78,7 +78,8 @@ public class ResourceDeleteObserver {
                 .then();
 
         return Mono.when(removeButtons, removeSelectMenuOptions)
-                .then(Mono.fromRunnable(() -> jdbi.useExtension(RoleDao.class, role -> role.deleteById(roleDelete.getRoleId()))))
+                .then(Mono
+                        .fromRunnable(() -> jdbi.useExtension(RoleDao.class, role -> role.deleteById(roleDelete.getRoleId()))))
                 .onErrorResume(e -> Mono.fromRunnable(() -> LOGGER.warn(e)))
                 .then();
     }
