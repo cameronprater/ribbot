@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS rarity (
 CREATE TABLE IF NOT EXISTS character (
     name TEXT PRIMARY KEY NOT NULL,
     rarity INTEGER NOT NULL,
-    element TEXT NOT NULL,
+    element TEXT,
     weapon_type TEXT NOT NULL,
     sex TEXT NOT NULL,
     nation TEXT,
