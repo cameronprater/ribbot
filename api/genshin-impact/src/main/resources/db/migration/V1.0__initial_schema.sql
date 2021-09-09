@@ -135,7 +135,9 @@ CREATE TABLE IF NOT EXISTS normal_boss (
 );
 CREATE TABLE IF NOT EXISTS normal_boss_drop (
     name TEXT PRIMARY KEY NOT NULL,
+    normal_boss TEXT NOT NULL,
     FOREIGN KEY name REFERENCES material(name)
+    FOREIGN KEY normal_boss REFERENCES normal_boss(name)
 );
 CREATE TABLE IF NOT EXISTS domain (
     name TEXT PRIMARY KEY NOT NULL,

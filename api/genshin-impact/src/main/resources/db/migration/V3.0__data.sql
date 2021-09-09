@@ -52,8 +52,37 @@ INSERT INTO character VALUES ('Zhongli', 5, 'Geo', 'Polearm', 'Male', 'Liyue');
 -- materials
 
 -- local specialties
+INSERT INTO local_specialty VALUES ('Calla Lily', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Cecilia', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Dandelion Seed', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Philanemo Mushroom', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Small Lamp Grass', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Valberry', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Windwheel Aster', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Wolfhook', 'Mondstadt');
+INSERT INTO local_specialty VALUES ('Cor Lapis', 'Liyue');
+INSERT INTO local_specialty VALUES ('Glaze Lily', 'Liyue');
+INSERT INTO local_specialty VALUES ('Jueyun Chili', 'Liyue');
+INSERT INTO local_specialty VALUES ('Notilucous Jade', 'Liyue');
+INSERT INTO local_specialty VALUES ('Qingxin', 'Liyue');
+INSERT INTO local_specialty VALUES ('Silk Flower', 'Liyue');
+INSERT INTO local_specialty VALUES ('Starconch', 'Liyue');
+INSERT INTO local_specialty VALUES ('Violetgrass', 'Liyue');
+INSERT INTO local_specialty VALUES ('Amakumo Fruit', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Crystal Marrow', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Dendrobium', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Nadu Weed', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Onikabuto', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Sakura Bloom', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Sango Pearl', 'Inazuma');
+INSERT INTO local_specialty VALUES ('Sea Ganoderma', 'Inazuma');
 
 -- constellation activation materials
+INSERT INTO constellation_activation_material VALUES ('Four Star Stella Fortuna');
+INSERT INTO constellation_activation_material VALUES ('Five Star Stella Fortuna');
+INSERT INTO constellation_activation_material VALUES ('Memory of Roving Gales');
+INSERT INTO constellation_activation_material VALUES ('Memory of Immovable Crystals');
+INSERT INTO constellation_activation_material VALUES ('Memory of Violet Flash');
 
 -- common enemies
 
@@ -64,13 +93,60 @@ INSERT INTO character VALUES ('Zhongli', 5, 'Geo', 'Polearm', 'Male', 'Liyue');
 -- ascension gems
 
 -- normal bosses
+INSERT INTO normal_boss VALUES ('Anemo Hypostasis', 'Mondstadt');
+INSERT INTO normal_boss VALUES ('Electro Hypostasis', 'Mondstadt');
+INSERT INTO normal_boss VALUES ('Cryo Regisvine', 'Mondstadt');
+INSERT INTO normal_boss VALUES ('Cryo Hypostasis', 'Mondstadt');
+INSERT INTO normal_boss VALUES ('Oceanid', 'Liyue');
+INSERT INTO normal_boss VALUES ('Pyro Regisvine', 'Liyue');
+INSERT INTO normal_boss VALUES ('Geo Hypostasis', 'Liyue');
+INSERT INTO normal_boss VALUES ('Primo Geovishap', 'Liyue');
+INSERT INTO normal_boss VALUES ('Maguu Kenki', 'Inazuma');
+INSERT INTO normal_boss VALUES ('Pyro Hypostasis', 'Inazuma');
+INSERT INTO normal_boss VALUES ('Perpetual Mechanical Array', 'Inazuma');
+INSERT INTO normal_boss VALUES ('Hydro Hypostasis', 'Inazuma');
+INSERT INTO normal_boss VALUES ('Thunder Manifestation', 'Inazuma');
 
 -- normal boss drops
+INSERT INTO normal_boss_drop VALUES ('Hurricane Seed', 'Anemo Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Lightning Prism', 'Electro Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Basalt Pillar', 'Geo Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Hoarfrost Core', 'Cryo Regisvine');
+INSERT INTO normal_boss_drop VALUES ('Everflame Seed', 'Pyro Regisvine');
+INSERT INTO normal_boss_drop VALUES ('Cleansing Heart', 'Oceanid');
+INSERT INTO normal_boss_drop VALUES ('Juvenile Jade', 'Primo Geovishap');
+INSERT INTO normal_boss_drop VALUES ('Crystalline Bloom', 'Cryo Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Marionette Core', 'Maguu Kenki');
+INSERT INTO normal_boss_drop VALUES ('Perpetual Heart', 'Perpetual Mechanical Array');
+INSERT INTO normal_boss_drop VALUES ('Smoldering Pearl', 'Pyro Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Dew of Repudiation', 'Hydro Hypostasis');
+INSERT INTO normal_boss_drop VALUES ('Storm Beads', 'Thunder Manifestation');
 
 -- domains
 
 -- talent books
+INSERT INTO talent_book VALUES ();
 
 -- weekly bosses
+INSERT INTO weekly_boss VALUES ('Dvalin', '');
+INSERT INTO weekly_boss VALUES ('Andrius', '');
+INSERT INTO weekly_boss VALUES ('Childe', '');
+INSERT INTO weekly_boss VALUES ('Azhdaha', '');
+INSERT INTO weekly_boss VALUES ('Signora', '');
 
 -- weekly boss drops
+INSERT INTO weekly_boss_drop VALUES ('Dvalin\'s Plume', 'Dvalin');
+INSERT INTO weekly_boss_drop VALUES ('Dvalin\'s Claw', 'Dvalin');
+INSERT INTO weekly_boss_drop VALUES ('Dvalin\'s Sigh', 'Dvalin');
+INSERT INTO weekly_boss_drop VALUES ('Tail of Boreas', 'Andrius');
+INSERT INTO weekly_boss_drop VALUES ('Ring of Boreas', 'Andrius');
+INSERT INTO weekly_boss_drop VALUES ('Spirit Locket of Boreas', 'Andrius');
+INSERT INTO weekly_boss_drop VALUES ('Tusk of Monoceros Caeli', 'Childe');
+INSERT INTO weekly_boss_drop VALUES ('Shard of a Foul Legacy', 'Childe');
+INSERT INTO weekly_boss_drop VALUES ('Shadow of the Warrior', 'Childe');
+INSERT INTO weekly_boss_drop VALUES ('Dragon Lord\'s Crown', 'Azhdaha');
+INSERT INTO weekly_boss_drop VALUES ('Bloodjade Branch', 'Azhdaha');
+INSERT INTO weekly_boss_drop VALUES ('Gilded Scale', 'Azhdaha');
+INSERT INTO weekly_boss_drop VALUES ('Molten Moment', 'Signora');
+INSERT INTO weekly_boss_drop VALUES ('Hellfire Butterfly', 'Signora');
+INSERT INTO weekly_boss_drop VALUES ('Ashen Heart', 'Signora');
