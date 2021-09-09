@@ -101,14 +101,14 @@ CREATE TABLE IF NOT EXISTS enemy_naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS enemy_type (
-    name TEXT PRIMARY KEY NOT NULL,
-    naming_strategy TEXT NOT NULL,
-    FOREIGN KEY naming_strategy REFERENCES enemy_naming_strategy(name)
+    name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS common_enemy (
     type TEXT NOT NULL,
     name TEXT NOT NULL,
+    naming_strategy TEXT NOT NULL,
     FOREIGN KEY type REFERENCES enemy_type(name),
+    FOREIGN KEY naming_strategy REFERENCES enemy_naming_strategy(name),
     PRIMARY KEY (type, name)
 );
 CREATE TABLE IF NOT EXISTS common_ascension_material (
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS talent_book (
     FOREIGN KEY name REFERENCES material(name),
     FOREIGN KEY weekday_one REFERENCES weekday(name),
     FOREIGN KEY weekday_two REFERENCES weekday(name),
-    FOREIGN KEY weekday_three REFERENCES weekday(name)
+    FOREIGN KEY weekday_three REFERENCES weekday(name),
     FOREIGN KEY domain REFERENCES domain(name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (

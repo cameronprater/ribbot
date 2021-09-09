@@ -7,11 +7,14 @@ import java.util.List;
 public class CommonEnemy {
     private final EnemyType type;
     private final String name;
+    private final EnemyNamingStrategy namingStrategy;
     private final List<CommonAscensionMaterial> drops;
 
-    public CommonEnemy(EnemyType type, String name, List<CommonAscensionMaterial> drops) {
+    public CommonEnemy(EnemyType type, String name, EnemyNamingStrategy namingStrategy,
+                       List<CommonAscensionMaterial> drops) {
         this.type = type;
         this.name = name;
+        this.namingStrategy = namingStrategy;
         this.drops = drops;
     }
 
@@ -21,6 +24,10 @@ public class CommonEnemy {
 
     public String getName() {
         return name;
+    }
+
+    public EnemyNamingStrategy getNamingStrategy() {
+        return namingStrategy;
     }
 
     public List<CommonAscensionMaterial> getDrops() {
