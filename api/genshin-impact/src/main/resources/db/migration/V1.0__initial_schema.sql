@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS constellation_activation_material (
     name TEXT PRIMARY KEY NOT NULL,
     FOREIGN KEY name REFERENCES material(name)
 );
-CREATE TABLE IF NOT EXISTS enemy_naming_strategy (
+CREATE TABLE IF NOT EXISTS naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS enemy_type (
@@ -108,20 +108,26 @@ CREATE TABLE IF NOT EXISTS common_enemy (
     name TEXT NOT NULL,
     naming_strategy TEXT NOT NULL,
     FOREIGN KEY type REFERENCES enemy_type(name),
-    FOREIGN KEY naming_strategy REFERENCES enemy_naming_strategy(name),
+    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name),
     PRIMARY KEY (type, name)
 );
+CREATE TABLE IF NOT EXISTS ascension_material_type (
+    name TEXT PRIMARY KEY NOT NULL
+);
 CREATE TABLE IF NOT EXISTS common_ascension_material (
+    type TEXT NOT NULL,
     name TEXT PRIMARY KEY NOT NULL,
+    naming_strategy TEXT NOT NULL,
+    FOREIGN KEY type REFERENCES ascension_material_type(name),
+    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name),
     FOREIGN KEY name REFERENCES material(name)
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
     enemy_type TEXT NOT NULL,
-    enemy_name TEXT NOT NULL,
-    material TEXT NOT NULL,
-    FOREIGN KEY enemy_type, enemy_name REFERENCES common_enemy(type, name),
-    FOREIGN KEY material REFERENCES common_ascension_material(name),
-    PRIMARY KEY (enemy, material)
+    material_type TEXT NOT NULL,
+    FOREIGN KEY enemy_type REFERENCES enemy_type(name),
+    FOREIGN KEY material_type REFERENCES common_ascension_material_type(name),
+    PRIMARY KEY (enemy_type, material_type)
 );
 CREATE TABLE IF NOT EXISTS ascension_gem (
     name TEXT PRIMARY KEY NOT NULL,
@@ -154,17 +160,15 @@ CREATE TABLE IF NOT EXISTS talent_book (
     name TEXT PRIMARY KEY NOT NULL,
     weekday_one TEXT NOT NULL,
     weekday_two TEXT NOT NULL,
-    weekday_three TEXT NOT NULL,
     domain TEXT NOT NULL,
     FOREIGN KEY name REFERENCES material(name),
     FOREIGN KEY weekday_one REFERENCES weekday(name),
     FOREIGN KEY weekday_two REFERENCES weekday(name),
-    FOREIGN KEY weekday_three REFERENCES weekday(name),
     FOREIGN KEY domain REFERENCES domain(name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (
     name TEXT PRIMARY KEY NOT NULL,
-    domain TEXT NOT NULL,
+    domain TEXT,
     FOREIGN KEY domain REFERENCES domain(name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss_drop (

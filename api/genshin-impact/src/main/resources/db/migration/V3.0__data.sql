@@ -85,8 +85,75 @@ INSERT INTO constellation_activation_material VALUES ('Memory of Immovable Cryst
 INSERT INTO constellation_activation_material VALUES ('Memory of Violet Flash');
 
 -- common enemies
+INSERT INTO common_enemy VALUES ('Large Slime', 'Mutant Electro', 'Between');
+INSERT INTO common_enemy VALUES ('Whopperflower', 'Cryo', 'Before');
+INSERT INTO common_enemy VALUES ('Whopperflower', 'Pyro', 'Before');
+INSERT INTO common_enemy VALUES ('Whopperflower', 'Electro', 'Before');
+INSERT INTO common_enemy VALUES ('Specter', 'Anemo', 'Before');
+INSERT INTO common_enemy VALUES ('Specter', 'Geo', 'Before');
+INSERT INTO common_enemy VALUES ('Specter', 'Hydro', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl', NULL, NULL);
+INSERT INTO common_enemy VALUES ('Hilichurl', 'Fighter', 'After');
+INSERT INTO common_enemy VALUES ('Hilichurl', 'Berserker', 'After');
+INSERT INTO common_enemy VALUES ('Hilichurl Guard', 'Wooden Shield', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Guard', 'Rock Shield', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Guard', 'Ice Shield', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Grenadier', 'Pyro', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Grenadier', 'Cryo', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Grenadier', 'Electro', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Shooter', NULL, NULL);
+INSERT INTO common_enemy VALUES ('Hilichurl Shooter', 'Electro', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Shooter', 'Cryo', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl Shooter', 'Pyro', 'Before');
+INSERT INTO common_enemy VALUES ('Hilichurl', 'Unusual', 'Before');
+INSERT INTO common_enemy VALUES ('Fatui Vanguard', 'Anemoboxer', 'Between');
+INSERT INTO common_enemy VALUES ('Fatui Vanguard', 'Electrohammer', 'Between');
+INSERT INTO common_enemy VALUES ('Fatui Bracer', 'Geochanter', 'Between');
+INSERT INTO common_enemy VALUES ('Fatui Bracer', 'Pyroslinger', 'Between');
+INSERT INTO common_enemy VALUES ('Fatui Legionnaire', 'Cryogunner', 'Between');
+INSERT INTO common_enemy VALUES ('Fatui Legionnaire', 'Hydrogunner', 'Between');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder Potioneer', 'Electro', 'Between');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder Potioneer', 'Cryo', 'Between');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder Potioneer', 'Hydro', 'Between');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder Potioneer', 'Pyro', 'Between');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Crusher', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Gravedigger', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Marksman', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Scout', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Handyman', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Pugilist', 'After');
+INSERT INTO common_enemy VALUES ('Treasure Hoarder', 'Seaman', 'After');
+INSERT INTO common_enemy VALUES ('Nobushi', 'Dancing Thunder', 'After Colon');
+INSERT INTO common_enemy VALUES ('Kairagi', 'Fiery Might', 'After Colon');
 
 -- common ascension materials
+INSERT INTO common_ascension_material VALUES ('Slime', 'Condensate');
+INSERT INTO common_ascension_material VALUES ('Slime', 'Secretions');
+INSERT INTO common_ascension_material VALUES ('Slime', 'Concentrate');
+INSERT INTO common_ascension_material VALUES ('Mask', 'Damaged');
+INSERT INTO common_ascension_material VALUES ('Mask', 'Stained');
+INSERT INTO common_ascension_material VALUES ('Mask', 'Ominous');
+INSERT INTO common_ascension_material VALUES ('Scroll', 'Divining');
+INSERT INTO common_ascension_material VALUES ('Scroll', 'Sealed');
+INSERT INTO common_ascension_material VALUES ('Scroll', 'Forbidden Curse');
+INSERT INTO common_ascension_material VALUES ('Arrowhead', 'Firm');
+INSERT INTO common_ascension_material VALUES ('Arrowhead', 'Sharp');
+INSERT INTO common_ascension_material VALUES ('Arrowhead', 'Weathered');
+INSERT INTO common_ascension_material VALUES ('Fatui Insignia', 'Recruit\'s');
+INSERT INTO common_ascension_material VALUES ('Fatui Insignia', 'Sergeant\'s');
+INSERT INTO common_ascension_material VALUES ('Fatui Insignia', 'Lieutenant\'s');
+INSERT INTO common_ascension_material VALUES ('Treasure Hoarder Insignia', NULL);
+INSERT INTO common_ascension_material VALUES ('Treasure Hoarder Insignia', 'Silver Raven');
+INSERT INTO common_ascension_material VALUES ('Treasure Hoarder Insignia', 'Golden Raven');
+INSERT INTO common_ascension_material VALUES ('Nectar', 'Whopperflower');
+INSERT INTO common_ascension_material VALUES ('Nectar', 'Shimmering');
+INSERT INTO common_ascension_material VALUES ('Nectar', 'Energy');
+INSERT INTO common_ascension_material VALUES ('Handguard', 'Old');
+INSERT INTO common_ascension_material VALUES ('Handguard', 'Kagueuchi');
+INSERT INTO common_ascension_material VALUES ('Handguard', 'Famed');
+INSERT INTO common_ascension_material VALUES ('Spectral', 'Husk');
+INSERT INTO common_ascension_material VALUES ('Spectral', 'Heart');
+INSERT INTO common_ascension_material VALUES ('Spectral', 'Nucelus');
 
 -- common enemy drops
 
@@ -123,16 +190,22 @@ INSERT INTO normal_boss_drop VALUES ('Dew of Repudiation', 'Hydro Hypostasis');
 INSERT INTO normal_boss_drop VALUES ('Storm Beads', 'Thunder Manifestation');
 
 -- domains
+INSERT INTO domain VALUES ('Forsaken Rift', 'Mondstadt');
+INSERT INTO domain VALUES ('Taishan Mansion', 'Liyue');
+INSERT INTO domain VALUES ('Violet Court', 'Inazuma');
+INSERT INTO domain VALUES ('Confront Stormterror', 'Mondstadt');
+INSERT INTO domain VALUES ('Enter the Golden House', 'Liyue');
+INSERT INTO domain VALUES ('Beneath the Dragon-Queller', 'Liyue');
+INSERT INTO domain VALUES ('Narukami Island: Tenshukaku', 'Inazuma');
 
 -- talent books
-INSERT INTO talent_book VALUES ();
 
 -- weekly bosses
-INSERT INTO weekly_boss VALUES ('Dvalin', '');
-INSERT INTO weekly_boss VALUES ('Andrius', '');
-INSERT INTO weekly_boss VALUES ('Childe', '');
-INSERT INTO weekly_boss VALUES ('Azhdaha', '');
-INSERT INTO weekly_boss VALUES ('Signora', '');
+INSERT INTO weekly_boss VALUES ('Dvalin', 'Confront Stormterror');
+INSERT INTO weekly_boss VALUES ('Andrius', NULL);
+INSERT INTO weekly_boss VALUES ('Childe', 'Enter the Golden House');
+INSERT INTO weekly_boss VALUES ('Azhdaha', 'Beneath the Dragon-Queller');
+INSERT INTO weekly_boss VALUES ('Signora', 'Narukami Island: Tenshukaku');
 
 -- weekly boss drops
 INSERT INTO weekly_boss_drop VALUES ('Dvalin\'s Plume', 'Dvalin');
