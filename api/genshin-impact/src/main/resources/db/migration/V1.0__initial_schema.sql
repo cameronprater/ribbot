@@ -39,12 +39,14 @@ CREATE TABLE IF NOT EXISTS constellation (
     name TEXT PRIMARY KEY NOT NULL,
     character TEXT NOT NULL,
     level INTEGER NOT NULL,
+    element TEXT NOT NULL,
     effect TEXT NOT NULL,
     activation_material TEXT NOT NULL,
     FOREIGN KEY character REFERENCES character(name),
+    FOREIGN KEY element REFERENCES element(name),
     FOREIGN KEY activation_material REFERENCES constellation_activation_material(name)
 );
-CREATE UNIQUE INDEX character_constellation_level ON constellation (character, level);
+CREATE UNIQUE INDEX character_constellation_level ON constellation (character, level, element);
 CREATE TABLE IF NOT EXISTS character_ascension (
     character TEXT NOT NULL,
     phase INTEGER NOT NULL,
@@ -105,22 +107,23 @@ CREATE TABLE IF NOT EXISTS enemy_type (
 );
 CREATE TABLE IF NOT EXISTS common_enemy (
     type TEXT NOT NULL,
-    name TEXT NOT NULL,
-    naming_strategy TEXT NOT NULL,
+    name TEXT,
+    naming_strategy TEXT,
     FOREIGN KEY type REFERENCES enemy_type(name),
     FOREIGN KEY naming_strategy REFERENCES naming_strategy(name),
     PRIMARY KEY (type, name)
 );
 CREATE TABLE IF NOT EXISTS ascension_material_type (
-    name TEXT PRIMARY KEY NOT NULL
+    name TEXT PRIMARY KEY NOT NULL,
+    naming_strategy TEXT NOT NULL,
+    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name)
 );
 CREATE TABLE IF NOT EXISTS common_ascension_material (
     type TEXT NOT NULL,
-    name TEXT PRIMARY KEY NOT NULL,
-    naming_strategy TEXT NOT NULL,
+    name TEXT,
     FOREIGN KEY type REFERENCES ascension_material_type(name),
-    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name),
-    FOREIGN KEY name REFERENCES material(name)
+    FOREIGN KEY name REFERENCES material(name),
+    PRIMARY KEY (type, name)
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
     enemy_type TEXT NOT NULL,
@@ -129,10 +132,21 @@ CREATE TABLE IF NOT EXISTS common_enemy_drop (
     FOREIGN KEY material_type REFERENCES common_ascension_material_type(name),
     PRIMARY KEY (enemy_type, material_type)
 );
+CREATE TABLE IF NOT EXISTS ascension_gem_type (
+    name TEXT PRIMARY KEY NOT NULL
+);
+CREATE TABLE IF NOT EXISTS ascension_gem_size (
+    name TEXT PRIMARY KEY NOT NULL
+);
 CREATE TABLE IF NOT EXISTS ascension_gem (
-    name TEXT PRIMARY KEY NOT NULL,
-    element TEXT,
-    FOREIGN KEY element REFERENCES element(name)
+    type TEXT NOT NULL,
+    size TEXT NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY type REFERENCES ascension_gem_type(name),
+    FOREIGN KEY size REFERENCES ascension_gem_size(name),
+    FOREIGN KEY name REFERENCES material(name),
+    PRIMARY KEY (type, size),
+    CHECK (CONCAT(type, ' ', size) = name)
 );
 CREATE TABLE IF NOT EXISTS normal_boss (
     name TEXT PRIMARY KEY NOT NULL,
@@ -156,15 +170,27 @@ CREATE TABLE IF NOT EXISTS weekday (
            name = 'Wednesday' OR name = 'Thursday' OR name = 'Friday' OR
            name = 'Saturday')
 );
-CREATE TABLE IF NOT EXISTS talent_book (
+CREATE TABLE IF NOT EXISTS talent_book_type (
+    name TEXT PRIMARY KEY NOT NULL
+);
+CREATE TABLE IF NOT EXISTS talent_book_series (
     name TEXT PRIMARY KEY NOT NULL,
+    domain TEXT NOT NULL,
     weekday_one TEXT NOT NULL,
     weekday_two TEXT NOT NULL,
-    domain TEXT NOT NULL,
-    FOREIGN KEY name REFERENCES material(name),
+    FOREIGN KEY domain REFERENCES domain(name),
     FOREIGN KEY weekday_one REFERENCES weekday(name),
-    FOREIGN KEY weekday_two REFERENCES weekday(name),
-    FOREIGN KEY domain REFERENCES domain(name)
+    FOREIGN KEY weekday_two REFERENCES weekday(name)
+);
+CREATE TABLE IF NOT EXISTS talent_book (
+    type TEXT NOT NULL,
+    series TEXT NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY type REFERENCES talent_book_type(name),
+    FOREIGN KEY series REFERENCES talent_book_series(name),
+    FOREIGN KEY name REFERENCES material(name),
+    PRIMARY KEY (type, series),
+    CHECK (CONCAT(type, ' of ', series) = name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (
     name TEXT PRIMARY KEY NOT NULL,
