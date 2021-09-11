@@ -65,9 +65,6 @@ INSERT INTO constellation VALUES ('Keqing', 'Electro', 'Five Star Stella Fortuna
 INSERT INTO constellation VALUES ('Klee', 'Pyro', 'Five Star Stella Fortuna');
 INSERT INTO constellation VALUES ('Kujou Sara', 'Electro', 'Four Star Stella Fortuna');
 INSERT INTO constellation VALUES ('Lisa', 'Electro', 'Four Star Stella Fortuna');
-INSERT INTO constellation VALUES ('Lumine', 'Anemo', 'Memory of Roving Gales');
-INSERT INTO constellation VALUES ('Lumine', 'Geo', 'Memory of Immovable Crystals');
-INSERT INTO constellation VALUES ('Lumine', 'Electro', 'Memory of Violet Flash');
 INSERT INTO constellation VALUES ('Mona', 'Hydro', 'Five Star Stella Fortuna');
 INSERT INTO constellation VALUES ('Ningguang', 'Geo', 'Four Star Stella Fortuna');
 INSERT INTO constellation VALUES ('Noelle', 'Geo', 'Four Star Stella Fortuna');
@@ -894,7 +891,55 @@ INSERT INTO constellation_level VALUES ('Chrysos, Bounty of Dominator', 'Zhongli
                                           'When the Jade Shield takes DMG, 40% of that incoming DMG is converted to HP for the current character.' + char(10) +
                                           'A single instance of regeneration cannot exceed 8% of that character\'s Max HP.');
 
+-- ascension phases
+INSERT INTO ascension_phase VALUES (1, 20000, 'Sliver', 1, 0, 3, 1, 3);
+INSERT INTO ascension_phase VALUES (2, 40000, 'Fragment', 3, 2, 10, 1, 15);
+INSERT INTO ascension_phase VALUES (3, 60000, 'Fragment', 6, 4, 20, 2, 12);
+INSERT INTO ascension_phase VALUES (4, 80000, 'Chunk', 3, 8, 30, 2, 18);
+INSERT INTO ascension_phase VALUES (5, 100000, 'Chunk', 6, 12, 45, 3, 12);
+INSERT INTO ascension_phase VALUES (6, 120000, 'Gemstone', 6, 20, 60, 3, 24);
+
 -- ascensions
+INSERT INTO character_ascension VALUES ('Aether', NULL, 'Windwheel Aster', 'Mask');
+INSERT INTO character_ascension VALUES ('Albedo', 'Basalt Pillar', 'Cecilia', 'Scroll');
+INSERT INTO character_ascension VALUES ('Aloy', 'Crystalline Bloom', 'Crystal Marrow', 'Spectral');
+INSERT INTO character_ascension VALUES ('Amber', 'Everflame Seed', 'Small Lamp Grass', 'Arrowhead');
+INSERT INTO character_ascension VALUES ('Barbara', 'Cleansing Heart', 'Philanemo Mushroom', 'Scroll');
+INSERT INTO character_ascension VALUES ('Beidou', 'Lightning Prism', 'Noctilucous Jade', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Bennett', 'Everflame Seed', 'Windwheel Aster', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Chongyun', 'Hoarfrost Core', 'Cor Lapis', 'Mask');
+INSERT INTO character_ascension VALUES ('Diluc', 'Everflame Seed', 'Small Lamp Grass', 'Fatui Insignia');
+INSERT INTO character_ascension VALUES ('Diona', 'Hoarfrost Core', 'Calla Lily', 'Arrowhead');
+INSERT INTO character_ascension VALUES ('Eula', 'Crystalline Bloom', 'Dandelion Seed', 'Mask');
+INSERT INTO character_ascension VALUES ('Fischl', 'Lightning Prism', 'Small Lamp Grass', 'Arrowhead');
+INSERT INTO character_ascension VALUES ('Ganyu', 'Hoarfrost Core', 'Qingxin', 'Nectar');
+INSERT INTO character_ascension VALUES ('Hu Tao', 'Juvenile Jade', 'Silk Flower', 'Nectar');
+INSERT INTO character_ascension VALUES ('Jean', 'Hurricane Seed', 'Dandelion Seed', 'Mask');
+INSERT INTO character_ascension VALUES ('Kaedehara Kazuha', 'Marionette Core', 'Sea Ganoderma', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Kaeya', 'Hoarfrost Core', 'Calla Lily', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Kamisato Ayaka', 'Perpetual Heart', 'Sakura Bloom', 'Handguard');
+INSERT INTO character_ascension VALUES ('Keqing', 'Lightning Prism', 'Cor Lapis', 'Nectar');
+INSERT INTO character_ascension VALUES ('Klee', 'Everflame Seed', 'Philanemo Mushroom', 'Scroll');
+INSERT INTO character_ascension VALUES ('Kujou Sara', 'Storm Beads', 'Dendrobium', 'Mask');
+INSERT INTO character_ascension VALUES ('Lisa', 'Lightning Prism', 'Valberry', 'Slime');
+INSERT INTO character_ascension VALUES ('Mona', 'Cleansing Heart', 'Philanemo Mushroom', 'Nectar');
+INSERT INTO character_ascension VALUES ('Ningguang', 'Basalt Pillar', 'Glaze Lily', 'Fatui Insignia');
+INSERT INTO character_ascension VALUES ('Noelle', 'Basalt Pillar', 'Valberry', 'Mask');
+INSERT INTO character_ascension VALUES ('Qiqi', 'Hoarfrost Core', 'Violetgrass', 'Scroll');
+INSERT INTO character_ascension VALUES ('Raiden Shogun', 'Storm Beads', 'Amakumo Fruit', 'Handguard');
+INSERT INTO character_ascension VALUES ('Razor', 'Lightning Prism', 'Wolfhook', 'Mask');
+INSERT INTO character_ascension VALUES ('Rosaria', 'Hoarfrost Core', 'Valberry', 'Fatui Insignia');
+INSERT INTO character_ascension VALUES ('Sayu', 'Marionette Core', 'Crystal Marrow', 'Nectar');
+INSERT INTO character_ascension VALUES ('Sucrose', 'Hurricane Seed', 'Windwheel Aster', 'Nectar');
+INSERT INTO character_ascension VALUES ('Tartaglia', 'Cleansing Heart', 'Starconch', 'Fatui Insignia');
+INSERT INTO character_ascension VALUES ('Venti', 'Hurricane Seed', 'Cecilia', 'Slime');
+INSERT INTO character_ascension VALUES ('Xiangling', 'Everflame Seed', 'Jueyun Chili', 'Slime');
+INSERT INTO character_ascension VALUES ('Xiao', 'Juvenile Jade', 'Qingxin', 'Slime');
+INSERT INTO character_ascension VALUES ('Xingqiu', 'Cleansing Heart', 'Silk Flower', 'Mask');
+INSERT INTO character_ascension VALUES ('Xinyan', 'Everflame Seed', 'Violetgrass', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Yanfei', 'Juvenile Jade', 'Noctilucous Jade', 'Treasure Hoarder Insignia');
+INSERT INTO character_ascension VALUES ('Yoimiya', 'Smoldering Pearl', 'Naku Weed', 'Scroll');
+INSERT INTO character_ascension VALUES ('Zhongli', 'Basant Pillar', 'Cor Lapis', 'Slime');
 
 -- talents
 

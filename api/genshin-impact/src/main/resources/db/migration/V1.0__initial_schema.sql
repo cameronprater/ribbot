@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS talent (
     type TEXT NOT NULL,
     info TEXT NOT NULL,
     FOREIGN KEY character REFERENCES character(name),
-    FOREIGN KEY type REFERENCES talent_type(name)
+    FOREIGN KEY type REFERENCES talent_type(name),
+    UNIQUE (character, type)
 );
-CREATE UNIQUE INDEX character_talent_type ON talent(character, type);
 CREATE TABLE IF NOT EXISTS material (
     name TEXT PRIMARY KEY NOT NULL,
     rarity INTEGER NOT NULL,
@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS constellation_activation_material (
     FOREIGN KEY name REFERENCES material(name)
 );
 CREATE TABLE IF NOT EXISTS ascension_gem_type (
-    name TEXT PRIMARY KEY NOT NULL
+    name TEXT PRIMARY KEY NOT NULL,
+    element TEXT UNIQUE,
+    FOREIGN KEY element REFERENCES element(name),
 );
 CREATE TABLE IF NOT EXISTS ascension_gem_size (
     name TEXT PRIMARY KEY NOT NULL
@@ -51,7 +53,7 @@ CREATE TABLE IF NOT EXISTS ascension_gem_size (
 CREATE TABLE IF NOT EXISTS ascension_gem (
     type TEXT NOT NULL,
     size TEXT NOT NULL,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     FOREIGN KEY type REFERENCES ascension_gem_type(name),
     FOREIGN KEY size REFERENCES ascension_gem_size(name),
     FOREIGN KEY name REFERENCES material(name),
@@ -126,7 +128,7 @@ CREATE TABLE IF NOT EXISTS talent_book_series (
 CREATE TABLE IF NOT EXISTS talent_book (
     type TEXT NOT NULL,
     series TEXT NOT NULL,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     FOREIGN KEY type REFERENCES talent_book_type(name),
     FOREIGN KEY series REFERENCES talent_book_series(name),
     FOREIGN KEY name REFERENCES material(name),
@@ -153,34 +155,36 @@ CREATE TABLE IF NOT EXISTS constellation (
     FOREIGN KEY activation_material REFERENCES constellation_activation_material(name),
     PRIMARY KEY (character, element)
 );
-CREATE UNIQUE INDEX vision ON constellation(character, element)
 CREATE TABLE IF NOT EXISTS constellation_level (
     name TEXT PRIMARY KEY NOT NULL,
     character TEXT NOT NULL,
     element TEXT NOT NULL,
     level INTEGER NOT NULL,
     effect TEXT NOT NULL,
-    FOREIGN KEY (character, element) REFERENCES constellation(character, element)
+    FOREIGN KEY (character, element) REFERENCES constellation(character, element),
+    UNIQUE (character, element, level)
 );
-CREATE UNIQUE INDEX constellation_level ON constellation_level(character, element, level);
+CREATE TABLE IF NOT EXISTS ascension_phase (
+    phase
+    mora
+    ascension_gem_size
+    ascension_gem_quantity
+    normal_boss_drop_quantity
+    local_specialty_quantity
+    rarity
+    common_material_quantity
+);
 CREATE TABLE IF NOT EXISTS character_ascension (
-    character TEXT NOT NULL,
-    phase INTEGER NOT NULL,
-    mora INTEGER NOT NULL,
-    ascension_gem TEXT NOT NULL,
-    ascension_gem_quantity INTEGER NOT NULL,
+    character TEXT PRIMARY KEY NOT NULL,
+    ascension_gem_type TEXT NOT NULL,
     normal_boss_drop TEXT,
-    normal_boss_drop_quantity INTEGER,
     local_specialty TEXT NOT NULL,
-    local_specialty_quantity INTEGER NOT NULL,
-    common_material TEXT NOT NULL,
-    common_material_quantity INTEGER NOT NULL,
+    ascension_material_type TEXT NOT NULL,
     FOREIGN KEY character REFERENCES character(name),
-    FOREIGN KEY ascension_gem REFERENCES ascension_gem(name),
+    FOREIGN KEY ascension_gem_type REFERENCES ascension_gem_type(name),
     FOREIGN KEY normal_boss_drop REFERENCES normal_boss_drop(name),
     FOREIGN KEY local_specialty REFERENCES local_specialty(name),
-    FOREIGN KEY common_material REFERENCES common_ascension_material(name),
-    PRIMARY KEY (character, phase)
+    FOREIGN KEY ascension_material_type REFERENCES ascension_material_type(name)
 );
 CREATE TABLE IF NOT EXISTS talent_level (
     talent TEXT NOT NULL,
