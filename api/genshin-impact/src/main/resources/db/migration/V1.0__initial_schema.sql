@@ -25,13 +25,14 @@ CREATE TABLE IF NOT EXISTS talent_type (
     name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS talent (
-    name TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
     character TEXT NOT NULL,
+    element TEXT NOT NULL,
     type TEXT NOT NULL,
     info TEXT NOT NULL,
-    FOREIGN KEY character REFERENCES character(name),
+    FOREIGN KEY (character, element) REFERENCES constellation(character, element),
     FOREIGN KEY type REFERENCES talent_type(name),
-    UNIQUE (character, type)
+    PRIMARY KEY (character, element, type)
 );
 CREATE TABLE IF NOT EXISTS material (
     name TEXT PRIMARY KEY NOT NULL,

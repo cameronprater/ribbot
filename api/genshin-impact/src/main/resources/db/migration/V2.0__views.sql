@@ -18,3 +18,6 @@ CREATE VIEW IF NOT EXISTS character_ AS
     FROM
         character char
             LEFT JOIN talent ON character.name = talent.name
+
+
+CREATE VIEW IF NOT EXISTS character_ascension_phase AS ;
