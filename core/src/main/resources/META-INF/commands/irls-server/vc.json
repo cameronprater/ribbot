@@ -1,0 +1,86 @@
+{
+  "name": "vc",
+  "description": "",
+  "options": [
+    {
+      "name": "play",
+      "description": "",
+      "type": 1,
+      "options": [
+        {
+          "name": "",
+          "description": "",
+          "type": 3,
+          "required": true
+        },
+        {
+          "name": "",
+          "description": "",
+          "type": 7,
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "playing",
+      "description": "",
+      "type": 1
+    },
+    {
+      "name": "leave",
+      "description": "",
+      "type": 1
+    },
+    {
+      "name": "skip",
+      "description": "",
+      "type": 1
+    },
+    {
+      "name": "queue",
+      "description": "",
+      "type": 2,
+      "options": [
+        {
+          "name": "add",
+          "description": "",
+          "type": 2,
+          "options": [
+            {
+              "name": "",
+              "description": "",
+              "type": 3,
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "description": "",
+          "type": 2,
+          "options": [
+            {
+              "name": "",
+              "description": "",
+              "type": 4,
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "description": "",
+          "type": 2,
+          "options": [
+            {
+              "name": "",
+              "description": "",
+              "type": 4,
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
