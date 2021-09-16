@@ -6,6 +6,7 @@ import discord4j.rest.http.JacksonReaderStrategy;
 import discord4j.rest.http.ReaderStrategy;
 import discord4j.rest.util.Multimap;
 import discord4j.rest.util.RouteUtils;
+import io.smallrye.common.constraint.Nullable;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -13,58 +14,54 @@ import reactor.netty.http.client.HttpClient;
 
 import java.util.Map;
 
-public class YouTubeService {
+public class YouTubeApi {
     private static final String YOUTUBE_API_URL = "https://googleapis.com/youtube/v3";
     private final HttpClient httpClient;
     private final ReaderStrategy<?> reader;
     private final String apiKey;
 
-    YouTubeService(RestClient discord, @ConfigProperty(name = "ribbot.youtube.api-key") String apiKey) {
+    YouTubeApi(RestClient discord, @ConfigProperty(name = "ribbot.youtube.api-key") String apiKey) {
         RestResources restResources = discord.getRestResources();
         this.httpClient = restResources.getReactorResources().getHttpClient().baseUrl(YOUTUBE_API_URL);
         this.reader = new JacksonReaderStrategy<>(restResources.getJacksonResources().getObjectMapper());
         this.apiKey = apiKey;
     }
 
-    private Flux<PlaylistItem> getPlaylistItems(String id, String pageToken) {
+    private Mono<ListPlaylistItemsResponse> requestPlaylistItems(String id, @Nullable String pageToken) {
         Multimap<String, Object> values = new Multimap<>();
         values.setAll(Map.of(
                 "key", apiKey,
                 "part", "snippet",
-                "fields", "nextPageToken, pageInfo/*, items/snippet/resourceId/*",
+                "fields", "nextPageToken, items/snippet/resourceId/*",
                 "playlistId", id,
                 "maxResults", 50)
         );
+        if (pageToken != null) {
+            values.add("pageToken", pageToken);
+        }
         return httpClient.get()
                 .uri(RouteUtils.expandQuery("/playlistItems", values))
                 .responseSingle((response, body) -> {
                     if (response.status().code() >= 400) {
                         return null;
                     } else {
-                        return ((ReaderStrategy<PlaylistItem[]>)reader).read(body, PlaylistItem[].class);
-                    }
-                })
-                .flatMapMany(Flux::fromArray);
-    }
-
-    private Mono<Video> getVideo(String id) {
-        Multimap<String, Object> values = new Multimap<>();
-        values.setAll(Map.of(
-                "key", apiKey,
-                "part", "snippet,contentDetails",
-                "fields", "items/snippet(title,channelTitle),contentDetails(duration, regionRestriction/*, contentRating/*)",
-                "id", id,
-                "maxResults", 1)
-        );
-        return httpClient.get()
-                .uri(RouteUtils.expandQuery("/videos", values))
-                .responseSingle((response, body) -> {
-                    if (response.status().code() >= 400) {
-                        return null;
-                    } else {
-                        return ((ReaderStrategy<Video>)reader).read(body, Video.class);
+                        return ((ReaderStrategy<ListPlaylistItemsResponse>)reader).read(body, ListPlaylistItemsResponse.class);
                     }
                 });
+    }
+
+    private Flux<PlaylistItem> getPlaylistItems(String id) {
+        return requestPlaylistItems(id, null)
+                .expand(response -> {
+                    String pageToken = response.getNextPageToken();
+                    if (pageToken != null) {
+                        return requestPlaylistItems(id, pageToken);
+                    } else {
+                        return Mono.empty();
+                    }
+                })
+                .map(ListPlaylistItemsResponse::getItems)
+                .flatMap(Flux::fromIterable);
     }
 
     private Mono<SearchResult> search(String query) {
@@ -88,6 +85,33 @@ public class YouTubeService {
                 });
     }
 
+    public Flux<Video> getPlaylistVideos(String id) {
+        return getPlaylistItems(id)
+                .filter(playlistItem -> playlistItem.getKind().equals("video"))
+                .map(PlaylistItem::getVideoId)
+                .flatMap(this::getVideo);
+    }
+
+    public Mono<Video> getVideo(String id) {
+        Multimap<String, Object> values = new Multimap<>();
+        values.setAll(Map.of(
+                "key", apiKey,
+                "part", "snippet,contentDetails",
+                "fields", "items/snippet(title,channelTitle),contentDetails(duration, regionRestriction/*, contentRating/*)",
+                "id", id,
+                "maxResults", 1)
+        );
+        return httpClient.get()
+                .uri(RouteUtils.expandQuery("/videos", values))
+                .responseSingle((response, body) -> {
+                    if (response.status().code() >= 400) {
+                        return null;
+                    } else {
+                        return ((ReaderStrategy<Video>)reader).read(body, Video.class);
+                    }
+                });
+    }
+
     public Flux<Video> getVideos(String query) {
         return search(query).flatMapMany(searchResult -> {
             switch (searchResult.getKind()) {
@@ -99,9 +123,5 @@ public class YouTubeService {
                     return Mono.error(IllegalStateException::new);
             }
         });
-    }
-
-    public Flux<Video> getPlaylistVideos(String id) {
-        return getPlaylistItems(id).flatMap(playlistItem -> playlistItem.);
     }
 }

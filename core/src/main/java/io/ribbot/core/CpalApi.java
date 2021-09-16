@@ -7,7 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 
 @RegisterRestClient
-public interface CpalService {
+public interface CpalApi {
 
     @POST
     @Produces("audio/opus")
