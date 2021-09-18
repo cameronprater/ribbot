@@ -1915,7 +1915,62 @@ INSERT INTO talent VALUES ('Dominance of Earth', 'Zhongli', 'Geo', '4th Ascensio
 INSERT INTO talent VALUES ('Arcanum of Crystal', 'Zhongli', 'Geo', 'Utility Passive',
                              'Refunds 15% of the ores used when crafting Polearm-type weapons.');
 
--- talent levels
+-- talent level up phases
+INSERT INTO talent_level_up_phase VALUES (1, 12500, 1, 6, 'Teachings', 3);
+INSERT INTO talent_level_up_phase VALUES (2, 17500, 2, 3, 'Guide', 2);
+INSERT INTO talent_level_up_phase VALUES (3, 25000, 2, 4, 'Guide', 4);
+INSERT INTO talent_level_up_phase VALUES (4, 30000, 2, 6, 'Guide', 6);
+INSERT INTO talent_level_up_phase VALUES (5, 37500, 2, 9, 'Guide', 9);
+INSERT INTO talent_level_up_phase VALUES (6, 120000, 3, 4, 'Philosophies', 4, 1);
+INSERT INTO talent_level_up_phase VALUES (7, 260000, 3, 6, 'Philosophies', 6, 1);
+INSERT INTO talent_level_up_phase VALUES (8, 450000, 3, 9, 'Philosophies', 12, 2);
+INSERT INTO talent_level_up_phase VALUES (9, 700000, 3, 12, 'Philosophies', 16, 2, 1);
+
+-- talent level ups
+INSERT INTO talent_level_up VALUES ('Aether', NULL, 'Scroll', '', 'Dvalin\'s Sigh);
+INSERT INTO talent_level_up VALUES ('Aether', 'Anemo', '', '', '');
+INSERT INTO talent_level_up VALUES ('Aether', 'Geo', '', '', '');
+INSERT INTO talent_level_up VALUES ('Aether', 'Electro', '', '', '');
+
+INSERT INTO talent_level_up VALUES ('Albedo', 'Geo', 'Scroll', 'Ballad', 'Tusk of Monoceros Caeli');
+INSERT INTO talent_level_up VALUES ('Aloy', 'Cryo', 'Spectral', 'Freedom', 'Molten Moment');
+INSERT INTO talent_level_up VALUES ('Amber', 'Pyro', 'Arrowhead', 'Freedom', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Barbara', 'Hydro', 'Scroll', 'Freedom', 'Ring of Boreas');
+INSERT INTO talent_level_up VALUES ('Beidou', 'Electro', 'Treasure Hoarder Insignia', 'Gold', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Bennett', 'Pyro', 'Treasure Hoarder Insignia', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up VALUES ('Chongyun', 'Cryo', 'Mask', 'Diligence', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Diluc', 'Pyro', 'Fatui Insignia', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up VALUES ('Diona', 'Cryo', 'Arrowhead', 'Freedom', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up VALUES ('Eula', 'Cryo', 'Mask', 'Resistance', 'Dragon Lord\'s Crown');
+INSERT INTO talent_level_up VALUES ('Fischl', 'Electro', 'Arrowhead', 'Ballad', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up VALUES ('Ganyu', 'Cryo', 'Nectar', 'Diligence', 'Shadow of the Warrior');
+INSERT INTO talent_level_up VALUES ('Hu Tao', 'Pyro', 'Nectar', 'Diligence', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up VALUES ('Jean', 'Anemo', 'Mask', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up VALUES ('Kaedehara Kazuha', 'Anemo', 'Treasure Hoarder Insignia', 'Diligence', 'Gilded Scale');
+INSERT INTO talent_level_up VALUES ('Kaeya', 'Cryo', 'Treasure Hoarder Insignia', 'Ballad', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up VALUES ('Kamisato Ayaka', 'Cryo', 'Handguard', 'Elegance', 'Bloodjade Branch');
+INSERT INTO talent_level_up VALUES ('Keqing', 'Electro', 'Nectar', 'Prosperity', 'Ring of Boreas');
+INSERT INTO talent_level_up VALUES ('Klee', 'Pyro', 'Scroll', 'Freedom', 'Ring of Boreas');
+INSERT INTO talent_level_up VALUES ('Kujou Sara', 'Electro', 'Mask', 'Elegance', 'Ashen Heart');
+INSERT INTO talent_level_up VALUES ('Lisa', 'Electro', 'Slime', 'Ballad', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up VALUES ('Mona', 'Hydro', 'Nectar', 'Resistance', 'Ring of Boreas');
+INSERT INTO talent_level_up VALUES ('Ningguang', 'Geo', 'Fatui Insignia', 'Prosperity', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up VALUES ('Noelle', 'Geo', 'Mask', 'Resistance', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up VALUES ('Qiqi', 'Cryo', 'Scroll', 'Prosperity', 'Tail of Boreas');
+INSERT INTO talent_level_up VALUES ('Raiden Shogun', 'Electro', 'Handguard', 'Light', 'Molten Moment');
+INSERT INTO talent_level_up VALUES ('Razor', 'Electro', 'Mask', 'Resistance', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up VALUES ('Rosaria', 'Cryo', 'Fatui Insignia', 'Ballad', 'Shadow of the Warrior');
+INSERT INTO talent_level_up VALUES ('Sayu', 'Anemo', 'Nectar', 'Light', 'Gilded Scale');
+INSERT INTO talent_level_up VALUES ('Sucrose', 'Anemo', 'Nectar', 'Freedom', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up VALUES ('Tartaglia', 'Hydro', 'Fatui Insignia', 'Freedom', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up VALUES ('Venti', 'Anemo', 'Slime', 'Ballad', 'Tail of Boreas');
+INSERT INTO talent_level_up VALUES ('Xiangling', 'Pyro', 'Slime', 'Diligence', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up VALUES ('Xiao', 'Anemo', 'Slime', 'Prosperity', 'Shadow of the Warrior');
+INSERT INTO talent_level_up VALUES ('Xingqiu', 'Hydro', 'Mask', 'Gold', 'Tail of Boreas');
+INSERT INTO talent_level_up VALUES ('Xinyan', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Tusk of Monoceros Caeli');
+INSERT INTO talent_level_up VALUES ('Yanfei', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Bloodjade Branch');
+INSERT INTO talent_level_up VALUES ('Yoimiya', 'Pyro', 'Scroll', 'Transience', 'Dragon Lord\'s Crown');
+INSERT INTO talent_level_up VALUES ('Zhongli', 'Geo', 'Slime', 'Gold', 'Tusk of Monoceros Caeli');
 
 -- materials
 

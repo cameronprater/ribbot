@@ -84,24 +84,24 @@ CREATE TABLE IF NOT EXISTS enemy_type (
 CREATE TABLE IF NOT EXISTS naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
-CREATE TABLE IF NOT EXISTS ascension_material_type (
+CREATE TABLE IF NOT EXISTS common_material_type (
     name TEXT PRIMARY KEY NOT NULL,
     naming_strategy TEXT NOT NULL,
     FOREIGN KEY naming_strategy REFERENCES naming_strategy(name)
 );
-CREATE TABLE IF NOT EXISTS common_ascension_material (
+CREATE TABLE IF NOT EXISTS common_material (
     type TEXT NOT NULL,
     name TEXT,
-    FOREIGN KEY type REFERENCES ascension_material_type(name),
+    FOREIGN KEY type REFERENCES common_ascension_material_type(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, name)
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
     enemy_type TEXT NOT NULL,
-    material_type TEXT NOT NULL,
+    common_material_type TEXT NOT NULL,
     FOREIGN KEY enemy_type REFERENCES enemy_type(name),
-    FOREIGN KEY material_type REFERENCES common_ascension_material_type(name),
-    PRIMARY KEY (enemy_type, material_type)
+    FOREIGN KEY common_material_type REFERENCES common_material_type(name),
+    PRIMARY KEY (enemy_type, common_material_type)
 );
 CREATE TABLE IF NOT EXISTS domain (
     name TEXT PRIMARY KEY NOT NULL,
@@ -166,44 +166,50 @@ CREATE TABLE IF NOT EXISTS constellation_level (
     UNIQUE (character, element, level)
 );
 CREATE TABLE IF NOT EXISTS ascension_phase (
-    phase
-    mora
-    ascension_gem_size
-    ascension_gem_quantity
-    normal_boss_drop_quantity
-    local_specialty_quantity
-    rarity
-    common_material_quantity
+    phase INTEGER PRIMARY KEY NOT NULL,
+    mora INTEGER NOT NULL,
+    ascension_gem_size TEXT NOT NULL,
+    ascension_gem_quantity INTEGER NOT NULL,
+    normal_boss_drop_quantity INTEGER NOT NULL,
+    local_specialty_quantity INTEGER NOT NULL,
+    common_material_rarity,
+    common_material_quantity INTEGER NOT NULL,
+    FOREIGN KEY ascension_gem_size REFERENCES ascension_gem_size(name)
 );
 CREATE TABLE IF NOT EXISTS character_ascension (
     character TEXT PRIMARY KEY NOT NULL,
     ascension_gem_type TEXT NOT NULL,
     normal_boss_drop TEXT,
     local_specialty TEXT NOT NULL,
-    ascension_material_type TEXT NOT NULL,
+    common_material_type TEXT NOT NULL,
     FOREIGN KEY character REFERENCES character(name),
     FOREIGN KEY ascension_gem_type REFERENCES ascension_gem_type(name),
     FOREIGN KEY normal_boss_drop REFERENCES normal_boss_drop(name),
     FOREIGN KEY local_specialty REFERENCES local_specialty(name),
-    FOREIGN KEY ascension_material_type REFERENCES ascension_material_type(name)
+    FOREIGN KEY common_material_type REFERENCES common_material_type(name)
 );
-CREATE TABLE IF NOT EXISTS talent_level (
-    talent TEXT NOT NULL,
-    level INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS talent_level_up_phase (
+    phase INTEGER PRIMARY KEY NOT NULL,
     mora INTEGER NOT NULL,
-    ascension_phase INTEGER NOT NULL,
-    common_material TEXT NOT NULL,
+    common_material_rarity,
     common_material_quantity INTEGER NOT NULL,
-    talent_book TEXT NOT NULL,
+    talent_book_type TEXT NOT NULL,
     talent_book_quantity INTEGER NOT NULL,
-    weekly_boss_drop TEXT,
-    weekly_boss_drop_quantity INTEGER,
+    weekly_boss_drop_quantity INTEGER NOT NULL DEFAULT 0,
     crown_of_insight INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY talent REFERENCES talent(name),
-    FOREIGN KEY common_material REFERENCES character_ascension_material(name),
-    FOREIGN KEY talent_book REFERENCES talent_book(name),
+    FOREIGN KEY talent_book_type REFERENCES talent_book_type(name),
+);
+CREATE TABLE IF NOT EXISTS talent_level_up (
+    character TEXT NOT NULL,
+    element TEXT NOT NULL,
+    common_material_type TEXT NOT NULL,
+    talent_book_series TEXT NOT NULL,
+    weekly_boss_drop TEXT NOT NULL,
+    FOREIGN KEY (character, element) REFERENCES constellation(character, element),
+    FOREIGN KEY common_material_type REFERENCES common_material_type(name),
+    FOREIGN KEY talent_book_series REFERENCES talent_book_series(name),
     FOREIGN KEY weekly_boss_drop REFERENCES weekly_boss_drop(name),
-    PRIMARY KEY (talent, level)
+    PRIMARY KEY (character, element)
 );
 CREATE TABLE IF NOT EXISTS common_enemy (
     type TEXT NOT NULL,
