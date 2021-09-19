@@ -2567,61 +2567,108 @@ INSERT INTO character_ascension VALUES ('Yanfei', 'Juvenile Jade', 'Noctilucous 
 INSERT INTO character_ascension VALUES ('Yoimiya', 'Smoldering Pearl', 'Naku Weed', 'Scroll');
 INSERT INTO character_ascension VALUES ('Zhongli', 'Basant Pillar', 'Cor Lapis', 'Slime');
 
--- talent level up phases
-INSERT INTO talent_level_up_phase VALUES (1, 12500, 1, 6, 'Teachings', 3);
-INSERT INTO talent_level_up_phase VALUES (2, 17500, 2, 3, 'Guide', 2);
-INSERT INTO talent_level_up_phase VALUES (3, 25000, 2, 4, 'Guide', 4);
-INSERT INTO talent_level_up_phase VALUES (4, 30000, 2, 6, 'Guide', 6);
-INSERT INTO talent_level_up_phase VALUES (5, 37500, 2, 9, 'Guide', 9);
-INSERT INTO talent_level_up_phase VALUES (6, 120000, 3, 4, 'Philosophies', 4, 1);
-INSERT INTO talent_level_up_phase VALUES (7, 260000, 3, 6, 'Philosophies', 6, 1);
-INSERT INTO talent_level_up_phase VALUES (8, 450000, 3, 9, 'Philosophies', 12, 2);
-INSERT INTO talent_level_up_phase VALUES (9, 700000, 3, 12, 'Philosophies', 16, 2, 1);
+-- talent levels
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity) VALUES (1, 12500, 1, 6, 'Teachings', 3);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity) VALUES (2, 17500, 2, 3, 'Guide', 2);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity) VALUES (3, 25000, 2, 4, 'Guide', 4);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity) VALUES (4, 30000, 2, 6, 'Guide', 6);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity) VALUES (5, 37500, 2, 9, 'Guide', 9);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity, weekly_boss_drop_quantity) VALUES (6, 120000, 3, 4, 'Philosophies', 4, 1);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity, weekly_boss_drop_quantity) VALUES (7, 260000, 3, 6, 'Philosophies', 6, 1);
+INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+                           talent_book_quantity, weekly_boss_drop_quantity) VALUES (8, 450000, 3, 9, 'Philosophies', 12, 2);
+INSERT INTO talent_level VALUES (9, 700000, 3, 12, 'Philosophies', 16, 2, 1);
 
 -- talent level ups
-INSERT INTO talent_level_up VALUES ('Aether', NULL, 'Scroll', '', 'Dvalin\'s Sigh);
-INSERT INTO talent_level_up VALUES ('Aether', 'Anemo', '', '', '');
-INSERT INTO talent_level_up VALUES ('Aether', 'Geo', '', '', '');
-INSERT INTO talent_level_up VALUES ('Aether', 'Electro', '', '', '');
-INSERT INTO talent_level_up VALUES ('Albedo', 'Geo', 'Scroll', 'Ballad', 'Tusk of Monoceros Caeli');
-INSERT INTO talent_level_up VALUES ('Aloy', 'Cryo', 'Spectral', 'Freedom', 'Molten Moment');
-INSERT INTO talent_level_up VALUES ('Amber', 'Pyro', 'Arrowhead', 'Freedom', 'Dvalin\'s Sigh');
-INSERT INTO talent_level_up VALUES ('Barbara', 'Hydro', 'Scroll', 'Freedom', 'Ring of Boreas');
-INSERT INTO talent_level_up VALUES ('Beidou', 'Electro', 'Treasure Hoarder Insignia', 'Gold', 'Dvalin\'s Sigh');
-INSERT INTO talent_level_up VALUES ('Bennett', 'Pyro', 'Treasure Hoarder Insignia', 'Resistance', 'Dvalin\'s Plume');
-INSERT INTO talent_level_up VALUES ('Chongyun', 'Cryo', 'Mask', 'Diligence', 'Dvalin\'s Sigh');
-INSERT INTO talent_level_up VALUES ('Diluc', 'Pyro', 'Fatui Insignia', 'Resistance', 'Dvalin\'s Plume');
-INSERT INTO talent_level_up VALUES ('Diona', 'Cryo', 'Arrowhead', 'Freedom', 'Shard of a Foul Legacy');
-INSERT INTO talent_level_up VALUES ('Eula', 'Cryo', 'Mask', 'Resistance', 'Dragon Lord\'s Crown');
-INSERT INTO talent_level_up VALUES ('Fischl', 'Electro', 'Arrowhead', 'Ballad', 'Spirit Locket of Boreas');
-INSERT INTO talent_level_up VALUES ('Ganyu', 'Cryo', 'Nectar', 'Diligence', 'Shadow of the Warrior');
-INSERT INTO talent_level_up VALUES ('Hu Tao', 'Pyro', 'Nectar', 'Diligence', 'Shard of a Foul Legacy');
-INSERT INTO talent_level_up VALUES ('Jean', 'Anemo', 'Mask', 'Resistance', 'Dvalin\'s Plume');
-INSERT INTO talent_level_up VALUES ('Kaedehara Kazuha', 'Anemo', 'Treasure Hoarder Insignia', 'Diligence', 'Gilded Scale');
-INSERT INTO talent_level_up VALUES ('Kaeya', 'Cryo', 'Treasure Hoarder Insignia', 'Ballad', 'Spirit Locket of Boreas');
-INSERT INTO talent_level_up VALUES ('Kamisato Ayaka', 'Cryo', 'Handguard', 'Elegance', 'Bloodjade Branch');
-INSERT INTO talent_level_up VALUES ('Keqing', 'Electro', 'Nectar', 'Prosperity', 'Ring of Boreas');
-INSERT INTO talent_level_up VALUES ('Klee', 'Pyro', 'Scroll', 'Freedom', 'Ring of Boreas');
-INSERT INTO talent_level_up VALUES ('Kujou Sara', 'Electro', 'Mask', 'Elegance', 'Ashen Heart');
-INSERT INTO talent_level_up VALUES ('Lisa', 'Electro', 'Slime', 'Ballad', 'Dvalin\'s Claw');
-INSERT INTO talent_level_up VALUES ('Mona', 'Hydro', 'Nectar', 'Resistance', 'Ring of Boreas');
-INSERT INTO talent_level_up VALUES ('Ningguang', 'Geo', 'Fatui Insignia', 'Prosperity', 'Spirit Locket of Boreas');
-INSERT INTO talent_level_up VALUES ('Noelle', 'Geo', 'Mask', 'Resistance', 'Dvalin\'s Claw');
-INSERT INTO talent_level_up VALUES ('Qiqi', 'Cryo', 'Scroll', 'Prosperity', 'Tail of Boreas');
-INSERT INTO talent_level_up VALUES ('Raiden Shogun', 'Electro', 'Handguard', 'Light', 'Molten Moment');
-INSERT INTO talent_level_up VALUES ('Razor', 'Electro', 'Mask', 'Resistance', 'Dvalin\'s Claw');
-INSERT INTO talent_level_up VALUES ('Rosaria', 'Cryo', 'Fatui Insignia', 'Ballad', 'Shadow of the Warrior');
-INSERT INTO talent_level_up VALUES ('Sayu', 'Anemo', 'Nectar', 'Light', 'Gilded Scale');
-INSERT INTO talent_level_up VALUES ('Sucrose', 'Anemo', 'Nectar', 'Freedom', 'Spirit Locket of Boreas');
-INSERT INTO talent_level_up VALUES ('Tartaglia', 'Hydro', 'Fatui Insignia', 'Freedom', 'Shard of a Foul Legacy');
-INSERT INTO talent_level_up VALUES ('Venti', 'Anemo', 'Slime', 'Ballad', 'Tail of Boreas');
-INSERT INTO talent_level_up VALUES ('Xiangling', 'Pyro', 'Slime', 'Diligence', 'Dvalin\'s Claw');
-INSERT INTO talent_level_up VALUES ('Xiao', 'Anemo', 'Slime', 'Prosperity', 'Shadow of the Warrior');
-INSERT INTO talent_level_up VALUES ('Xingqiu', 'Hydro', 'Mask', 'Gold', 'Tail of Boreas');
-INSERT INTO talent_level_up VALUES ('Xinyan', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Tusk of Monoceros Caeli');
-INSERT INTO talent_level_up VALUES ('Yanfei', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Bloodjade Branch');
-INSERT INTO talent_level_up VALUES ('Yoimiya', 'Pyro', 'Scroll', 'Transience', 'Dragon Lord\'s Crown');
-INSERT INTO talent_level_up VALUES ('Zhongli', 'Geo', 'Slime', 'Gold', 'Tusk of Monoceros Caeli');
+INSERT INTO talent_level_up VALUES ('Aether', NULL, 'Scroll', 'Freedom', 'Resistance', 'Ballad', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Aether', 'Anemo', 'Scroll', 'Freedom', 'Resistance', 'Ballad', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Aether', 'Geo', 'Scroll', 'Freedom', 'Resistance', 'Ballad', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up VALUES ('Aether', 'Electro', 'Handguard', 'Transience', 'Elegance', 'Light', 'Dragon Lord\'s Crown');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Albedo', 'Geo', 'Scroll', 'Ballad', 'Tusk of Monoceros Caeli');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Aloy', 'Cryo', 'Spectral', 'Freedom', 'Molten Moment');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Amber', 'Pyro', 'Arrowhead', 'Freedom', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Barbara', 'Hydro', 'Scroll', 'Freedom', 'Ring of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Beidou', 'Electro', 'Treasure Hoarder Insignia', 'Gold', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Bennett', 'Pyro', 'Treasure Hoarder Insignia', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Chongyun', 'Cryo', 'Mask', 'Diligence', 'Dvalin\'s Sigh');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Diluc', 'Pyro', 'Fatui Insignia', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Diona', 'Cryo', 'Arrowhead', 'Freedom', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Eula', 'Cryo', 'Mask', 'Resistance', 'Dragon Lord\'s Crown');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Fischl', 'Electro', 'Arrowhead', 'Ballad', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Ganyu', 'Cryo', 'Nectar', 'Diligence', 'Shadow of the Warrior');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Hu Tao', 'Pyro', 'Nectar', 'Diligence', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Jean', 'Anemo', 'Mask', 'Resistance', 'Dvalin\'s Plume');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Kaedehara Kazuha', 'Anemo', 'Treasure Hoarder Insignia', 'Diligence', 'Gilded Scale');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Kaeya', 'Cryo', 'Treasure Hoarder Insignia', 'Ballad', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Kamisato Ayaka', 'Cryo', 'Handguard', 'Elegance', 'Bloodjade Branch');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Keqing', 'Electro', 'Nectar', 'Prosperity', 'Ring of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Klee', 'Pyro', 'Scroll', 'Freedom', 'Ring of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Kujou Sara', 'Electro', 'Mask', 'Elegance', 'Ashen Heart');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Lisa', 'Electro', 'Slime', 'Ballad', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Mona', 'Hydro', 'Nectar', 'Resistance', 'Ring of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Ningguang', 'Geo', 'Fatui Insignia', 'Prosperity', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Noelle', 'Geo', 'Mask', 'Resistance', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Qiqi', 'Cryo', 'Scroll', 'Prosperity', 'Tail of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Raiden Shogun', 'Electro', 'Handguard', 'Light', 'Molten Moment');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Razor', 'Electro', 'Mask', 'Resistance', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Rosaria', 'Cryo', 'Fatui Insignia', 'Ballad', 'Shadow of the Warrior');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Sayu', 'Anemo', 'Nectar', 'Light', 'Gilded Scale');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Sucrose', 'Anemo', 'Nectar', 'Freedom', 'Spirit Locket of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Tartaglia', 'Hydro', 'Fatui Insignia', 'Freedom', 'Shard of a Foul Legacy');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Venti', 'Anemo', 'Slime', 'Ballad', 'Tail of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Xiangling', 'Pyro', 'Slime', 'Diligence', 'Dvalin\'s Claw');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Xiao', 'Anemo', 'Slime', 'Prosperity', 'Shadow of the Warrior');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Xingqiu', 'Hydro', 'Mask', 'Gold', 'Tail of Boreas');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Xinyan', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Tusk of Monoceros Caeli');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Yanfei', 'Pyro', 'Treasure Hoarder Insignia', 'Gold', 'Bloodjade Branch');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Yoimiya', 'Pyro', 'Scroll', 'Transience', 'Dragon Lord\'s Crown');
+INSERT INTO talent_level_up (character, element, common_material_type, talent_book_series_one, weekly_boss_drop)
+                              VALUES ('Zhongli', 'Geo', 'Slime', 'Gold', 'Tusk of Monoceros Caeli');
 
 -- common enemies
 INSERT INTO common_enemy VALUES ('Large Slime', 'Mutant Electro', 'Between');

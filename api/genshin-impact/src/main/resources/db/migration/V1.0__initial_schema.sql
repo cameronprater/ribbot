@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS constellation_activation_material (
 CREATE TABLE IF NOT EXISTS ascension_gem_type (
     name TEXT PRIMARY KEY NOT NULL,
     element TEXT UNIQUE,
-    FOREIGN KEY element REFERENCES element(name),
+    FOREIGN KEY element REFERENCES element(name)
 );
 CREATE TABLE IF NOT EXISTS ascension_gem_size (
     name TEXT PRIMARY KEY NOT NULL
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS normal_boss (
 CREATE TABLE IF NOT EXISTS normal_boss_drop (
     name TEXT PRIMARY KEY NOT NULL,
     normal_boss TEXT NOT NULL,
-    FOREIGN KEY name REFERENCES material(name)
+    FOREIGN KEY name REFERENCES material(name),
     FOREIGN KEY normal_boss REFERENCES normal_boss(name)
 );
 CREATE TABLE IF NOT EXISTS local_specialty (
@@ -111,8 +111,8 @@ CREATE TABLE IF NOT EXISTS domain (
 CREATE TABLE IF NOT EXISTS weekday (
     name TEXT PRIMARY KEY NOT NULL,
     CHECK (name = 'Sunday' OR name = 'Monday' OR name = 'Tuesday' OR
-           name = 'Wednesday' OR name = 'Thursday' OR name = 'Friday' OR
-           name = 'Saturday')
+             name = 'Wednesday' OR name = 'Thursday' OR name = 'Friday' OR
+             name = 'Saturday')
 );
 CREATE TABLE IF NOT EXISTS talent_book_type (
     name TEXT PRIMARY KEY NOT NULL
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS ascension_phase (
     ascension_gem_quantity INTEGER NOT NULL,
     normal_boss_drop_quantity INTEGER NOT NULL,
     local_specialty_quantity INTEGER NOT NULL,
-    common_material_rarity,
+    common_material_rarity INTEGER NOT NULL,
     common_material_quantity INTEGER NOT NULL,
     FOREIGN KEY ascension_gem_size REFERENCES ascension_gem_size(name)
 );
@@ -188,26 +188,30 @@ CREATE TABLE IF NOT EXISTS character_ascension (
     FOREIGN KEY local_specialty REFERENCES local_specialty(name),
     FOREIGN KEY common_material_type REFERENCES common_material_type(name)
 );
-CREATE TABLE IF NOT EXISTS talent_level_up_phase (
+CREATE TABLE IF NOT EXISTS talent_level (
     phase INTEGER PRIMARY KEY NOT NULL,
     mora INTEGER NOT NULL,
-    common_material_rarity,
+    common_material_rarity INTEGER NOT NULL,
     common_material_quantity INTEGER NOT NULL,
     talent_book_type TEXT NOT NULL,
     talent_book_quantity INTEGER NOT NULL,
     weekly_boss_drop_quantity INTEGER NOT NULL DEFAULT 0,
     crown_of_insight INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY talent_book_type REFERENCES talent_book_type(name),
+    FOREIGN KEY talent_book_type REFERENCES talent_book_type(name)
 );
 CREATE TABLE IF NOT EXISTS talent_level_up (
     character TEXT NOT NULL,
     element TEXT NOT NULL,
     common_material_type TEXT NOT NULL,
-    talent_book_series TEXT NOT NULL,
+    talent_book_series_one TEXT NOT NULL,
+    talent_book_series_two TEXT DEFAULT NULL,
+    talent_book_series_three TEXT DEFAULT NULL,
     weekly_boss_drop TEXT NOT NULL,
     FOREIGN KEY (character, element) REFERENCES constellation(character, element),
     FOREIGN KEY common_material_type REFERENCES common_material_type(name),
-    FOREIGN KEY talent_book_series REFERENCES talent_book_series(name),
+    FOREIGN KEY talent_book_series_one REFERENCES talent_book_series(name),
+    FOREIGN KEY talent_book_series_two REFERENCES talent_book_series(name),
+    FOREIGN KEY talent_book_series_three REFERENCES talent_book_series(name),
     FOREIGN KEY weekly_boss_drop REFERENCES weekly_boss_drop(name),
     PRIMARY KEY (character, element)
 );
