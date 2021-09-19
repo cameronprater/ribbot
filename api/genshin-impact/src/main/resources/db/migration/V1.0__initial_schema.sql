@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS talent (
 );
 CREATE TABLE IF NOT EXISTS material (
     name TEXT PRIMARY KEY NOT NULL,
-    rarity INTEGER NOT NULL,
+    rarity INTEGER,
     FOREIGN KEY rarity REFERENCES rarity(stars)
 );
 CREATE TABLE IF NOT EXISTS constellation_activation_material (
@@ -85,17 +85,14 @@ CREATE TABLE IF NOT EXISTS naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS common_material_type (
-    name TEXT PRIMARY KEY NOT NULL,
-    naming_strategy TEXT NOT NULL,
-    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name)
+    name TEXT PRIMARY KEY NOT NULL
 );
--- TODO fix this table
 CREATE TABLE IF NOT EXISTS common_material (
+    name TEXT PRIMARY KEY NOT NULL,
     type TEXT NOT NULL,
-    name TEXT,
-    FOREIGN KEY type REFERENCES common_material_type(name),
     FOREIGN KEY name REFERENCES material(name),
-    PRIMARY KEY (type, name),
+    FOREIGN KEY type REFERENCES common_material_type(name),
+    -- TODO
     CHECK ()
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
