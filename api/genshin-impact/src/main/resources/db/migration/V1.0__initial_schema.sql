@@ -54,12 +54,12 @@ CREATE TABLE IF NOT EXISTS ascension_gem_size (
 CREATE TABLE IF NOT EXISTS ascension_gem (
     type TEXT NOT NULL,
     size TEXT NOT NULL,
-    name TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
     FOREIGN KEY type REFERENCES ascension_gem_type(name),
     FOREIGN KEY size REFERENCES ascension_gem_size(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, size),
-    CHECK (CONCAT(type, ' ', size) = name)
+    CHECK (type ||  ' ' || size) = name)
 );
 CREATE TABLE IF NOT EXISTS normal_boss (
     name TEXT PRIMARY KEY NOT NULL,
@@ -89,12 +89,14 @@ CREATE TABLE IF NOT EXISTS common_material_type (
     naming_strategy TEXT NOT NULL,
     FOREIGN KEY naming_strategy REFERENCES naming_strategy(name)
 );
+-- TODO fix this table
 CREATE TABLE IF NOT EXISTS common_material (
     type TEXT NOT NULL,
     name TEXT,
     FOREIGN KEY type REFERENCES common_material_type(name),
     FOREIGN KEY name REFERENCES material(name),
-    PRIMARY KEY (type, name)
+    PRIMARY KEY (type, name),
+    CHECK ()
 );
 CREATE TABLE IF NOT EXISTS common_enemy_drop (
     enemy_type TEXT NOT NULL,
@@ -129,12 +131,12 @@ CREATE TABLE IF NOT EXISTS talent_book_series (
 CREATE TABLE IF NOT EXISTS talent_book (
     type TEXT NOT NULL,
     series TEXT NOT NULL,
-    name TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
     FOREIGN KEY type REFERENCES talent_book_type(name),
     FOREIGN KEY series REFERENCES talent_book_series(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, series),
-    CHECK (CONCAT(type, ' of ', series) = name)
+    CHECK (type || ' of ' || series) = name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (
     name TEXT PRIMARY KEY NOT NULL,

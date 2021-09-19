@@ -1440,6 +1440,64 @@ INSERT INTO talent VALUES ('Arcanum of Crystal', 'Zhongli', 'Geo', 'Utility Pass
                              'Refunds 15% of the ores used when crafting Polearm-type weapons.');
 
 -- materials
+INSERT INTO material VALUES ('Four Star Stella Fortuna', 0);
+INSERT INTO material VALUES ('Five Star Stella Fortuna', 0);
+INSERT INTO material VALUES ('Memory of Roving Gales', 0);
+INSERT INTO material VALUES ('Memory of Immovable Crystals', 0);
+INSERT INTO material VALUES ('Memory of Violet Flash', 0);
+INSERT INTO material VALUES ('Hurricane Seed', 0);
+INSERT INTO material VALUES ('Lightning Prism', 0);
+INSERT INTO material VALUES ('Basalt Pillar', 0);
+INSERT INTO material VALUES ('Hoarfrost Core', 0);
+INSERT INTO material VALUES ('Everflame Seed', 0);
+INSERT INTO material VALUES ('Cleansing Heart', 0);
+INSERT INTO material VALUES ('Juvenile Jade', 0);
+INSERT INTO material VALUES ('Crystalline Bloom', 0);
+INSERT INTO material VALUES ('Marionette Core', 0);
+INSERT INTO material VALUES ('Perpetual Heart', 0);
+INSERT INTO material VALUES ('Smoldering Pearl', 0);
+INSERT INTO material VALUES ('Dew of Repudiation', 0);
+INSERT INTO material VALUES ('Storm Beads', 0);
+INSERT INTO material VALUES ('Calla Lily', 0);
+INSERT INTO material VALUES ('Cecilia', 0);
+INSERT INTO material VALUES ('Dandelion Seed', 0);
+INSERT INTO material VALUES ('Philanemo Mushroom', 0);
+INSERT INTO material VALUES ('Small Lamp Grass', 0);
+INSERT INTO material VALUES ('Valberry', 0);
+INSERT INTO material VALUES ('Windwheel Aster', 0);
+INSERT INTO material VALUES ('Wolfhook', 0);
+INSERT INTO material VALUES ('Cor Lapis', 0);
+INSERT INTO material VALUES ('Glaze Lily', 0);
+INSERT INTO material VALUES ('Jueyun Chili', 0);
+INSERT INTO material VALUES ('Notilucous Jade', 0);
+INSERT INTO material VALUES ('Qingxin', 0);
+INSERT INTO material VALUES ('Silk Flower', 0);
+INSERT INTO material VALUES ('Starconch', 0);
+INSERT INTO material VALUES ('Violetgrass', 0);
+INSERT INTO material VALUES ('Amakumo Fruit', 0);
+INSERT INTO material VALUES ('Crystal Marrow', 0);
+INSERT INTO material VALUES ('Dendrobium', 0);
+INSERT INTO material VALUES ('Nadu Weed', 0);
+INSERT INTO material VALUES ('Onikabuto', 0);
+INSERT INTO material VALUES ('Sakura Bloom', 0);
+INSERT INTO material VALUES ('Sango Pearl', 0);
+INSERT INTO material VALUES ('Sea Ganoderma', 0);
+
+INSERT INTO material VALUES ('Dvalin\'s Plume', 0);
+INSERT INTO material VALUES ('Dvalin\'s Claw', 0);
+INSERT INTO material VALUES ('Dvalin\'s Sigh', 0);
+INSERT INTO material VALUES ('Tail of Boreas', 0);
+INSERT INTO material VALUES ('Ring of Boreas', 0);
+INSERT INTO material VALUES ('Spirit Locket of Boreas', 0);
+INSERT INTO material VALUES ('Tusk of Monoceros Caeli', 0);
+INSERT INTO material VALUES ('Shard of a Foul Legacy', 0);
+INSERT INTO material VALUES ('Shadow of the Warrior', 0);
+INSERT INTO material VALUES ('Dragon Lord\'s Crown', 0);
+INSERT INTO material VALUES ('Bloodjade Branch', 0);
+INSERT INTO material VALUES ('Gilded Scale', 0);
+INSERT INTO material VALUES ('Molten Moment', 0);
+INSERT INTO material VALUES ('Hellfire Butterfly', 0);
+INSERT INTO material VALUES ('Ashen Heart', 0);
 
 -- constellation activation materials
 INSERT INTO constellation_activation_material VALUES ('Four Star Stella Fortuna');
