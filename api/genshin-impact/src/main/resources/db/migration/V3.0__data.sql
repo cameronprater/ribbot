@@ -1641,205 +1641,310 @@ INSERT INTO talent VALUES ('Fruits of Shinsa', 'Kamisato Ayaka', 'Cryo', 'Utilit
 
 INSERT INTO talent VALUES ('Yunlai Swordsmanship', 'Keqing', 'Electro', 'Normal Attack',
                              'Normal Attack: Perform up to 5 rapid strikes.' + char(10) +
-                              Charged Attack: Consumes a certain amount of Stamina to unleash 2 rapid sword strikes.
-                              Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.');
+                             'Charged Attack: Consumes a certain amount of Stamina to unleash 2 rapid sword strikes.' + char(10) +
+                             'Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents ' +
+                             'along the path and dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Stellar Restoration', 'Keqing', 'Electro', 'Elemental Skill',
-                             'Hurls a Lightning Stiletto that annihilates her opponents like the swift thunder. When the Stiletto hits its target, it deals Electro DMG to opponents in a small AoE, and places a Stiletto Mark on the spot hit.
-                              Hold: Hold to adjust the direction in which the Stiletto shall be thrown. Stilettos thrown by the Hold attack mode can be suspended in mid-air, allowing Keqing to jump to them when using Stellar Restoration a second time.
-                              Lightning Stiletto: If Keqing uses Stellar Restoration again or uses a Charged Attack while its duration lasts, it will clear the Stiletto Mark and produce different effects:
-                              If she uses Stellar Restoration again, she will blink to the location of the Mark and unleash one slashing attack that deals AoE Electro DMG. When blinking to a Stiletto that was thrown from a Holding attack, Keqing can leap across obstructing terrain.
-                              If Keqing uses a Charged Attack, she will ignite a series of thundering cuts at the Mark's location, dealing AoE Electro DMG.');
+                             'Hurls a Lightning Stiletto that annihilates her opponents like the swift thunder. When ' +
+                             'the Stiletto hits its target, it deals Electro DMG to opponents in a small AoE, and ' +
+                             'places a Stiletto Mark on the spot hit.' + char(10) +
+                             'Hold: Hold to adjust the direction in which the Stiletto shall be thrown. Stilettos ' +
+                             'thrown by the Hold attack mode can be suspended in mid-air, allowing Keqing to jump to ' +
+                             'them when using Stellar Restoration a second time.' + char(10) +
+                             'Lightning Stiletto: If Keqing uses Stellar Restoration again or uses a Charged Attack ' +
+                             'while its duration lasts, it will clear the Stiletto Mark and produce different effects:' + char(10) +
+                             'If she uses Stellar Restoration again, she will blink to the location of the Mark and ' +
+                             'unleash one slashing attack that deals AoE Electro DMG. When blinking to a Stiletto ' +
+                             'that was thrown from a Holding attack, Keqing can leap across obstructing terrain.' + char(10) +
+                             'If Keqing uses a Charged Attack, she will ignite a series of thundering cuts at the ' +
+                             'Mark\'s location, dealing AoE Electro DMG.');
 INSERT INTO talent VALUES ('Starward Sword', 'Keqing', 'Electro', 'Elemental Burst',
-                             'Keqing unleashes the power of lightning, dealing Electro DMG in an AoE.
-                              She then blends into the shadow of her blade, striking a series of thunderclap-blows to nearby opponents simultaneously that deal multiple instances of Electro DMG. The final attack deals massive AoE Electro DMG.');
+                             'Keqing unleashes the power of lightning, dealing Electro DMG in an AoE.' + char(10) +
+                             'She then blends into the shadow of her blade, striking a series of thunderclap-blows to ' +
+                             'nearby opponents simultaneously that deal multiple instances of Electro DMG. The final ' +
+                             'attack deals massive AoE Electro DMG.');
 INSERT INTO talent VALUES ('Thundering Penance', 'Keqing', 'Electro', '1st Ascension Passive',
-                             'After recasting Stellar Restoration while a Lightning Stiletto is present, Keqing's weapon gains an Electro Infusion for 5s.');
+                             'After recasting Stellar Restoration while a Lightning Stiletto is present, Keqing\'s ' +
+                             'weapon gains an Electro Infusion for 5s.');
 INSERT INTO talent VALUES ('Aristocratic Dignity', 'Keqing', 'Electro', '4th Ascension Passive',
-                             'When casting Starward Sword, Keqing's CRIT Rate is increased by 15%, and her Energy Recharge is increased by 15%. This effect lasts for 8s.');
+                             'When casting Starward Sword, Keqing\'s CRIT Rate is increased by 15%, and her Energy ' +
+                             'Recharge is increased by 15%. This effect lasts for 8s.');
 INSERT INTO talent VALUES ('Land\'s Overseer', 'Keqing', 'Electro', 'Utility Passive',
                              'When dispatched on an expedition in Liyue, time consumed is reduced by 25%.');
 
 INSERT INTO talent VALUES ('Kaboom!', 'Klee', 'Pyro', 'Normal Attack',
-                             'Normal Attack: Throws things that go boom when they hit things! Perform up to 3 explosive attacks, dealing AoE Pyro DMG.
-                              Charged Attack: Consumes a certain amount of Stamina and deals AoE Pyro DMG to opponents after a short casting time.
-                              Plunging Attack: Gathering the power of Pyro, Klee plunges towards the ground from mid-air, damaging all opponents in her path. Deals AoE Pyro DMG upon impact with the ground.');
+                             'Normal Attack: Throws things that go boom when they hit things! Perform up to 3 ' +
+                             'explosive attacks, dealing AoE Pyro DMG.' + char(10) +
+                             'Charged Attack: Consumes a certain amount of Stamina and deals AoE Pyro DMG to ' +
+                             'opponents after a short casting time.' + char(10) +
+                             'Plunging Attack: Gathering the power of Pyro, Klee plunges towards the ground from ' +
+                             'mid-air, damaging all opponents in her path. Deals AoE Pyro DMG upon impact with the ' +
+                             'ground.');
 INSERT INTO talent VALUES ('Jumpy Dumpty', 'Klee', 'Pyro', 'Elemental Skill',
-                             'Jumpy Dumpty is tons of boom-bang-fun!
-                              When thrown, Jumpy Dumpty bounces thrice, igniting and dealing AoE Pyro DMG with every bounce.
-                              On the third bounce, the bomb splits into 8 mines. The mines will explode upon contact with opponents, or after a short period of time, dealing AoE Pyro DMG.
-                              Starts with 2 charges.');
+                             'Jumpy Dumpty is tons of boom-bang-fun!' + char(10) +
+                             'When thrown, Jumpy Dumpty bounces thrice, igniting and dealing AoE Pyro DMG with every ' +
+                             'bounce.' + char(10) +
+                             'On the third bounce, the bomb splits into 8 mines. The mines will explode upon contact ' +
+                             'with opponents, or after a short period of time, dealing AoE Pyro DMG.' + char(10) +
+                             'Starts with 2 charges.');
 INSERT INTO talent VALUES ('Sparks \'n\' Splash', 'Klee', 'Pyro', 'Elemental Burst',
-                             'Klee's Blazing Delight! For 10 seconds, summons 5 times 4 Sparks 'n' Splash to attack nearby opponents, dealing AoE Pyro DMG.');
+                             'Klee\'s Blazing Delight! For 10 seconds, summons 5 times 4 Sparks \'n\' Splash to ' +
+                             'attack nearby opponents, dealing AoE Pyro DMG.');
 INSERT INTO talent VALUES ('Pounding Surprise', 'Klee', 'Pyro', '1st Ascension Passive',
-                             'When Jumpy Dumpty and Normal Attacks deal DMG, Klee has a 50% chance to obtain an Explosive Spark. This Explosive Spark is consumed by the next Charged Attack, which costs no Stamina and deals 50% increased DMG.');
+                             'When Jumpy Dumpty and Normal Attacks deal DMG, Klee has a 50% chance to obtain an ' +
+                             'Explosive Spark. This Explosive Spark is consumed by the next Charged Attack, which ' +
+                             'costs no Stamina and deals 50% increased DMG.');
 INSERT INTO talent VALUES ('Sparkling Burst', 'Klee', 'Pyro', '4th Ascension Passive',
-                             'When Klee's Charged Attack results in a CRIT, all party members gain 2 Elemental Energy.');
+                             'When Klee\'s Charged Attack results in a CRIT, all party members gain 2 Elemental Energy.');
 INSERT INTO talent VALUES ('All Of My Treasures!', 'Klee', 'Pyro', 'Utility Passive',
                              'Displays the location of nearby resources unique to Mondstadt on the mini-map.');
 
 INSERT INTO talent VALUES ('Tengu Bowmanship', 'Kujou Sara', 'Electro', 'Normal Attack',
-                             'Normal Attack: Perform up to 5 consecutive shots with a bow.
-                              Charged Attack: Perform a more precise Aimed Shot with increased DMG. While aiming, crackling lightning will accumulate on the arrowhead. An arrow fully charged with the storm's might will deal Electro DMG.
-                              When in the Crowfeather Cover state, a fully-charged arrow will leave a Crowfeather behind after it hits.
-                              Plunging Attack: Fires off a shower of arrows in mid-air before falling and striking the ground, dealing AoE DMG upon impact.');
+                             'Normal Attack: Perform up to 5 consecutive shots with a bow.' + char(10) +
+                             'Charged Attack: Perform a more precise Aimed Shot with increased DMG. While aiming, ' +
+                             'crackling lightning will accumulate on the arrowhead. An arrow fully charged with the ' +
+                             'storm\'s might will deal Electro DMG.' + char(10) +
+                             'When in the Crowfeather Cover state, a fully-charged arrow will leave a Crowfeather ' +
+                             'behind after it hits.' + char(10) +
+                             'Plunging Attack: Fires off a shower of arrows in mid-air before falling and striking ' +
+                             'the ground, dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Tengu Stormcall', 'Kujou Sara', 'Electro', 'Elemental Skill',
-                             'Retreats rapidly with the speed of a tengu, summoning the protection of the Crowfeather. Gains Crowfeather Cover for 18s, and when Kujou Sara fires a fully-charged Aimed Shot, Crowfeather Cover will be consumed, and will leave a Crowfeather at the target location.
-                              Crowfeathers will trigger Tengu Juurai: Ambush after a short time, dealing Electro DMG and granting the active character within its AoE an ATK Bonus based on Kujou Sara's Base ATK.
-                              The ATK Bonuses from different Tengu Juurai will not stack, and their effects and duration will be determined by the last Tengu Juurai to take effect.');
+                             'Retreats rapidly with the speed of a tengu, summoning the protection of the ' +
+                             'Crowfeather. Gains Crowfeather Cover for 18s, and when Kujou Sara fires a fully-charged ' +
+                             'Aimed Shot, Crowfeather Cover will be consumed, and will leave a Crowfeather at the ' +
+                             'target location.' + char(10) +
+                             'Crowfeathers will trigger Tengu Juurai: Ambush after a short time, dealing Electro DMG ' +
+                             'and granting the active character within its AoE an ATK Bonus based on Kujou Sara\'s ' +
+                             'Base ATK.' + char(10) +
+                             'The ATK Bonuses from different Tengu Juurai will not stack, and their effects and ' +
+                             'duration will be determined by the last Tengu Juurai to take effect.');
 INSERT INTO talent VALUES ('Subjugation: Koukou Sendou', 'Kujou Sara', 'Electro', 'Elemental Burst',
-                             'Casts down Tengu Juurai: Titanbreaker, dealing AoE Electro DMG. Afterwards, Tengu Juurai: Titanbreaker spreads out into 4 consecutive bouts of Tengu Juurai: Stormcluster, dealing AoE Electro DMG.
-                              Tengu Juurai: Titanbreaker and Tengu Juurai: Stormcluster can provide the active character within their AoE with the same ATK Bonus as given by the Elemental Skill, Tengu Stormcall.
-                              The ATK Bonus provided by various kinds of Tengu Juurai will not stack, and their effects and duration will be determined by the last Tengu Juurai to take effect.');
+                             'Casts down Tengu Juurai: Titanbreaker, dealing AoE Electro DMG. Afterwards, Tengu ' +
+                             'Juurai: Titanbreaker spreads out into 4 consecutive bouts of Tengu Juurai: ' +
+                             'Stormcluster, dealing AoE Electro DMG.' + char(10) +
+                             'Tengu Juurai: Titanbreaker and Tengu Juurai: Stormcluster can provide the active ' +
+                             'character within their AoE with the same ATK Bonus as given by the Elemental Skill, ' +
+                             'Tengu Stormcall.' + char(10) +
+                             'The ATK Bonus provided by various kinds of Tengu Juurai will not stack, and their ' +
+                             'effects and duration will be determined by the last Tengu Juurai to take effect.');
 INSERT INTO talent VALUES ('Immovable Will', 'Kujou Sara', 'Electro', '1st Ascension Passive',
-                             'While in the Crowfeather Cover state provided by Tengu Stormcall, Aimed Shot charge times are decreased by 60%.');
+                             'While in the Crowfeather Cover state provided by Tengu Stormcall, Aimed Shot charge ' +
+                             'times are decreased by 60%.');
 INSERT INTO talent VALUES ('Decorum', 'Kujou Sara', 'Electro', '4th Ascension Passive',
-                             'When Tengu Juurai: Ambush hits opponents, Kujou Sara will restore 1.2 Energy to all party members for every 100% Energy Recharge she has. This effect can be triggered once every 3s.');
+                             'When Tengu Juurai: Ambush hits opponents, Kujou Sara will restore 1.2 Energy to all ' +
+                             'party members for every 100% Energy Recharge she has. This effect can be triggered once ' +
+                             'every 3s.');
 INSERT INTO talent VALUES ('Land Survey', 'Kujou Sara', 'Electro', 'Utility Passive',
                              'When dispatched on an expedition in Inazuma, time consumed is reduced by 25%.');
 
 INSERT INTO talent VALUES ('Lightning Touch', 'Lisa', 'Electro', 'Normal Attack',
-                             'Normal Attack: Performs up to 4 Electro attacks, dealing Electro DMG.
-                              Charged Attack: Consumes a certain amount of Stamina to deal Electro DMG after a short casting time.
-                              Plunging Attack: Gathering the might of Electro, Lisa plunges towards the ground from mid-air, damaging all opponents in her path. Deals AoE Electro DMG upon impact with the ground.');
+                             'Normal Attack: Performs up to 4 Electro attacks, dealing Electro DMG.' + char(10) +
+                             'Charged Attack: Consumes a certain amount of Stamina to deal Electro DMG after a short ' +
+                             'casting time.' + char(10) +
+                             'Plunging Attack: Gathering the might of Electro, Lisa plunges towards the ground from ' +
+                             'mid-air, damaging all opponents in her path. Deals AoE Electro DMG upon impact with the ' +
+                             'ground.');
 INSERT INTO talent VALUES ('Violet Arc', 'Lisa', 'Electro', 'Elemental Skill',
-                             'Channels the power of lightning to sweep bothersome matters away
-                              Press: Releases a homing lightning orb. On hit, it deals Electro DMG, and applies a stack of the Conductive status (Max 3 stacks) to opponents in a small AoE.
-                              Hold: After an extended casting time, calls down lightning from the heavens, dealing massive Electro DMG to all nearby opponents.
-                              Deals great amounts of extra damage to opponents based on the number of Conductive stacks applied to them and clears their Conductive status.');
+                             'Channels the power of lightning to sweep bothersome matters away' + char(10) +
+                             'Press: Releases a homing lightning orb. On hit, it deals Electro DMG, and applies a ' +
+                             'stack of the Conductive status (Max 3 stacks) to opponents in a small AoE.' + char(10) +
+                             'Hold: After an extended casting time, calls down lightning from the heavens, dealing ' +
+                             'massive Electro DMG to all nearby opponents.' + char(10) +
+                             'Deals great amounts of extra damage to opponents based on the number of Conductive ' +
+                             'stacks applied to them and clears their Conductive status.');
 INSERT INTO talent VALUES ('Lightning Rose', 'Lisa', 'Electro', 'Elemental Burst',
-                             'Summons a Lightning Rose that unleashes powerful lightning bolts, launching surrounding opponents and dealing Electro DMG.
-                              The Lightning Rose will continuously emit lightning to knock back opponents and deal Electro DMG for so long as it persists.');
+                             'Summons a Lightning Rose that unleashes powerful lightning bolts, launching surrounding ' +
+                             'opponents and dealing Electro DMG.' + char(10) +
+                             'The Lightning Rose will continuously emit lightning to knock back opponents and deal ' +
+                             'Electro DMG for so long as it persists.');
 INSERT INTO talent VALUES ('Induced Aftershock', 'Lisa', 'Electro', '1st Ascension Passive',
-                             'Hits by Charged Attacks apply Violet Arc's Conductive status to opponents.');
+                             'Hits by Charged Attacks apply Violet Arc\'s Conductive status to opponents.');
 INSERT INTO talent VALUES ('Static Electricity Field', 'Lisa', 'Electro', '4th Ascension Passive',
                              'Opponents hit by Lightning Rose have their DEF decreased by 15% for 10s.');
 INSERT INTO talent VALUES ('General Pharmaceutics', 'Lisa', 'Electro', 'Utility Passive',
-                             'When Lisa crafts a potion, she has a 20% chance to refund one count of one material out of all the crafting materials used.');
+                             'When Lisa crafts a potion, she has a 20% chance to refund one count of one material out ' +
+                             'of all the crafting materials used.');
 
 INSERT INTO talent VALUES ('Ripple of Fate', 'Mona', 'Hydro', 'Normal Attack',
-                             'Normal Attack: Perform up to 4 water splash attacks that deal Hydro DMG.
-                              Charged Attack: Consumes a certain amount of Stamina to deal AoE Hydro DMG after a short casting time.
-                              Plunging Attack: Gathering the might of Hydro, Mona plunges towards the ground from mid-air, damaging all opponents in her path. Deals AoE Hydro DMG upon impact with the ground.');
+                             'Normal Attack: Perform up to 4 water splash attacks that deal Hydro DMG.' + char(10) +
+                             'Charged Attack: Consumes a certain amount of Stamina to deal AoE Hydro DMG after a ' +
+                             'short casting time.' + char(10) +
+                             'Plunging Attack: Gathering the might of Hydro, Mona plunges towards the ground from ' +
+                             'mid-air, damaging all opponents in her path. Deals AoE Hydro DMG upon impact with the ' +
+                             'ground.');
 INSERT INTO talent VALUES ('Mirror Reflection of Doom', 'Mona', 'Hydro', 'Elemental Skill',
-                             'Creates an illusory Phantom of fate from coalesced waterspouts.
-                              The Phantom has the following special properties:
-                              Continuously taunts nearby opponents, attracting their fire.
-                              Each second, 4 times, deals AoE Hydro DMG.
-                              When its duration expires, the Phantom explodes, dealing AoE Hydro DMG.
-                              Hold: Utilizes water currents to move backwards swiftly before conjuring a Phantom
-                              Only one Phantom created by Mirror Reflection of Doom can exist at any time.');
+                             'Creates an illusory Phantom of fate from coalesced waterspouts.' + char(10) +
+                             'The Phantom has the following special properties:' + char(10) +
+                             'Continuously taunts nearby opponents, attracting their fire.' + char(10) +
+                             'Each second, 4 times, deals AoE Hydro DMG.' + char(10) +
+                             'When its duration expires, the Phantom explodes, dealing AoE Hydro DMG.' + char(10) +
+                             'Hold: Utilizes water currents to move backwards swiftly before conjuring a Phantom' + char(10) +
+                             'Only one Phantom created by Mirror Reflection of Doom can exist at any time.');
 INSERT INTO talent VALUES ('Stellaris Phantasm', 'Mona', 'Hydro', 'Elemental Burst',
-                             'Mona summons the sparkling waves and creates a reflection of the starry sky, applying the Illusory Bubble status to the opponents in a large AoE.
-                              Illusory Bubble: Traps opponents inside a pocket of destiny and also makes them Wet. Renders weaker opponents immobile. When an opponent affected by Illusory Bubble sustains DMG, it has the following effects:
-                              Applies an Omen to the opponent, which gives a DMG Bonus, also increasing the DMG of the attack that causes it.
-                              Removes the Illusory Bubble, dealing Hydro DMG in the process.
-                              Omen: During its duration, increases DMG taken by opponents.');
+                             'Mona summons the sparkling waves and creates a reflection of the starry sky, applying ' +
+                             'the Illusory Bubble status to the opponents in a large AoE.' + char(10) +
+                             'Illusory Bubble: Traps opponents inside a pocket of destiny and also makes them Wet. ' +
+                             'Renders weaker opponents immobile. When an opponent affected by Illusory Bubble ' +
+                             'sustains DMG, it has the following effects:' + char(10) +
+                             'Applies an Omen to the opponent, which gives a DMG Bonus, also increasing the DMG of ' +
+                             'the attack that causes it.' + char(10) +
+                             'Removes the Illusory Bubble, dealing Hydro DMG in the process.' + char(10) +
+                             'Omen: During its duration, increases DMG taken by opponents.');
 INSERT INTO talent VALUES ('Illusory Torrent', 'Mona', 'Hydro', 'Alternate Sprint',
-                             'Alternate Sprint: Mona cloaks herself within the water's flow, consuming stamina to move rapidly.
-                              When under the effect of Illusory Torrent, Mona can move at high speed on water.
-                              Applies the Wet status to nearby opponents when she reappears.');
+                             'Alternate Sprint: Mona cloaks herself within the water\'s flow, consuming stamina to ' +
+                             'move rapidly.' + char(10) +
+                             'When under the effect of Illusory Torrent, Mona can move at high speed on water.' + char(10) +
+                             'Applies the Wet status to nearby opponents when she reappears.');
 INSERT INTO talent VALUES ('Come \'n\' Get Me, Hag!', 'Mona', 'Hydro', '1st Ascension Passive',
-                             'After she has used Illusory Torrent for 2s, if there are any opponents nearby, Mona will automatically create a Phantom.
-                              A Phantom created in this manner lasts for 2s, and its explosion DMG is equal to 50% of Mirror Reflection of Doom.');
+                             'After she has used Illusory Torrent for 2s, if there are any opponents nearby, Mona ' +
+                             'will automatically create a Phantom.' + char(10) +
+                             'A Phantom created in this manner lasts for 2s, and its explosion DMG is equal to 50% of ' +
+                             'Mirror Reflection of Doom.');
 INSERT INTO talent VALUES ('Waterborne Destiny', 'Mona', 'Hydro', '4th Ascension Passive',
-                             'Increases Mona's Hydro DMG Bonus by a degree equivalent to 20% of her Energy Recharge rate.');
+                             'Increases Mona\'s Hydro DMG Bonus by a degree equivalent to 20% of her Energy Recharge ' +
+                             'rate.');
 INSERT INTO talent VALUES ('Principium of Astrology', 'Mona', 'Hydro', 'Utility Passive',
-                             'When Mona crafts Weapon Ascension Materials, she has a 25% chance to refund one count of one material out of all the crafting materials used.');
+                             'When Mona crafts Weapon Ascension Materials, she has a 25% chance to refund one count ' +
+                             'of one material out of all the crafting materials used.');
 
 INSERT INTO talent VALUES ('Sparkling Scatter', 'Ningguang', 'Geo', 'Normal Attack',
-                             'Normal Attack: Shoots gems that deal Geo DMG. Upon hit, this grants Ningguang 1 Star Jade.
-                              Charged Attack: Consumes a certain amount of stamina to fire off a giant gem that deals Geo DMG. If Ningguang has any Star Jades, unleashing a Charged Attack will cause the Star Jades to be fired at the enemy as well, dealing additional DMG.
-                              Plunging Attack: Gathering the might of Geo, Ningguang plunges toward the ground from mid-air, damaging all opponents in her path. Deals AoE Geo DMG upon impact with the ground.');
+                             'Normal Attack: Shoots gems that deal Geo DMG. Upon hit, this grants Ningguang 1 Star Jade.' + char(10) +
+                             'Charged Attack: Consumes a certain amount of stamina to fire off a giant gem that deals ' +
+                             'Geo DMG. If Ningguang has any Star Jades, unleashing a Charged Attack will cause the ' +
+                             'Star Jades to be fired at the enemy as well, dealing additional DMG.' + char(10) +
+                             'Plunging Attack: Gathering the might of Geo, Ningguang plunges toward the ground from ' +
+                             'mid-air, damaging all opponents in her path. Deals AoE Geo DMG upon impact with the ground.');
 INSERT INTO talent VALUES ('Jade Screen', 'Ningguang', 'Geo', 'Elemental Skill',
-                             'Ningguang creates a Jade Screen out of gold, obsidian and her great opulence, dealing AoE Geo DMG.
-                              Jade Screen
-                              Blocks opponents' projectiles.
-                              Endurance scales based on Ningguang's Max HP.
-                              Jade Screen is considered a Geo Construct and can be used to block certain attacks, but cannot be climbed. Only one Jade Screen may exist at a time.');
+                             'Ningguang creates a Jade Screen out of gold, obsidian and her great opulence, dealing ' +
+                             'AoE Geo DMG.' + char(10) +
+                             'Jade Screen' + char(10) +
+                             'Blocks opponents\' projectiles.' + char(10) +
+                             'Endurance scales based on Ningguang\'s Max HP.' + char(10) +
+                             'Jade Screen is considered a Geo Construct and can be used to block certain attacks, but ' +
+                             'cannot be climbed. Only one Jade Screen may exist at a time.');
 INSERT INTO talent VALUES ('Starshatter', 'Ningguang', 'Geo', 'Elemental Burst',
-                             'Gathering a great number of gems, Ningguang scatters them all at once, sending homing projectiles at her opponents that deal massive Geo DMG.
-                              If Starshatter is cast when a Jade Screen is nearby, the Jade Screen will fire additional gem projectiles at the same time.');
+                             'Gathering a great number of gems, Ningguang scatters them all at once, sending homing ' +
+                             'projectiles at her opponents that deal massive Geo DMG.' + char(10) +
+                             'If Starshatter is cast when a Jade Screen is nearby, the Jade Screen will fire ' +
+                             'additional gem projectiles at the same time.');
 INSERT INTO talent VALUES ('Backup Plan', 'Ningguang', 'Geo', '1st Ascension Passive',
-                             'When Ningguang is in possession of Star Jades, her Charged Attack does not consume Stamina.');
+                             'When Ningguang is in possession of Star Jades, her Charged Attack does not consume ' +
+                             'Stamina.');
 INSERT INTO talent VALUES ('Strategic Reserve', 'Ningguang', 'Geo', '4th Ascension Passive',
                              'A character that passes through the Jade Screen will gain a 12% Geo DMG Bonus for 10s.');
 INSERT INTO talent VALUES ('Trove of Marvelous Treasures', 'Ningguang', 'Geo', 'Utility Passive',
                              'Displays the location of nearby ore veins used in forging on the mini-map.');
 
 INSERT INTO talent VALUES ('Favonius Bladework - Maid', 'Noelle', 'Geo', 'Normal Attack',
-                             'Normal Attack: Performs up to 4 consecutive slashes.
-                              Charged Attack: Drains Stamina over time to perform continuous swirling attack on all nearby opponents. At the end of the sequence, performs an additional powerful slash.
-                              Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.');
+                             'Normal Attack: Performs up to 4 consecutive slashes.' + char(10) +
+                             'Charged Attack: Drains Stamina over time to perform continuous swirling attack on all ' +
+                             'nearby opponents. At the end of the sequence, performs an additional powerful slash.' + char(10) +
+                             'Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents ' +
+                             'along the path and dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Breastplate', 'Noelle', 'Geo', 'Elemental Skill',
-                             'Summons protective stone armor, dealing Geo DMG to surrounding opponents and creating a shield. The shield's DMG Absorption scales based on Noelle's DEF.
-                              The shield has the following properties:
-                              When Noelle's Normal and Charged Attacks hit a target, they have a certain chance to regenerate HP for all characters.
-                              Possesses 150% DMG Absorption efficiency against all Elemental and Physical DMG.
-                              The amount of HP healed when regeneration is triggered scales based on Noelle's DEF.');
+                             'Summons protective stone armor, dealing Geo DMG to surrounding opponents and creating a ' +
+                             'shield. The shield\'s DMG Absorption scales based on Noelle\'s DEF.' + char(10) +
+                             'The shield has the following properties:' + char(10) +
+                             'When Noelle\'s Normal and Charged Attacks hit a target, they have a certain chance to ' +
+                             'regenerate HP for all characters.' + char(10) +
+                             'Possesses 150% DMG Absorption efficiency against all Elemental and Physical DMG.' + char(10) +
+                             'The amount of HP healed when regeneration is triggered scales based on Noelle\'s DEF.');
 INSERT INTO talent VALUES ('Sweeping Time', 'Noelle', 'Geo', 'Elemental Burst',
-                             'Gathering the strength of stone around her weapon, Noelle strikes the opponents surrounding her within a large AoE, dealing Geo DMG.
-                              Afterwards, Noelle gains the following effects:
-                              Larger attack AoE
-                              Converts attack DMG to Geo DMG that cannot be overridden by any other elemental infusion.
-                              Increased ATK that scales based on her DEF.');
+                             'Gathering the strength of stone around her weapon, Noelle strikes the opponents ' +
+                             'surrounding her within a large AoE, dealing Geo DMG.' + char(10) +
+                             'Afterwards, Noelle gains the following effects:' + char(10) +
+                             'Larger attack AoE' + char(10) +
+                             'Converts attack DMG to Geo DMG that cannot be overridden by any other elemental infusion.' + char(10) +
+                             'Increased ATK that scales based on her DEF.');
 INSERT INTO talent VALUES ('Devotion', 'Noelle', 'Geo', '1st Ascension Passive',
-                             'When Noelle is in the party but not on the field, this ability triggers automatically when your active character's HP falls below 30%:
-                              Creates a shield for your active character that lasts for 20s and absorbs DMG equal to 400% of Noelle's DEF. The shield has a 150% DMG Absorption effectiveness against all Elemental and Physical DMG. This effect can only occur once every 60s.');
+                             'When Noelle is in the party but not on the field, this ability triggers automatically ' +
+                             'when your active character\'s HP falls below 30%:' + char(10) +
+                             'Creates a shield for your active character that lasts for 20s and absorbs DMG equal to ' +
+                             '400% of Noelle\'s DEF. The shield has a 150% DMG Absorption effectiveness against all ' +
+                             'Elemental and Physical DMG. This effect can only occur once every 60s.');
 INSERT INTO talent VALUES ('Nice and Clean', 'Noelle', 'Geo', '4th Ascension Passive',
-                             'Every 4 Normal or Charged Attack hits will decrease the CD of Breastplate by 1s.
-                              Hitting multiple opponents with a single attack is only counted as 1 hit.');
+                             'Every 4 Normal or Charged Attack hits will decrease the CD of Breastplate by 1s.' + char(10) +
+                             'Hitting multiple opponents with a single attack is only counted as 1 hit.');
 INSERT INTO talent VALUES ('Maid\'s Knighthood', 'Noelle', 'Geo', 'Utility Passive',
-                             'When a Perfect Cooking is achieved on a DEF-boosting dish, Noelle has a 12% chance to obtain double the product.');
+                             'When a Perfect Cooking is achieved on a DEF-boosting dish, Noelle has a 12% chance to ' +
+                             'obtain double the product.');
 
 INSERT INTO talent VALUES ('Ancient Sword Art', 'Qiqi', 'Cryo', 'Normal Attack',
-                             'Normal Attack: Perform up to 5 rapid strikes.
-                              Charged Attack: Consumes a certain amount Stamina to unleash 2 rapid sword strikes.
-                              Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.');
+                             'Normal Attack: Perform up to 5 rapid strikes.' + char(10) +
+                             'Charged Attack: Consumes a certain amount Stamina to unleash 2 rapid sword strikes.' + char(10) +
+                             'Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents ' +
+                             'along the path and dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Adeptus Art: Herald of Frost', 'Qiqi', 'Cryo', 'Elemental Skill',
-                             'Using the Icevein Talisman, Qiqi brings forth the Herald of Frost, dealing Cryo DMG to surrounding opponents.
-                              Herald of Frost:
-                              On hit, Qiqi's Normal and Charged Attacks regenerate HP for your own party members and nearby teammates. Healing scales based on Qiqi's ATK.
-                              Periodically regenerates your active character's HP.
-                              Follows the character around, dealing Cryo DMG to opponents in their path.');
+                             'Using the Icevein Talisman, Qiqi brings forth the Herald of Frost, dealing Cryo DMG to ' +
+                             'surrounding opponents.' + char(10) +
+                             'Herald of Frost:' + char(10) +
+                             'On hit, Qiqi\'s Normal and Charged Attacks regenerate HP for your own party members and ' +
+                             'nearby teammates. Healing scales based on Qiqi\'s ATK.' + char(10) +
+                             'Periodically regenerates your active character\'s HP.' + char(10) +
+                             'Follows the character around, dealing Cryo DMG to opponents in their path.');
 INSERT INTO talent VALUES ('Adeptus Art: Preserver of Fortune', 'Qiqi', 'Cryo', 'Elemental Burst',
-                             'Qiqi releases the adeptus power sealed within her body, marking nearby opponents with a Fortune-Preserving Talisman that deals Cryo DMG.
-                              Fortune-Preserving Talisman:
-                              When opponents affected by this Talisman take DMG, the character that dealt this DMG regenerates HP.');
+                             'Qiqi releases the adeptus power sealed within her body, marking nearby opponents with a ' +
+                             'Fortune-Preserving Talisman that deals Cryo DMG.' + char(10) +
+                             'Fortune-Preserving Talisman:' + char(10) +
+                             'When opponents affected by this Talisman take DMG, the character that dealt this DMG ' +
+                             'regenerates HP.');
 INSERT INTO talent VALUES ('Life-Prolonging Methods', 'Qiqi', 'Cryo', '1st Ascension Passive',
-                             'When a character under the effects of Adeptus Art: Herald of Frost triggers an Elemental Reaction, their Incoming Healing Bonus is increased by 20% for 8s.');
+                             'When a character under the effects of Adeptus Art: Herald of Frost triggers an ' +
+                             'Elemental Reaction, their Incoming Healing Bonus is increased by 20% for 8s.');
 INSERT INTO talent VALUES ('A Glimpse into Arcanum', 'Qiqi', 'Cryo', '4th Ascension Passive',
-                             'When Qiqi hits opponents with her Normal and Charged Attacks, she has a 50% chance to apply a Fortune-Preserving Talisman to them for 6s. This effect can only occur once every 30s.');
+                             'When Qiqi hits opponents with her Normal and Charged Attacks, she has a 50% chance to ' +
+                             'apply a Fortune-Preserving Talisman to them for 6s. This effect can only occur once ' +
+                             'every 30s.');
 INSERT INTO talent VALUES ('Former Life Memories', 'Qiqi', 'Cryo', 'Utility Passive',
                              'Displays the location of nearby resources unique to Liyue on the mini-map.');
 
 INSERT INTO talent VALUES ('Origin', 'Raiden Shogun', 'Electro', 'Normal Attack',
-                             'Normal Attack: Performs up to 5 consecutive spear strikes.
-                              Charged Attack: Consumes a certain amount of Stamina to perform an upward slash.
-                              Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.');
+                             'Normal Attack: Performs up to 5 consecutive spear strikes.' + char(10) +
+                             'Charged Attack: Consumes a certain amount of Stamina to perform an upward slash.' + char(10) +
+                             'Plunging Attack: Plunges from mid-air to strike the ground below, damaging opponents ' +
+                             'along the path and dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Transcendence: Baleful Omen', 'Raiden Shogun', 'Electro', 'Elemental Skill',
-                             'The Raiden Shogun unveils a shard of her Euthymia, dealing Electro DMG to nearby opponents, and granting nearby party members the Eye of Stormy Judgment.
-                              Eye of Stormy Judgment
-                              When characters with this buff attack and deal DMG to opponents, the Eye will unleash a coordinated attack, dealing AoE Electro DMG at the opponent's position.
-                              Characters who gain the Eye of Stormy Judgment will have their Elemental Burst DMG increased based on the Energy Cost of the Elemental Burst during the Eye's duration.
-                              The Eye can initiate one coordinated attack every 0.9s per party.
-                              Coordinated attacks generated by characters not controlled by you deal 20% of the normal DMG.');
+                             'The Raiden Shogun unveils a shard of her Euthymia, dealing Electro DMG to nearby ' +
+                             'opponents, and granting nearby party members the Eye of Stormy Judgment.' + char(10) +
+                             'Eye of Stormy Judgment' + char(10) +
+                             'When characters with this buff attack and deal DMG to opponents, the Eye will unleash a ' +
+                             'coordinated attack, dealing AoE Electro DMG at the opponent\'s position.' + char(10) +
+                             'Characters who gain the Eye of Stormy Judgment will have their Elemental Burst DMG ' +
+                             'increased based on the Energy Cost of the Elemental Burst during the Eye\'s duration.' + char(10) +
+                             'The Eye can initiate one coordinated attack every 0.9s per party.' + char(10) +
+                             'Coordinated attacks generated by characters not controlled by you deal 20% of the ' +
+                             'normal DMG.');
 INSERT INTO talent VALUES ('Secret Art: Musou Shinsetsu', 'Raiden Shogun', 'Electro', 'Elemental Burst',
-                             'Gathering truths unnumbered and wishes uncounted, the Raiden Shogun unleashes the Musou no Hitotachi and deals AoE Electro DMG, using Musou Isshin in combat for a certain duration afterward. The DMG dealt by Musou no Hitotachi and Musou Isshin's attacks will be increased based on the number of Chakra Desiderata's Resolve stacks consumed when this skill is used.
-                              Musou Isshin
-                              While in this state, the Raiden Shogun will wield her tachi in battle, while her Normal, Charged, and Plunging Attacks will be infused with Electro DMG, which cannot be overridden. When such attacks hit opponents, she will regenerate Energy for all nearby party members. Energy can be restored this way once every 1s, and this effect can be triggered 5 times throughout this skill's duration.
-                              While in this state, the Raiden Shogun's resistance to interruption is increased, and she is immune to Electro-Charged reaction DMG.
-                              While Musou Isshin is active, the Raiden Shogun's Normal, Charged, and Plunging Attack DMG will be considered Elemental Burst DMG.
-                              The effects of Musou Isshin will be cleared when the Raiden Shogun leaves the field.
-                              Chakra Desiderata
-                              When nearby party members (excluding the Raiden Shogun herself) use their Elemental Bursts, the Raiden Shogun will build up Resolve stacks based on the Energy Cost of these Elemental Bursts.
-                              The maximum number of Resolve stacks is 60. The Resolve gained by Chakra Desiderata will be cleared 300s after the Raiden Shogun leaves the field.');
+                             'Gathering truths unnumbered and wishes uncounted, the Raiden Shogun unleashes the Musou ' +
+                             'no Hitotachi and deals AoE Electro DMG, using Musou Isshin in combat for a certain ' +
+                             'duration afterward. The DMG dealt by Musou no Hitotachi and Musou Isshin\'s attacks ' +
+                             'will be increased based on the number of Chakra Desiderata\'s Resolve stacks consumed ' +
+                             'when this skill is used.' + char(10) +
+                             'Musou Isshin' + char(10) +
+                             'While in this state, the Raiden Shogun will wield her tachi in battle, while her ' +
+                             'Normal, Charged, and Plunging Attacks will be infused with Electro DMG, which cannot be ' +
+                             'overridden. When such attacks hit opponents, she will regenerate Energy for all nearby ' +
+                             'party members. Energy can be restored this way once every 1s, and this effect can be ' +
+                             'triggered 5 times throughout this skill\'s duration.' + char(10) +
+                             'While in this state, the Raiden Shogun\'s resistance to interruption is increased, and ' +
+                             'she is immune to Electro-Charged reaction DMG.' + char(10) +
+                             'While Musou Isshin is active, the Raiden Shogun\'s Normal, Charged, and Plunging Attack ' +
+                             'DMG will be considered Elemental Burst DMG.' + char(10) +
+                             'The effects of Musou Isshin will be cleared when the Raiden Shogun leaves the field.' + char(10) +
+                             'Chakra Desiderata' + char(10) +
+                             'When nearby party members (excluding the Raiden Shogun herself) use their Elemental ' +
+                             'Bursts, the Raiden Shogun will build up Resolve stacks based on the Energy Cost of ' +
+                             'these Elemental Bursts.' + char(10) +
+                             'The maximum number of Resolve stacks is 60. The Resolve gained by Chakra Desiderata ' +
+                             'will be cleared 300s after the Raiden Shogun leaves the field.');
 INSERT INTO talent VALUES ('Wishes Unnumbered', 'Raiden Shogun', 'Electro', '1st Ascension Passive',
-                             'When nearby party members gain Elemental Orbs or Particles, Chakra Desiderata gains 2 Resolve stacks.
-                              This effect can occur once every 3s.');
+                             'When nearby party members gain Elemental Orbs or Particles, Chakra Desiderata gains 2 ' +
+                             'Resolve stacks.' + char(10) +
+                             'This effect can occur once every 3s.');
 INSERT INTO talent VALUES ('Enlightened One', 'Raiden Shogun', 'Electro', '4th Ascension Passive',
-                             'Each 1% above 100% Energy Recharge that the Raiden Shogun possesses grants her:
-                              0.6% greater Energy restoration from Musou Isshin
-                              0.4% Electro DMG Bonus');
+                             'Each 1% above 100% Energy Recharge that the Raiden Shogun possesses grants her:' + char(10) +
+                             '0.6% greater Energy restoration from Musou Isshin' + char(10) +
+                             '0.4% Electro DMG Bonus');
 INSERT INTO talent VALUES ('All-Preserver', 'Raiden Shogun', 'Electro', 'Utility Passive',
                              'Mora expended when ascending Swords and Polearms is decreased by 50%.');
 
@@ -1851,21 +1956,27 @@ INSERT INTO talent VALUES ('Steel Fang', 'Razor', 'Electro', 'Normal Attack',
                              'along the path and dealing AoE DMG upon impact.');
 INSERT INTO talent VALUES ('Claw and Thunder', 'Razor', 'Electro', 'Elemental Skill',
                              'Hunts his prey using the techniques taught to him by his master and his Lupical.' + char(10) +
-                             'Press: Swings the Thunder Wolf Claw, dealing Electro DMG to opponents in front of Razor.
-                             'Upon striking an opponent, Razor gains an Electro Sigil, which increases his Energy Recharge rate.
-                             'Razor can have up to 3 Electro Sigils simultaneously, and gaining a new Electro Sigil refreshes their duration.
-                             'Hold: Gathers Electro energy to unleash a lightning storm over a small AoE, causing massive Electro DMG, and clears all of Razor's Electro Sigils. Each Electro Sigil cleared in this manner will be converted into Energy for Razor.');
+                             'Press: Swings the Thunder Wolf Claw, dealing Electro DMG to opponents in front of Razor.' + char(10) +
+                             'Upon striking an opponent, Razor gains an Electro Sigil, which increases his Energy ' +
+                             'Recharge rate.' + char(10) +
+                             'Razor can have up to 3 Electro Sigils simultaneously, and gaining a new Electro Sigil ' +
+                             'refreshes their duration.' + char(10) +
+                             'Hold: Gathers Electro energy to unleash a lightning storm over a small AoE, causing ' +
+                             'massive Electro DMG, and clears all of Razor\'s Electro Sigils. Each Electro Sigil ' +
+                             'cleared in this manner will be converted into Energy for Razor.');
 INSERT INTO talent VALUES ('Lightning Fang', 'Razor', 'Electro', 'Elemental Burst',
-                             'Summons the Wolf Within which deals Electro DMG to all nearby opponents. This clears all of Razor's Electro Sigils, which will be converted into elemental energy for him.
-                              The Wolf Within will fight alongside Razor for the skill's duration.
-                              The Wolf Within:
-                              Strikes alongside Razor's normal attacks, dealing Electro DMG.
-                              Raises Razor's ATK SPD and Electro RES.
-                              Causes Razor to be immune to DMG inflicted by the Electro-Charged status.
-                              Disables Razor's Charged Attacks.
-                              Increases Razor's resistance to interruption.
-                              These effects end when Razor leaves the battlefield.
-                              When Razor leaves the field, a maximum of 10 Energy will be returned to him based off the duration remaining on this skill.');
+                             'Summons the Wolf Within which deals Electro DMG to all nearby opponents. This clears ' +
+                             'all of Razor\'s Electro Sigils, which will be converted into elemental energy for him.' + char(10) +
+                             'The Wolf Within will fight alongside Razor for the skill\'s duration.' + char(10) +
+                             'The Wolf Within:' + char(10) +
+                             'Strikes alongside Razor\'s normal attacks, dealing Electro DMG.' + char(10) +
+                             'Raises Razor\'s ATK SPD and Electro RES.' + char(10) +
+                             'Causes Razor to be immune to DMG inflicted by the Electro-Charged status.' + char(10) +
+                             'Disables Razor\'s Charged Attacks.' + char(10) +
+                             'Increases Razor\'s resistance to interruption.' + char(10) +
+                             'These effects end when Razor leaves the battlefield.' + char(10) +
+                             'When Razor leaves the field, a maximum of 10 Energy will be returned to him based off ' +
+                             'the duration remaining on this skill.');
 INSERT INTO talent VALUES ('Awakening', 'Razor', 'Electro', '1st Ascension Passive',
                              'Decreases Claw and Thunder\'s CD by 18%. Using Lightning Fang resets the CD of Claw and ' +
                              'Thunder.');
