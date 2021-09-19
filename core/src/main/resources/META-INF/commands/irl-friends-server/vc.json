@@ -8,13 +8,13 @@
       "type": 1,
       "options": [
         {
-          "name": "",
+          "name": "video",
           "description": "",
           "type": 3,
           "required": true
         },
         {
-          "name": "",
+          "name": "channel",
           "description": "",
           "type": 7,
           "required": false
@@ -42,25 +42,12 @@
       "type": 2,
       "options": [
         {
-          "name": "add",
-          "description": "",
-          "type": 2,
-          "options": [
-            {
-              "name": "",
-              "description": "",
-              "type": 3,
-              "required": true
-            }
-          ]
-        },
-        {
           "name": "remove",
           "description": "",
           "type": 2,
           "options": [
             {
-              "name": "",
+              "name": "index",
               "description": "",
               "type": 4,
               "required": true
@@ -73,7 +60,7 @@
           "type": 2,
           "options": [
             {
-              "name": "",
+              "name": "index",
               "description": "",
               "type": 4,
               "required": false

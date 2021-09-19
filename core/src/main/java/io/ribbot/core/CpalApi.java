@@ -1,15 +1,13 @@
 package io.ribbot.core;
 
-import io.smallrye.mutiny.Multi;
-import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+import reactor.core.publisher.Mono;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
+public class CpalApi {
+    private static final String CPAL_API_URL = "";
 
-@RegisterRestClient
-public interface CpalApi {
+    public Mono<Byte> streamOpus(String video) {
+    }
 
-    @POST
-    @Produces("audio/opus")
-    Multi<?> streamOpus();
+    public Mono<Void> stopStreaming() {
+    }
 }

@@ -4,27 +4,36 @@ import discord4j.rest.RestClient;
 import discord4j.rest.RestResources;
 import discord4j.rest.http.JacksonReaderStrategy;
 import discord4j.rest.http.ReaderStrategy;
+import discord4j.rest.json.response.ErrorResponse;
 import discord4j.rest.util.Multimap;
 import discord4j.rest.util.RouteUtils;
 import io.smallrye.common.constraint.Nullable;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.netty.ByteBufMono;
 import reactor.netty.http.client.HttpClient;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.Map;
 
-public class YouTubeApi {
+@ApplicationScoped
+public class YouTubeDataApi {
     private static final String YOUTUBE_API_URL = "https://googleapis.com/youtube/v3";
     private final HttpClient httpClient;
     private final ReaderStrategy<?> reader;
     private final String apiKey;
 
-    YouTubeApi(RestClient discord, @ConfigProperty(name = "ribbot.youtube.api-key") String apiKey) {
+    YouTubeDataApi(RestClient discord, @ConfigProperty(name = "ribbot.youtube.api-key") String apiKey) {
         RestResources restResources = discord.getRestResources();
         this.httpClient = restResources.getReactorResources().getHttpClient().baseUrl(YOUTUBE_API_URL);
         this.reader = new JacksonReaderStrategy<>(restResources.getJacksonResources().getObjectMapper());
         this.apiKey = apiKey;
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> Mono<T> read(ByteBufMono body, Class<T> type) {
+        return ((ReaderStrategy<T>)reader).read(body, type);
     }
 
     private Mono<ListPlaylistItemsResponse> requestPlaylistItems(String id, @Nullable String pageToken) {
@@ -42,10 +51,12 @@ public class YouTubeApi {
         return httpClient.get()
                 .uri(RouteUtils.expandQuery("/playlistItems", values))
                 .responseSingle((response, body) -> {
-                    if (response.status().code() >= 400) {
-                        return null;
+                    int statusCode = response.status().code();
+                    if (statusCode >= 400) {
+                        return read(body, ErrorResponse.class)
+                                .flatMap(error -> Mono.error(new YouTubeDataApiException(statusCode, error)));
                     } else {
-                        return ((ReaderStrategy<ListPlaylistItemsResponse>)reader).read(body, ListPlaylistItemsResponse.class);
+                        return read(body, ListPlaylistItemsResponse.class);
                     }
                 });
     }
@@ -77,10 +88,12 @@ public class YouTubeApi {
         return httpClient.get()
                 .uri(RouteUtils.expandQuery("/search", values))
                 .responseSingle((response, body) -> {
-                    if (response.status().code() >= 400) {
-                        return null;
+                    int statusCode = response.status().code();
+                    if (statusCode >= 400) {
+                        return read(body, ErrorResponse.class)
+                                .flatMap(error -> Mono.error(new YouTubeDataApiException(statusCode, error)));
                     } else {
-                        return ((ReaderStrategy<SearchResult>)reader).read(body, SearchResult.class);
+                        return read(body, SearchResult.class);
                     }
                 });
     }
@@ -104,10 +117,12 @@ public class YouTubeApi {
         return httpClient.get()
                 .uri(RouteUtils.expandQuery("/videos", values))
                 .responseSingle((response, body) -> {
-                    if (response.status().code() >= 400) {
-                        return null;
+                    int statusCode = response.status().code();
+                    if (statusCode >= 400) {
+                        return read(body, ErrorResponse.class)
+                                .flatMap(error -> Mono.error(new YouTubeDataApiException(statusCode, error)));
                     } else {
-                        return ((ReaderStrategy<Video>)reader).read(body, Video.class);
+                        return read(body, Video.class);
                     }
                 });
     }
