@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS common_material_type (
 CREATE TABLE IF NOT EXISTS common_material (
     type TEXT NOT NULL,
     name TEXT,
-    FOREIGN KEY type REFERENCES common_ascension_material_type(name),
+    FOREIGN KEY type REFERENCES common_material_type(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, name)
 );
