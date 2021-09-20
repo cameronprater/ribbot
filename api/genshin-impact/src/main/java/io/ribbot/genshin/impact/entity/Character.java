@@ -7,24 +7,19 @@ import java.util.List;
 public class Character {
     private final String name;
     private final Rarity rarity;
-    private final Element element;
     private final WeaponType weaponType;
     private final Sex sex;
     private final Nation nation;
-    private final List<Talent> talents;
     private final List<Constellation> constellations;
     private final List<CharacterAscension> ascensions;
 
-    public Character(String name, Rarity rarity, Element element, WeaponType weaponType, Sex sex,
-            @Nullable Nation nation, List<Talent> talents, List<Constellation> constellations,
-            List<CharacterAscension> ascensions) {
+    public Character(String name, Rarity rarity, WeaponType weaponType, Sex sex, @Nullable Nation nation,
+            List<Constellation> constellations, List<CharacterAscension> ascensions) {
         this.name = name;
         this.rarity = rarity;
-        this.element = element;
         this.weaponType = weaponType;
         this.sex = sex;
         this.nation = nation;
-        this.talents = talents;
         this.constellations = constellations;
         this.ascensions = ascensions;
     }
@@ -37,10 +32,6 @@ public class Character {
         return rarity;
     }
 
-    public Element getElement() {
-        return element;
-    }
-
     public WeaponType getWeaponType() {
         return weaponType;
     }
@@ -51,10 +42,6 @@ public class Character {
 
     public Nation getNation() {
         return nation;
-    }
-
-    public List<Talent> getTalents() {
-        return talents;
     }
 
     public List<Constellation> getConstellations() {

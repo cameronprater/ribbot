@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS character_ascension (
     FOREIGN KEY common_material_type REFERENCES common_material_type(name)
 );
 CREATE TABLE IF NOT EXISTS talent_level (
-    phase INTEGER PRIMARY KEY NOT NULL,
+    level INTEGER PRIMARY KEY NOT NULL,
     mora INTEGER NOT NULL,
     common_material_rarity INTEGER NOT NULL,
     common_material_quantity INTEGER NOT NULL,

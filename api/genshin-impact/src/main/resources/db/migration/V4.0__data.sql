@@ -2653,21 +2653,21 @@ INSERT INTO character_ascension VALUES ('Yoimiya', 'Smoldering Pearl', 'Naku Wee
 INSERT INTO character_ascension VALUES ('Zhongli', 'Basant Pillar', 'Cor Lapis', 'Slime');
 
 -- talent levels
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity) VALUES (1, 12500, 1, 6, 'Teachings', 3);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity) VALUES (2, 17500, 2, 3, 'Guide', 2);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity) VALUES (3, 25000, 2, 4, 'Guide', 4);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity) VALUES (4, 30000, 2, 6, 'Guide', 6);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity) VALUES (5, 37500, 2, 9, 'Guide', 9);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity, weekly_boss_drop_quantity) VALUES (6, 120000, 3, 4, 'Philosophies', 4, 1);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity, weekly_boss_drop_quantity) VALUES (7, 260000, 3, 6, 'Philosophies', 6, 1);
-INSERT INTO talent_level (phase, mora, common_material_rarity, common_material_quantity, talent_book_type, 
+INSERT INTO talent_level (level, mora, common_material_rarity, common_material_quantity, talent_book_type,
                            talent_book_quantity, weekly_boss_drop_quantity) VALUES (8, 450000, 3, 9, 'Philosophies', 12, 2);
 INSERT INTO talent_level VALUES (9, 700000, 3, 12, 'Philosophies', 16, 2, 1);
 

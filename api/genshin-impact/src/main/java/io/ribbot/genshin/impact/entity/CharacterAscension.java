@@ -16,12 +16,9 @@ public class CharacterAscension {
     private final LocalSpecialty localSpecialty;
     private final int localSpecialtyQuantity;
     private final CommonMaterial commonMaterial;
-    private final int commonMaterialsQuantity;
+    private final int commonMaterialQuantity;
 
-    public CharacterAscension(int phase, int mora, AscensionGem ascensionGem, int ascensionGemQuantity,
-                              @Nullable NormalBossDrop normalBossDrop, @Nullable int normalBossDropQuantity,
-                              LocalSpecialty localSpecialty, int localSpecialtyQuantity,
-                              CommonMaterial commonMaterial, int commonMaterialsQuantity) {
+    public CharacterAscension(int phase, int mora, AscensionGem ascensionGem, int ascensionGemQuantity, @Nullable NormalBossDrop normalBossDrop, int normalBossDropQuantity, LocalSpecialty localSpecialty, int localSpecialtyQuantity, CommonMaterial commonMaterial, int commonMaterialQuantity) {
         this.phase = phase;
         this.mora = mora;
         this.ascensionGem = ascensionGem;
@@ -31,7 +28,7 @@ public class CharacterAscension {
         this.localSpecialty = localSpecialty;
         this.localSpecialtyQuantity = localSpecialtyQuantity;
         this.commonMaterial = commonMaterial;
-        this.commonMaterialsQuantity = commonMaterialsQuantity;
+        this.commonMaterialQuantity = commonMaterialQuantity;
     }
 
     public int getPhase() {
@@ -50,7 +47,7 @@ public class CharacterAscension {
         return ascensionGemQuantity;
     }
 
-    public NormalBossDrop getNormalBossMaterial() {
+    public NormalBossDrop getNormalBossDrop() {
         return normalBossDrop;
     }
 
@@ -70,7 +67,7 @@ public class CharacterAscension {
         return commonMaterial;
     }
 
-    public int getCommonMaterialsQuantity() {
-        return commonMaterialsQuantity;
+    public int getCommonMaterialQuantity() {
+        return commonMaterialQuantity;
     }
 }

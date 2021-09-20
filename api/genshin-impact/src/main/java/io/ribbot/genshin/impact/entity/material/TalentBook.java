@@ -1,30 +1,24 @@
 package io.ribbot.genshin.impact.entity.material;
 
 import io.ribbot.genshin.impact.entity.Rarity;
-
-import java.time.DayOfWeek;
+import io.ribbot.genshin.impact.entity.TalentBookSeries;
+import io.ribbot.genshin.impact.entity.TalentBookType;
 
 public class TalentBook extends Material {
-    private final DayOfWeek weekdayOne;
-    private final DayOfWeek weekdayTwo;
-    private final DayOfWeek weekdayThree;
+    private final TalentBookType type;
+    private final TalentBookSeries series;
 
-    public TalentBook(String name, Rarity rarity, DayOfWeek weekdayOne, DayOfWeek weekdayTwo, DayOfWeek weekdayThree) {
+    public TalentBook(String name, Rarity rarity, TalentBookType type, TalentBookSeries series) {
         super(name, rarity);
-        this.weekdayOne = weekdayOne;
-        this.weekdayTwo = weekdayTwo;
-        this.weekdayThree = weekdayThree;
+        this.type = type;
+        this.series = series;
     }
 
-    public DayOfWeek getWeekdayOne() {
-        return weekdayOne;
+    public TalentBookType getType() {
+        return type;
     }
 
-    public DayOfWeek getWeekdayTwo() {
-        return weekdayTwo;
-    }
-
-    public DayOfWeek getWeekdayThree() {
-        return weekdayThree;
+    public TalentBookSeries getSeries() {
+        return series;
     }
 }
