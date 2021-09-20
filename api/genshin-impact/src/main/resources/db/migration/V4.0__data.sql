@@ -2603,12 +2603,12 @@ INSERT INTO constellation_level VALUES ('Chrysos, Bounty of Dominator', 'Zhongli
                                           'Max HP.');
 
 -- ascension phases
-INSERT INTO ascension_phase VALUES (1, 20000, 'Sliver', 1, 0, 3, 1, 3);
-INSERT INTO ascension_phase VALUES (2, 40000, 'Fragment', 3, 2, 10, 1, 15);
-INSERT INTO ascension_phase VALUES (3, 60000, 'Fragment', 6, 4, 20, 2, 12);
-INSERT INTO ascension_phase VALUES (4, 80000, 'Chunk', 3, 8, 30, 2, 18);
-INSERT INTO ascension_phase VALUES (5, 100000, 'Chunk', 6, 12, 45, 3, 12);
-INSERT INTO ascension_phase VALUES (6, 120000, 'Gemstone', 6, 20, 60, 3, 24);
+INSERT INTO character_ascension_phase VALUES (1, 20000, 'Sliver', 1, 0, 3, 1, 3);
+INSERT INTO character_ascension_phase VALUES (2, 40000, 'Fragment', 3, 2, 10, 1, 15);
+INSERT INTO character_ascension_phase VALUES (3, 60000, 'Fragment', 6, 4, 20, 2, 12);
+INSERT INTO character_ascension_phase VALUES (4, 80000, 'Chunk', 3, 8, 30, 2, 18);
+INSERT INTO character_ascension_phase VALUES (5, 100000, 'Chunk', 6, 12, 45, 3, 12);
+INSERT INTO character_ascension_phase VALUES (6, 120000, 'Gemstone', 6, 20, 60, 3, 24);
 
 -- character ascensions
 INSERT INTO character_ascension VALUES ('Aether', NULL, 'Windwheel Aster', 'Mask');

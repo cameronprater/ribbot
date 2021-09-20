@@ -6,7 +6,7 @@ import io.ribbot.genshin.impact.entity.material.LocalSpecialty;
 import io.ribbot.genshin.impact.entity.material.NormalBossDrop;
 import io.smallrye.common.constraint.Nullable;
 
-public class CharacterAscension {
+public class CharacterAscensionPhase {
     private final int phase;
     private final int mora;
     private final AscensionGem ascensionGem;
@@ -18,7 +18,7 @@ public class CharacterAscension {
     private final CommonMaterial commonMaterial;
     private final int commonMaterialQuantity;
 
-    public CharacterAscension(int phase, int mora, AscensionGem ascensionGem, int ascensionGemQuantity, @Nullable NormalBossDrop normalBossDrop, int normalBossDropQuantity, LocalSpecialty localSpecialty, int localSpecialtyQuantity, CommonMaterial commonMaterial, int commonMaterialQuantity) {
+    public CharacterAscensionPhase(int phase, int mora, AscensionGem ascensionGem, int ascensionGemQuantity, @Nullable NormalBossDrop normalBossDrop, int normalBossDropQuantity, LocalSpecialty localSpecialty, int localSpecialtyQuantity, CommonMaterial commonMaterial, int commonMaterialQuantity) {
         this.phase = phase;
         this.mora = mora;
         this.ascensionGem = ascensionGem;

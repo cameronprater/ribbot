@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS constellation_level (
     FOREIGN KEY (character, element) REFERENCES constellation(character, element),
     UNIQUE (character, element, level)
 );
-CREATE TABLE IF NOT EXISTS ascension_phase (
+CREATE TABLE IF NOT EXISTS character_ascension_phase (
     phase INTEGER PRIMARY KEY NOT NULL,
     mora INTEGER NOT NULL,
     ascension_gem_size TEXT NOT NULL,

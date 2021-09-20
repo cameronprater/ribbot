@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 
 import io.ribbot.genshin.impact.entity.Character;
 import io.ribbot.genshin.impact.entity.Character.Sex;
-import io.ribbot.genshin.impact.jdbi.CharacterDao;
+import io.ribbot.genshin.impact.dao.CharacterDao;
 import org.jboss.resteasy.reactive.RestQuery;
 import org.jdbi.v3.core.Jdbi;
 
@@ -31,8 +31,8 @@ public class CharactersEndpoint {
     public Multi<Character> getWhere(@RestQuery Rarity rarity, @RestQuery Element element, @RestQuery WeaponType weaponType,
                                      @RestQuery Sex sex, @RestQuery Nation nation) {
         return Multi.createFrom().converter(MultiReactorConverters.fromFlux(),
-                Flux.defer(() -> Flux.fromIterable(jdbi.withExtension(CharacterDao.class,
-                        dao -> dao.find(rarity, element, weaponType, sex, nation))))
+                Flux.fromIterable(jdbi.withExtension(CharacterDao.class, dao ->
+                                dao.find(rarity, element, weaponType, sex, nation)))
                         .switchIfEmpty(Mono.error(NotFoundException::new)));
     }
 }

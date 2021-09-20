@@ -1,4 +1,4 @@
-package io.ribbot.genshin.impact.jdbi;
+package io.ribbot.genshin.impact.dao;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +29,7 @@ public interface CharacterDao extends SqlObject {
             query.append(String.format(" WHERE rarity = %d", rarity.getStars()));
             where = true;
         }
+        // TODO
         if (element != null) {
             query.append(String.format(" %s element = %s", where ? "AND" : "WHERE", element.getName()));
             where = true;

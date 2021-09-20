@@ -4,11 +4,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 
-import org.jboss.resteasy.reactive.RestPath;
+import io.ribbot.genshin.impact.dao.CharacterDao;
 import org.jdbi.v3.core.Jdbi;
 
 import io.ribbot.genshin.impact.entity.Character;
-import io.ribbot.genshin.impact.jdbi.CharacterDao;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.converters.uni.UniReactorConverters;
 import reactor.core.publisher.Mono;
@@ -22,7 +21,8 @@ public class CharacterEndpoint {
     }
 
     @GET
-    public Uni<Character> getByName(@RestPath String name) {
+    public Uni<Character> getByName(String name) {
+        // TODO capitalize each word in name, handle character aliases
         return Uni.createFrom().converter(UniReactorConverters.fromMono(),
                 Mono.fromCallable(() -> jdbi.withExtension(CharacterDao.class, dao -> dao.findByName(name.toLowerCase())))
                         .flatMap(Mono::justOrEmpty)
