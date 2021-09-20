@@ -1,6 +1,6 @@
 package io.ribbot.genshin.impact.entity;
 
-import io.ribbot.genshin.impact.entity.material.CommonAscensionMaterial;
+import io.ribbot.genshin.impact.entity.material.CommonMaterial;
 import io.ribbot.genshin.impact.entity.material.TalentBook;
 import io.ribbot.genshin.impact.entity.material.WeeklyBossDrop;
 import io.smallrye.common.constraint.Nullable;
@@ -9,7 +9,7 @@ public class TalentLevel {
     private final int level;
     private final int mora;
     private final int ascensionPhase;
-    private final CommonAscensionMaterial commonMaterial;
+    private final CommonMaterial commonMaterial;
     private final int commonMaterialQuantity;
     private final TalentBook talentBook;
     private final int talentBookQuantity;
@@ -17,7 +17,7 @@ public class TalentLevel {
     private final int weeklyBossDropQuantity;
     private final boolean crownOfInsight;
 
-    public TalentLevel(int level, int mora, int ascensionPhase, CommonAscensionMaterial commonMaterial,
+    public TalentLevel(int level, int mora, int ascensionPhase, CommonMaterial commonMaterial,
                        int commonMaterialQuantity, TalentBook talentBook, int talentBookQuantity,
                        @Nullable WeeklyBossDrop weeklyBossDrop, @Nullable int weeklyBossDropQuantity, boolean crownOfInsight) {
         this.level = level;
@@ -44,7 +44,7 @@ public class TalentLevel {
         return ascensionPhase;
     }
 
-    public CommonAscensionMaterial getCommonMaterial() {
+    public CommonMaterial getCommonMaterial() {
         return commonMaterial;
     }
 

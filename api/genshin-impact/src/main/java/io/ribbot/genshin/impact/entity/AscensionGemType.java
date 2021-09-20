@@ -18,4 +18,8 @@ public enum AscensionGemType {
     public String getName() {
         return name;
     }
+
+    public Element getElement() {
+        return null;
+    }
 }

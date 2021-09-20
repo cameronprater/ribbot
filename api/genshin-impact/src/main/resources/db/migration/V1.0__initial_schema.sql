@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS ascension_gem (
     FOREIGN KEY size REFERENCES ascension_gem_size(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, size),
-    CHECK (type ||  ' ' || size) = name)
+    CHECK (type || ' ' || size) = name)
 );
 CREATE TABLE IF NOT EXISTS normal_boss (
     name TEXT PRIMARY KEY NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS local_specialty (
 CREATE TABLE IF NOT EXISTS enemy_type (
     name TEXT PRIMARY KEY NOT NULL
 );
-CREATE TABLE IF NOT EXISTS naming_strategy (
+CREATE TABLE IF NOT EXISTS enemy_naming_strategy (
     name TEXT PRIMARY KEY NOT NULL
 );
 CREATE TABLE IF NOT EXISTS common_material_type (
@@ -219,6 +219,6 @@ CREATE TABLE IF NOT EXISTS common_enemy (
     name TEXT,
     naming_strategy TEXT,
     FOREIGN KEY type REFERENCES enemy_type(name),
-    FOREIGN KEY naming_strategy REFERENCES naming_strategy(name),
+    FOREIGN KEY naming_strategy REFERENCES enemy_naming_strategy(name),
     PRIMARY KEY (type, name)
 );

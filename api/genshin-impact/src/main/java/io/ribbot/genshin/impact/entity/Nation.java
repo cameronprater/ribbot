@@ -31,10 +31,14 @@ public class Nation {
         SNEZHNAYA("Snezhnaya"),
         KHAENRIAH("Khaenri'ah");
 
-        private final String name;
+        private final String value;
 
-        Name(String name) {
-            this.name = name;
+        Name(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
         }
     }
 }
