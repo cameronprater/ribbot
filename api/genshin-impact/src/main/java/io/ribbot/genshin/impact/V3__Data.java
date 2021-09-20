@@ -1,7 +1,6 @@
 package io.ribbot.genshin.impact;
 
 import io.ribbot.genshin.impact.entity.*;
-import io.ribbot.genshin.impact.entity.Nation.Name;
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 
@@ -41,8 +40,8 @@ public class V3__Data extends BaseJavaMigration {
 
     private void insertNations(Context context) throws Exception {
         try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO nation VALUES (?)")) {
-            for (Name name : Name.values()) {
-                statement.setString(1, name.getValue());
+            for (Nation.Name nationName : Nation.Name.values()) {
+                statement.setString(1, nationName.getValue());
                 statement.executeUpdate();
             }
         }
@@ -59,8 +58,8 @@ public class V3__Data extends BaseJavaMigration {
 
     private void insertEnemyTypes(Context context) throws Exception {
         try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO enemy_type VALUES (?)")) {
-            for (EnemyType enemyType : EnemyType.values()) {
-                statement.setString(1, enemyType.getName());
+            for (EnemyType.Name enemyTypeName : EnemyType.Name.values()) {
+                statement.setString(1, enemyTypeName.getValue());
                 statement.executeUpdate();
             }
         }
@@ -77,8 +76,8 @@ public class V3__Data extends BaseJavaMigration {
 
     private void insertCommonMaterialTypes(Context context) throws Exception {
         try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO common_material_type VALUES (?)")) {
-            for (CommonMaterialType commonMaterialType : CommonMaterialType.values()) {
-                statement.setString(1, commonMaterialType.getName());
+            for (CommonMaterialType.Name commonMaterialTypeName : CommonMaterialType.Name.values()) {
+                statement.setString(1, commonMaterialTypeName.getValue());
                 statement.executeUpdate();
             }
         }
@@ -95,20 +94,21 @@ public class V3__Data extends BaseJavaMigration {
 
     private void insertCommonEnemies(Context context) throws Exception {
         for (Element element : Element.values()) {
+            String elementName = element.getName();
             try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO common_enemy VALUES (?, ?, ?)")) {
                 // slimes
-                statement.setString(1, EnemyType.SLIME.getName());
-                statement.setString(2, element.getName());
+                statement.setString(1, EnemyType.Name.SLIME.getValue());
+                statement.setString(2, elementName);
                 statement.setString(3, EnemyNamingStrategy.BEFORE.getName());
                 statement.executeUpdate();
                 // large slimes
-                statement.setString(1, EnemyType.LARGE_SLIME.getName());
-                statement.setString(2, element.getName());
+                statement.setString(1, EnemyType.Name.LARGE_SLIME.getValue());
+                statement.setString(2, elementName);
                 statement.setString(3, EnemyNamingStrategy.BETWEEN.getName());
                 statement.executeUpdate();
                 // samachurls
-                statement.setString(1, EnemyType.SAMACHURL.getName());
-                statement.setString(2, element.getName());
+                statement.setString(1, EnemyType.Name.SAMACHURL.getValue());
+                statement.setString(2, elementName);
                 statement.setString(3, EnemyNamingStrategy.BEFORE.getName());
                 statement.executeUpdate();
             }

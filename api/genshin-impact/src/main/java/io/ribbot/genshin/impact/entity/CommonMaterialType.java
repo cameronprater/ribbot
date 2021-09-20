@@ -1,23 +1,43 @@
 package io.ribbot.genshin.impact.entity;
 
-public enum CommonMaterialType {
-    SLIME("Slime"),
-    MASK("Mask"),
-    SCROLL("Scroll"),
-    ARROWHEAD("Arrowhead"),
-    FATUI_INSIGNIA("Fatui Insignia"),
-    TREASURE_HOARDER_INSIGNIA("Treasure Hoarder Insignia"),
-    NECTAR("Nectar"),
-    HANDGUARD("Handguard"),
-    SPECTRAL("Spectral");
+import java.util.List;
 
-    private final String name;
+public class CommonMaterialType {
+    private final Name name;
+    private final List<EnemyType> droppedBy;
 
-    CommonMaterialType(String name) {
+    public CommonMaterialType(Name name, List<EnemyType> droppedBy) {
         this.name = name;
+        this.droppedBy = droppedBy;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
+    }
+
+    public List<EnemyType> getDroppedBy() {
+        return droppedBy;
+    }
+
+    public enum Name {
+        SLIME("Slime"),
+        MASK("Mask"),
+        SCROLL("Scroll"),
+        ARROWHEAD("Arrowhead"),
+        FATUI_INSIGNIA("Fatui Insignia"),
+        TREASURE_HOARDER_INSIGNIA("Treasure Hoarder Insignia"),
+        NECTAR("Nectar"),
+        HANDGUARD("Handguard"),
+        SPECTRAL("Spectral");
+
+        private final String value;
+
+        Name(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 }

@@ -7,7 +7,7 @@ import io.ribbot.genshin.impact.entity.material.WeeklyBossDrop;
 public class TalentLevel {
     private final int level;
     private final int mora;
-    private final CommonMaterial commonMateria;
+    private final CommonMaterial commonMaterial;
     private final int commonMaterialQuantity;
     private final TalentBook talentBook;
     private final int talentBookQuantity;
@@ -15,10 +15,10 @@ public class TalentLevel {
     private final int weeklyBossDropQuantity;
     private final boolean crownOfInsight;
 
-    public TalentLevel(int level, int mora, CommonMaterial commonMateria, int commonMaterialQuantity, TalentBook talentBook, int talentBookQuantity, WeeklyBossDrop weeklyBossDrop, int weeklyBossDropQuantity, boolean crownOfInsight) {
+    public TalentLevel(int level, int mora, CommonMaterial commonMaterial, int commonMaterialQuantity, TalentBook talentBook, int talentBookQuantity, WeeklyBossDrop weeklyBossDrop, int weeklyBossDropQuantity, boolean crownOfInsight) {
         this.level = level;
         this.mora = mora;
-        this.commonMateria = commonMateria;
+        this.commonMaterial = commonMaterial;
         this.commonMaterialQuantity = commonMaterialQuantity;
         this.talentBook = talentBook;
         this.talentBookQuantity = talentBookQuantity;
@@ -35,8 +35,8 @@ public class TalentLevel {
         return mora;
     }
 
-    public CommonMaterial getCommonMateria() {
-        return commonMateria;
+    public CommonMaterial getCommonMaterial() {
+        return commonMaterial;
     }
 
     public int getCommonMaterialQuantity() {

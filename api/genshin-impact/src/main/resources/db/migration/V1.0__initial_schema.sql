@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS talent_book (
     FOREIGN KEY series REFERENCES talent_book_series(name),
     FOREIGN KEY name REFERENCES material(name),
     PRIMARY KEY (type, series),
+    -- TODO
     CHECK (type || ' of ' || series) = name)
 );
 CREATE TABLE IF NOT EXISTS weekly_boss (

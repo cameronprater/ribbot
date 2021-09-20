@@ -1,18 +1,16 @@
 package io.ribbot.genshin.impact.entity;
 
-import io.ribbot.genshin.impact.entity.material.TalentBook;
-
 import java.util.List;
 
 public class Domain {
     private final String name;
     private final Nation nation;
-    private final List<TalentBook> talentBooks;
+    private final List<TalentBookSeries> talentBookSeries;
 
-    public Domain(String name, Nation nation, List<TalentBook> talentBooks) {
+    public Domain(String name, Nation nation, List<TalentBookSeries> talentBookSeries) {
         this.name = name;
         this.nation = nation;
-        this.talentBooks = talentBooks;
+        this.talentBookSeries = talentBookSeries;
     }
 
     public String getName() {
@@ -23,7 +21,7 @@ public class Domain {
         return nation;
     }
 
-    public List<TalentBook> getTalentBooks() {
-        return talentBooks;
+    public List<TalentBookSeries> getTalentBooks() {
+        return talentBookSeries;
     }
 }

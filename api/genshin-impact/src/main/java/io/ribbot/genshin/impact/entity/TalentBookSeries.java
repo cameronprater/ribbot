@@ -4,23 +4,17 @@ import java.time.DayOfWeek;
 
 public class TalentBookSeries {
     private final Name name;
-    private final Domain domain;
     private final DayOfWeek weekdayOne;
     private final DayOfWeek weekdayTwo;
 
-    public TalentBookSeries(Name name, Domain domain, DayOfWeek weekdayOne, DayOfWeek weekdayTwo) {
+    public TalentBookSeries(Name name, DayOfWeek weekdayOne, DayOfWeek weekdayTwo) {
         this.name = name;
-        this.domain = domain;
         this.weekdayOne = weekdayOne;
         this.weekdayTwo = weekdayTwo;
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Domain getDomain() {
-        return domain;
     }
 
     public DayOfWeek getWeekdayOne() {
