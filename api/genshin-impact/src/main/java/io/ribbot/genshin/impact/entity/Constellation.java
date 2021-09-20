@@ -8,13 +8,13 @@ public class Constellation {
     private final Element element;
     private final ConstellationActivationMaterial activationMaterial;
     private final List<ConstellationLevel> levels;
-    private final List<TalentLevelUp> talentLevelUps;
+    private final List<TalentLevel> talentLevels;
 
-    public Constellation(Element element, ConstellationActivationMaterial activationMaterial, List<ConstellationLevel> levels, List<TalentLevelUp> talentLevelUps) {
+    public Constellation(Element element, ConstellationActivationMaterial activationMaterial, List<ConstellationLevel> levels, List<TalentLevel> talentLevels) {
         this.element = element;
         this.activationMaterial = activationMaterial;
         this.levels = levels;
-        this.talentLevelUps = talentLevelUps;
+        this.talentLevels = talentLevels;
     }
 
     public Element getElement() {
@@ -29,7 +29,7 @@ public class Constellation {
         return levels;
     }
 
-    public List<TalentLevelUp> getTalentLevels() {
-        return talentLevelUps;
+    public List<TalentLevel> getTalentLevels() {
+        return talentLevels;
     }
 }

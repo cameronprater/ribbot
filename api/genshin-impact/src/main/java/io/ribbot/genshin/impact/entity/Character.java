@@ -11,10 +11,10 @@ public class Character {
     private final Sex sex;
     private final Nation nation;
     private final List<Constellation> constellations;
-    private final List<CharacterAscensionPhase> ascensions;
+    private final List<CharacterAscension> ascensions;
 
     public Character(String name, Rarity rarity, WeaponType weaponType, Sex sex, @Nullable Nation nation,
-            List<Constellation> constellations, List<CharacterAscensionPhase> ascensions) {
+            List<Constellation> constellations, List<CharacterAscension> ascensions) {
         this.name = name;
         this.rarity = rarity;
         this.weaponType = weaponType;
@@ -48,7 +48,7 @@ public class Character {
         return constellations;
     }
 
-    public List<CharacterAscensionPhase> getAscensions() {
+    public List<CharacterAscension> getAscensions() {
         return ascensions;
     }
 

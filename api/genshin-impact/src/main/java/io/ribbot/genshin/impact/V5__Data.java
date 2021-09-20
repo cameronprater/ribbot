@@ -1,9 +1,6 @@
 package io.ribbot.genshin.impact;
 
-import io.ribbot.genshin.impact.entity.AscensionGemSize;
-import io.ribbot.genshin.impact.entity.AscensionGemType;
-import io.ribbot.genshin.impact.entity.Element;
-import io.ribbot.genshin.impact.entity.TalentBookType;
+import io.ribbot.genshin.impact.entity.*;
 import org.flywaydb.core.api.migration.BaseJavaMigration;
 import org.flywaydb.core.api.migration.Context;
 
@@ -13,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-// TODO
 public class V5__Data extends BaseJavaMigration {
 
     private void insertMaterial(Context context, String name, int rarity) throws Exception {
@@ -48,13 +44,17 @@ public class V5__Data extends BaseJavaMigration {
                 String name = ascensionGemTypeName + ' ' + ascensionGemSizeName;
                 switch (ascensionGemSize) {
                     case SLIVER:
-                        insertMaterial(context, name, );
+                        insertMaterial(context, name, 2);
+                        break;
                     case FRAGMENT:
-                        insertMaterial(context, name, );
+                        insertMaterial(context, name, 3);
+                        break;
                     case CHUNK:
-                        insertMaterial(context, name, );
+                        insertMaterial(context, name, 4);
+                        break;
                     case GEMSTONE:
-                        insertMaterial(context, name, );
+                        insertMaterial(context, name, 5);
+                        break;
                     default:
                         throw new IllegalStateException();
                 }
@@ -79,11 +79,25 @@ public class V5__Data extends BaseJavaMigration {
             try (ResultSet rows = context.getConnection().createStatement().executeQuery("SELECT DISTINCT name FROM talent_book_series")) {
                 while (rows.next()) {
                     String talentBookSeries = rows.getString(1);
+                    String name;
+                    switch (talentBookType) {
+                        case GUIDE:
+                            insertMaterial(context, name=talentBookTypeName + " of " + talentBookSeries, 2);
+                            break;
+                        case TEACHINGS:
+                            insertMaterial(context, name=talentBookTypeName + " to " + talentBookSeries, 3);
+                            break;
+                        case PHILOSOPHIES:
+                            insertMaterial(context, name=talentBookTypeName + " of " + talentBookSeries, 4);
+                            break;
+                        default:
+                            throw new IllegalStateException();
+                    }
+
                     try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO talent_book VALUES (?, ?, ?)")) {
                         statement.setString(1, talentBookTypeName);
                         statement.setString(2, talentBookSeries);
-                        // TODO
-                        statement.setString(3, talentBookTypeName + " of " + talentBookSeries);
+                        statement.setString(3, name);
                         statement.executeUpdate();
                     }
                 }
@@ -91,6 +105,7 @@ public class V5__Data extends BaseJavaMigration {
         }
     }
 
+    // TODO
     private void insertLumineData(Context context) throws Exception {
         // insert talents
         // insert constellations
