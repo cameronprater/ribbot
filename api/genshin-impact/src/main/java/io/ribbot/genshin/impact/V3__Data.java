@@ -93,9 +93,9 @@ public class V3__Data extends BaseJavaMigration {
     }
 
     private void insertCommonEnemies(Context context) throws Exception {
-        for (Element element : Element.values()) {
-            String elementName = element.getName();
-            try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO common_enemy VALUES (?, ?, ?)")) {
+        try (PreparedStatement statement = context.getConnection().prepareStatement("INSERT INTO common_enemy VALUES (?, ?, ?)")) {
+            for (Element element : Element.values()) {
+                String elementName = element.getName();
                 // slimes
                 statement.setString(1, EnemyType.Name.SLIME.getValue());
                 statement.setString(2, elementName);

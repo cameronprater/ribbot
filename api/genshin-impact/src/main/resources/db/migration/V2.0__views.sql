@@ -1,3 +1,4 @@
+-- TODO
 CREATE VIEW IF NOT EXISTS detailed_character AS
     SELECT *
         FROM character AS ch

@@ -21,6 +21,33 @@ CREATE TABLE IF NOT EXISTS character (
     FOREIGN KEY nation REFERENCES nation(name),
     CHECK (sex = 'Male' OR sex = 'Female')
 );
+CREATE TABLE IF NOT EXISTS material (
+    name TEXT PRIMARY KEY NOT NULL,
+    rarity INTEGER,
+    FOREIGN KEY rarity REFERENCES rarity(stars)
+);
+CREATE TABLE IF NOT EXISTS constellation_activation_material (
+    name TEXT PRIMARY KEY NOT NULL,
+    FOREIGN KEY name REFERENCES material(name)
+);
+CREATE TABLE IF NOT EXISTS constellation (
+    character TEXT NOT NULL,
+    element TEXT NOT NULL,
+    activation_material TEXT NOT NULL,
+    FOREIGN KEY character REFERENCES character(name),
+    FOREIGN KEY element REFERENCES element(name),
+    FOREIGN KEY activation_material REFERENCES constellation_activation_material(name),
+    PRIMARY KEY (character, element)
+);
+CREATE TABLE IF NOT EXISTS constellation_level (
+    name TEXT PRIMARY KEY NOT NULL,
+    character TEXT NOT NULL,
+    element TEXT NOT NULL,
+    level INTEGER NOT NULL,
+    effect TEXT NOT NULL,
+    FOREIGN KEY (character, element) REFERENCES constellation(character, element),
+    UNIQUE (character, element, level)
+);
 CREATE TABLE IF NOT EXISTS talent_type (
     name TEXT PRIMARY KEY NOT NULL
 );
@@ -33,15 +60,6 @@ CREATE TABLE IF NOT EXISTS talent (
     FOREIGN KEY (character, element) REFERENCES constellation(character, element),
     FOREIGN KEY type REFERENCES talent_type(name),
     PRIMARY KEY (character, element, type)
-);
-CREATE TABLE IF NOT EXISTS material (
-    name TEXT PRIMARY KEY NOT NULL,
-    rarity INTEGER,
-    FOREIGN KEY rarity REFERENCES rarity(stars)
-);
-CREATE TABLE IF NOT EXISTS constellation_activation_material (
-    name TEXT PRIMARY KEY NOT NULL,
-    FOREIGN KEY name REFERENCES material(name)
 );
 CREATE TABLE IF NOT EXISTS ascension_gem_type (
     name TEXT PRIMARY KEY NOT NULL,
@@ -146,24 +164,6 @@ CREATE TABLE IF NOT EXISTS weekly_boss_drop (
     weekly_boss TEXT NOT NULL,
     FOREIGN KEY name REFERENCES material(name),
     FOREIGN KEY weekly_boss REFERENCES weekly_boss(name)
-);
-CREATE TABLE IF NOT EXISTS constellation (
-    character TEXT NOT NULL,
-    element TEXT NOT NULL,
-    activation_material TEXT NOT NULL,
-    FOREIGN KEY character REFERENCES character(name),
-    FOREIGN KEY element REFERENCES element(name),
-    FOREIGN KEY activation_material REFERENCES constellation_activation_material(name),
-    PRIMARY KEY (character, element)
-);
-CREATE TABLE IF NOT EXISTS constellation_level (
-    name TEXT PRIMARY KEY NOT NULL,
-    character TEXT NOT NULL,
-    element TEXT NOT NULL,
-    level INTEGER NOT NULL,
-    effect TEXT NOT NULL,
-    FOREIGN KEY (character, element) REFERENCES constellation(character, element),
-    UNIQUE (character, element, level)
 );
 CREATE TABLE IF NOT EXISTS character_ascension_phase (
     phase INTEGER PRIMARY KEY NOT NULL,
